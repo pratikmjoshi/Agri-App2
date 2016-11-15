@@ -26,6 +26,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
+        android:id="@+id/registration_pageIndicatorView"
         attrs:piv_animationType="none"
         attrs:piv_interactiveAnimation="true"/>
 
