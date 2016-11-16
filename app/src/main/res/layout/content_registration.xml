@@ -6,9 +6,6 @@
     android:id="@+id/content_registration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.prateekjoshi.agri_app.RegistrationActivity"
@@ -20,48 +17,55 @@
         android:id="@+id/registration_viewpager"
     ></android.support.v4.view.ViewPager>
 
-    <com.rd.PageIndicatorView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:id="@+id/registration_pageIndicatorView"
-        attrs:piv_animationType="none"
-        attrs:piv_interactiveAnimation="true"/>
-
+        android:background="@color/black"></View>
 
     <RelativeLayout
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@color/colorPrimary">
 
-        <LinearLayout
-            android:id="@+id/viewPagerCountDots"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <com.rd.PageIndicatorView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:orientation="horizontal" />
+            android:layout_marginTop="10dp"
+            android:id="@+id/registration_pageIndicatorView"
+            attrs:piv_animationType="none"
+            attrs:piv_interactiveAnimation="true"/>
 
         <ImageButton
             android:id="@+id/btn_next"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="3000dp"
+            android:maxHeight="3000dp"
+            android:scaleType="fitCenter"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
-            android:src="@drawable/ic_reg_next" />
+            android:src="@drawable/ic_reg_next"
+            android:background="@color/colorPrimary"/>
 
         <ImageButton
             android:id="@+id/btn_back"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_reg_back" />
+            android:src="@drawable/ic_reg_back"
+            android:background="@color/colorPrimary"/>
 
     </RelativeLayout>
 </RelativeLayout>

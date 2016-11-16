@@ -20,7 +20,7 @@ public class RegistrationAdapter extends FragmentPagerAdapter {
 
             case 0: return Registration1.newInstance("FirstFragment, Instance 1");
             case 1: return Registration2.newInstance("SecondFragment, Instance 1");
-            //case 2: return ThirdFragment.newInstance("ThirdFragment, Instance 1");
+            case 2: return Registration3.newInstance("ThirdFragment, Instance 1");
            // case 3: return ThirdFragment.newInstance("ThirdFragment, Instance 2");
            // case 4: return ThirdFragment.newInstance("ThirdFragment, Instance 3");
             default: return Registration1.newInstance("ThirdFragment, Default");
@@ -29,6 +29,6 @@ public class RegistrationAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }
