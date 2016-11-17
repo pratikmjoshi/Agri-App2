@@ -10,12 +10,13 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
     private String name;
     private String password;
     public Button logbutton;
-    public Button regbutton;
+    public TextView regbutton;
     public EditText editTextName;
     public EditText editTextPassword;
 
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         logbutton= (Button)findViewById(R.id.login_button_login);
-        regbutton=(Button)findViewById(R.id.login_button_registration);
+        regbutton=(TextView) findViewById(R.id.login_notregistered_link);
 
         editTextName= (EditText)findViewById(R.id.login_name_edittext);
         editTextPassword= (EditText)findViewById(R.id.login_password_edittext);

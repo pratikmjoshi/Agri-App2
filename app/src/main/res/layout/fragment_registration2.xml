@@ -3,49 +3,30 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="First Name:"
-        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/reg2_firstname_textview"
-        android:textSize="25sp"/>
-    <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/reg2_firstname_edittext"
+        android:hint="First Name"/>
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/reg2_firstname_textview"
-        android:layout_alignBaseline="@+id/reg2_firstname_textview"/>
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_below="@+id/reg2_firstname_edittext"
+        android:id="@+id/reg2_middlename_edittext"
+        android:hint="Middle Name"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"/>
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Middle Name:"
-        android:layout_below="@+id/reg2_firstname_textview"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/reg2_middlename_textview"
-        android:textSize="25sp"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/reg2_middlename_textview"
-        android:layout_alignBaseline="@+id/reg2_middlename_textview"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Name:"
-        android:layout_below="@+id/reg2_middlename_textview"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/reg2_lastname_textview"
-        android:textSize="25sp"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/reg2_lastname_textview"
-        android:layout_alignBaseline="@+id/reg2_lastname_textview"/>
+        android:layout_below="@+id/reg2_middlename_edittext"
+        android:id="@+id/reg2_lastname_edittext"
+        android:hint="Last Name"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"/>
 </RelativeLayout>
