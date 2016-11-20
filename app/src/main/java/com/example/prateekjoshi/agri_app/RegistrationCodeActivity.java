@@ -25,7 +25,7 @@ public class RegistrationCodeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 code= codeEntry.getText().toString();
                 if(code.equals("1111")){
-                    Intent i=new Intent(RegistrationCodeActivity.this,RegistrationActivity.class);
+                    Intent i=new Intent(RegistrationCodeActivity.this,Registration1.class);
                     startActivity(i);
                 }
                 else{

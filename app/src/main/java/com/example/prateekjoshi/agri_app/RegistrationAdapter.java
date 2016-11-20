@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Created by Prateek Joshi on 11/15/2016.
  */
 
-public class RegistrationAdapter extends FragmentPagerAdapter {
+/*public class RegistrationAdapter extends FragmentPagerAdapter {
 
     public RegistrationAdapter(FragmentManager fm) {
         super(fm);
@@ -21,14 +21,16 @@ public class RegistrationAdapter extends FragmentPagerAdapter {
             case 0: return Registration1.newInstance("FirstFragment, Instance 1");
             case 1: return Registration2.newInstance("SecondFragment, Instance 1");
             case 2: return Registration3.newInstance("ThirdFragment, Instance 1");
-           // case 3: return ThirdFragment.newInstance("ThirdFragment, Instance 2");
-           // case 4: return ThirdFragment.newInstance("ThirdFragment, Instance 3");
+            case 3: return Registration4.newInstance("FourthFragment, Instance 1");
+            case 4: return Registration5.newInstance("FourthFragment, Instance 1");
+            case 5: return Registration6.newInstance("FifthFragment, Instance 1");
             default: return Registration1.newInstance("ThirdFragment, Default");
         }
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 6;
     }
 }
+*/

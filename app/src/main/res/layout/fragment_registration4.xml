@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="80dp"
+        android:text="Do you rent or own this land?"
+        android:id="@+id/reg4_ownland_textview"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"/>
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/reg4_ownland_textview"
+        android:id="@+id/reg4_ownland_radiogrp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rent"
+            android:id="@+id/reg4_ownland_radiobtnyes"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Own"
+            android:id="@+id/reg4_ownland_radiobtnno"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Under whose name is your farming land under?"
+        android:layout_below="@+id/reg4_ownland_radiogrp"
+        android:id="@+id/reg4_landname_textview"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"/>
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reg4_landname_textview"
+        android:layout_marginTop="10dp"
+        android:hint="Name"
+        android:maxLines="1"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/reg4_landname_edittext"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many hectares?"
+        android:id="@+id/reg4_hectares_textview"
+        android:layout_below="@+id/reg4_landname_edittext"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"/>
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the number"
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/reg4_hectares_textview"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/reg4_hectares_edittext"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"></View>
+
+    <RelativeLayout
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@color/colorPrimary">
+
+
+
+        <ImageButton
+            android:id="@+id/reg4_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="3000dp"
+            android:maxHeight="3000dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_reg_next"
+            android:background="@color/colorPrimary"/>
+
+        <ImageButton
+            android:id="@+id/reg4_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_reg_back"
+            android:background="@color/colorPrimary"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

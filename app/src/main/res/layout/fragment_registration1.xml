@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.prateekjoshi.agri_app.Registration1">
+    tools:context="com.example.prateekjoshi.agri_app.Registration1"
+    android:id="@+id/fragment_registration1">
 
 
     <android.support.design.widget.TextInputEditText
@@ -23,5 +24,48 @@
         android:layout_marginTop="80dp"
         android:textColor="@color/black"
         android:hint="Create Password"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"></View>
+
+    <RelativeLayout
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@color/colorPrimary">
+
+
+
+        <ImageButton
+            android:id="@+id/reg1_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="3000dp"
+            android:maxHeight="3000dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_reg_next"
+            android:background="@color/colorPrimary"/>
+
+        <ImageButton
+            android:id="@+id/reg1_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_reg_back"
+            android:background="@color/colorPrimary"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
