@@ -31,6 +31,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_pineapple_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_pineapple"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:text="Pineapple"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +60,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_orange_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_orange"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="220dp"
+        android:text="Orange"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,6 +89,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_banana_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_banana"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:text="Banana"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,6 +118,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_cocoa_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_cocoa"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="220dp"
+        android:text="Cacao Pod"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,6 +147,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_passionfruit_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_passionfruit"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:text="Passionfruit"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,6 +176,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_chia_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_chia"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="220dp"
+        android:text="Chia seeds"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,6 +205,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_quinoa_checkbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg5_croptype_quinoa"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="40dp"
+        android:text="Quinoa Grains"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="56dp"

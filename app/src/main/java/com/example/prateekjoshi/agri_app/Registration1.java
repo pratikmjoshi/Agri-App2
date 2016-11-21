@@ -67,13 +67,15 @@ public class Registration1 extends AppCompatActivity{
             public void onClick(View view) {
                 if(phoneEditText.getText().toString().equals("")||passwordEditText.getText().toString().equals("")) {
                     if (phoneEditText.getText().toString().equals("") && passwordEditText.getText().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Please enter phone and password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please enter both details", Toast.LENGTH_SHORT).show();
                     }
+                    else
                     if (passwordEditText.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please enter both details", Toast.LENGTH_SHORT).show();
                     }
+                    else
                     if (phoneEditText.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Please enter phone number", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please enter both details", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
@@ -118,7 +120,10 @@ public class Registration1 extends AppCompatActivity{
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
+    @Override
+    public void onBackPressed() {
+        // do nothing.
+    }
 
 }
 

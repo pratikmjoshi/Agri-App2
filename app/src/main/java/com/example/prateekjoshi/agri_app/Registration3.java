@@ -64,7 +64,10 @@ public class Registration3 extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        // do nothing.
+    }
 
 
 }

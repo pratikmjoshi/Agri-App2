@@ -98,7 +98,10 @@ public class Registration4 extends AppCompatActivity {
         }
         return checked;
     }
-
+    @Override
+    public void onBackPressed() {
+        // do nothing.
+    }
 }
 
 

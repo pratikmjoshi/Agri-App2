@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Registration6 extends AppCompatActivity {
     public ImageButton next;
     public ImageButton previous;
     public ImageView cropPicture;
+    public TextView cropPictureLabel;
     public TextInputEditText cropsPerHectareEditText;
     public TextInputEditText cropQuintalsEditText;
     public double cropsPerHectare;
@@ -55,33 +57,41 @@ public class Registration6 extends AppCompatActivity {
 
         cropPicture= (ImageView) findViewById(R.id.reg6_croppic);
         cropPicture.setImageResource(setImage(crop));
+        cropPictureLabel = (TextView)findViewById(R.id.reg6_croppic_textview);
+        cropPictureLabel.setText(setCropText(crop));
 
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            cropsPerHectare=Integer.parseInt(cropsPerHectareEditText.getText().toString());
-            cropQuintals=Integer.parseInt(cropQuintalsEditText.getText().toString());
-            if(repeats==1) {
-                Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(Registration6.this, LoginActivity.class);
-                startActivity(i);
-            }
-                else{
-                repeats--;
-                Intent i = new Intent(Registration6.this, Registration6.class);
-                i.putStringArrayListExtra("Type of crops", crops);
-                i.putExtra("Loops", repeats);
-                startActivity(i);
-            }
+                if(cropsPerHectareEditText.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Please fill in all details",Toast.LENGTH_SHORT).show();
+                }
+                else
+                if(cropQuintalsEditText.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Please fill in all details",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    cropsPerHectare = Integer.parseInt(cropsPerHectareEditText.getText().toString());
+                    cropQuintals = Integer.parseInt(cropQuintalsEditText.getText().toString());
+                    if (repeats == 1) {
+                        Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Registration6.this, LoginActivity.class);
+                        startActivity(i);
+                    } else {
+                        repeats--;
+                        Intent i = new Intent(Registration6.this, Registration6.class);
+                        i.putStringArrayListExtra("Type of crops", crops);
+                        i.putExtra("Loops", repeats);
+                        startActivity(i);
+                    }
+                }
             }
         });
 
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cropsPerHectare=Integer.parseInt(cropsPerHectareEditText.getText().toString());
-                cropQuintals=Integer.parseInt(cropQuintalsEditText.getText().toString());
                 repeats++;
                 Intent i=new Intent(Registration6.this,Registration6.class);
                 i.putStringArrayListExtra("Type of crops",crops);
@@ -115,6 +125,35 @@ public class Registration6 extends AppCompatActivity {
             return R.drawable.quinoagrain;
         }
         return 0;
+    }
+
+    public String setCropText(String crop){
+        if(crop.equals("pineapple")){
+            return "Pineapple";
+        }
+        if(crop.equals("orange")){
+            return "Orange";
+        }
+        if(crop.equals("banana")){
+            return "Banana";
+        }
+        if(crop.equals("cacao pod")){
+            return "Cacao Pod";
+        }
+        if(crop.equals("passionfruit")){
+            return "Passionfruit";
+        }
+        if(crop.equals("chia seeds")){
+            return "Chia Seeds";
+        }
+        if(crop.equals("quinoa grains")){
+            return "Quinoa Grains";
+        }
+        return "Crop";
+    }
+    @Override
+    public void onBackPressed() {
+        // do nothing.
     }
 
 }

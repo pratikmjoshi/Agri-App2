@@ -97,5 +97,8 @@ public class Registration5 extends AppCompatActivity {
             crops.add("cacao pod");
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        // do nothing.
+    }
 }
