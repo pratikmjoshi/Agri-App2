@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.ColorInt;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,7 @@ public class Registration1 extends AppCompatActivity{
     private TextInputEditText passwordEditText;
     private String phone;
     private String password;
+    private DBHelper db;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     public boolean isNetworkAvailable(final Context context) {
@@ -62,6 +64,9 @@ public class Registration1 extends AppCompatActivity{
         phoneEditText=(TextInputEditText)findViewById(R.id.reg1_phone_edittext);
         passwordEditText=(TextInputEditText)findViewById(R.id.reg1_password_edittext);
 
+        db = new DBHelper(this);
+
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +86,7 @@ public class Registration1 extends AppCompatActivity{
                 else{
                     phone=phoneEditText.getText().toString();
                     password=passwordEditText.getText().toString();
+
                     Intent i=new Intent(Registration1.this,Registration2.class);
                     startActivity(i);
                 }

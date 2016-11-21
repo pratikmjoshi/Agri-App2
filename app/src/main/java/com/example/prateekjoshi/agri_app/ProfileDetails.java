@@ -114,16 +114,20 @@ public class ProfileDetails {
         this.uid = uid;
     }
 
-    /*public Map<String, Object> toMap() {
+    public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("User ID", uid);
-        map.put("Name", name);
-        map.put("Number", number);
-        map.put("Email ID", email);
-        map.put("College name",college);
-        map.put("TeamMember Count", teamMemberCount);
+        map.put("Phone Number", phone);
+        map.put("Password", password);
+        map.put("First Name", firstname);
+        map.put("Middle Name", middlename);
+        map.put("Last Name", lastname);
+        map.put("Rent or Own Land",ownLand);
+        map.put("Name Land", nameLand);
+        map.put("Hectares of Land", hectares);
+        map.put("Crop Details", cropDetails);
         return map;
-    }*/
+    }
 
 }
 
