@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
         android:layout_width="50dp"
@@ -23,7 +24,7 @@
         android:layout_below="@id/reg6_croppic"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:textSize="25dp"
         android:id="@+id/reg6_croppic_textview"/>
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
         android:id="@+id/reg6_crop_per_hectare_textview"
         android:layout_below="@id/reg6_croppic"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -45,11 +47,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How much are you producing of the crop(in quintals)?"
+        android:text="How much are you producing of the crop\n(in quintals)?"
         android:layout_below="@id/reg6_crop_per_hectare_edittext"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/reg6_crop_quintal_textview"/>
+        android:id="@+id/reg6_crop_quintal_textview"
+        android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -60,19 +63,13 @@
         android:inputType="number"
         android:id="@+id/reg6_crop_quintal_edittext"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"></View>
-
     <RelativeLayout
         android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/colorPrimary">
+        android:background="@color/Turquoise">
 
 
 
@@ -87,7 +84,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_reg_next"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
         <ImageButton
             android:id="@+id/reg6_btn_back"
@@ -100,7 +97,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_reg_back"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
     </RelativeLayout>
 </RelativeLayout>

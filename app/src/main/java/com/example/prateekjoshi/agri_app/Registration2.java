@@ -1,5 +1,6 @@
 package com.example.prateekjoshi.agri_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -10,11 +11,15 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.rd.PageIndicatorView;
@@ -42,6 +47,9 @@ public class Registration2 extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent i=getIntent();
+        if(i.getBooleanExtra("Registerdialog",false)==true){
+        regfinishdialog();}
 
         next=(ImageButton)findViewById(R.id.reg2_btn_next);
         previous=(ImageButton)findViewById(R.id.reg2_btn_back);
@@ -54,7 +62,7 @@ public class Registration2 extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if(editTextFirstName.getText().toString().equals("")||editTextLastName.getText().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Please enter at least first name or last name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please enter a first name or a last name", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     firstName=editTextFirstName.getText().toString();
@@ -70,10 +78,28 @@ public class Registration2 extends AppCompatActivity{
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(Registration2.this,Registration1.class);
-                startActivity(i);
+                //Intent i=new Intent(Registration2.this,Registration1.class);
+                //startActivity(i);
             }
         });
+
+    }
+
+    public void regfinishdialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("\t\t\t Your registration is complete!\n\t\tPlease fill out your profile details.")
+                .setTitle("\t\t\t\tRegistration complete")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.dimAmount=0.6f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+        dialog.getWindow().setAttributes(lp);
 
     }
     @Override

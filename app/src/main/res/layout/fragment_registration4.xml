@@ -6,11 +6,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="150dp"
         android:text="Do you rent or own this land?"
         android:id="@+id/reg4_ownland_textview"
         android:layout_marginLeft="10dp"
-        android:textSize="15dp"/>
+        android:textSize="18dp"/>
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -23,12 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rent"
+            android:textSize="15dp"
             android:id="@+id/reg4_ownland_radiobtnyes"
             android:onClick="onRadioButtonClicked"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Own"
+            android:textSize="15dp"
             android:id="@+id/reg4_ownland_radiobtnno"
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
@@ -40,7 +42,7 @@
         android:id="@+id/reg4_landname_textview"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
-        android:textSize="15dp"/>
+        android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -58,7 +60,7 @@
         android:layout_below="@+id/reg4_landname_edittext"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
-        android:textSize="15dp"/>
+        android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -68,11 +70,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/reg4_hectares_edittext"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"></View>
 
     <RelativeLayout
         android:id="@+id/viewPagerIndicator"
@@ -80,7 +77,7 @@
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/colorPrimary">
+        android:background="@color/Turquoise">
 
 
 
@@ -95,7 +92,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_reg_next"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
         <ImageButton
             android:id="@+id/reg4_btn_back"
@@ -108,7 +105,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_reg_back"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
     </RelativeLayout>
 

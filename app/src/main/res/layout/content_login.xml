@@ -10,48 +10,82 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.prateekjoshi.agri_app.LoginActivity"
-    tools:showIn="@layout/activity_login">
-    <android.support.design.widget.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp"
-        android:hint="Username"
-        android:maxLines="1"
-        android:inputType="text"
-        android:id="@+id/login_name_edittext"/>
+    tools:showIn="@layout/activity_login"
+    android:background="@color/white">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/activity_splash_screen_logo"
+        android:src="@drawable/logo"/>
 
-    <android.support.design.widget.TextInputEditText
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_name_edittext"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="15dp"
-        android:textSize="20dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:id="@+id/login_password_edittext"/>
+        android:id="@+id/login_name_textview"
+        android:weightSum="1">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_name_textview"
+            android:textSize="20dp"
+            android:hint="Username"
+            android:maxLines="1"
+            android:inputType="text"
+            android:id="@+id/login_name_edittext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_name_textview"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/login_password_textview"
+        android:weightSum="1">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_password_textview"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:hint="Password"
+            android:maxLines="1"
+            android:id="@+id/login_password_edittext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/login_button_login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_password_edittext"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
-        android:text="LOG IN" />
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/login_password_textview"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:background="@color/Turquoise"/>
 
     <TextView android:id="@+id/login_notregistered_link"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@id/login_button_login"
-        android:text="No account yet? Create one"
+        android:text="SIGN UP FOR AN ACCOUNT"
         android:gravity="center"
         android:textSize="16dip"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:textColor="@color/gray"/>
 
 
 </RelativeLayout>

@@ -56,7 +56,7 @@ public class Registration4 extends AppCompatActivity {
                 int selectedId=ownLandGroup.getCheckedRadioButtonId();
                 ownLandButton = (RadioButton)findViewById(selectedId);
                 if(selectedId==-1){
-                    Toast.makeText(getApplicationContext(),"Please choose whether you own land or not",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please select if you rent or own land",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     if(ownLandButton.getText()=="Own"){

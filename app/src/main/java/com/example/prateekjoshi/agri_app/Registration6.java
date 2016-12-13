@@ -76,7 +76,7 @@ public class Registration6 extends AppCompatActivity {
                     cropQuintals = Integer.parseInt(cropQuintalsEditText.getText().toString());
                     if (repeats == 1) {
                         Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(Registration6.this, LoginActivity.class);
+                        Intent i = new Intent(Registration6.this, MenuScreen.class);
                         startActivity(i);
                     } else {
                         repeats--;

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -20,10 +21,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -37,14 +40,33 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class Registration1 extends AppCompatActivity{
-    public ImageButton next;
+    public Button next;
     public ImageButton previous;
+    public TextView showPassword;
     private TextInputEditText phoneEditText;
     private TextInputEditText passwordEditText;
+    private TextInputLayout textInputLayoutPhone;
+    private TextInputLayout textInputLayoutPassword;
     private String phone;
     private String password;
     private DBHelper db;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+    public static void setInputTextLayoutColor(TextInputLayout til, @ColorInt int color) {
+        try {
+            Field fDefaultTextColor = TextInputLayout.class.getDeclaredField("mDefaultTextColor");
+            fDefaultTextColor.setAccessible(true);
+            fDefaultTextColor.set(til, new ColorStateList(new int[][]{{0}}, new int[]{color}));
+
+            Field fFocusedTextColor = TextInputLayout.class.getDeclaredField("mFocusedTextColor");
+            fFocusedTextColor.setAccessible(true);
+            fFocusedTextColor.set(til, new ColorStateList(new int[][]{{0}}, new int[]{color}));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
@@ -58,11 +80,13 @@ public class Registration1 extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
 
-        next=(ImageButton)findViewById(R.id.reg1_btn_next);
-        previous=(ImageButton)findViewById(R.id.reg1_btn_back);
+        next=(Button)findViewById(R.id.reg1_btn_next);
+        //previous=(ImageButton)findViewById(R.id.reg1_btn_back);
 
         phoneEditText=(TextInputEditText)findViewById(R.id.reg1_phone_edittext);
         passwordEditText=(TextInputEditText)findViewById(R.id.reg1_password_edittext);
+        passwordEditText.setTypeface(Typeface.DEFAULT);
+        passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
 
         db = new DBHelper(this);
 
@@ -88,17 +112,18 @@ public class Registration1 extends AppCompatActivity{
                     password=passwordEditText.getText().toString();
 
                     Intent i=new Intent(Registration1.this,Registration2.class);
+                    i.putExtra("Registerdialog",true);
                     startActivity(i);
                 }
             }
         });
 
-        previous.setOnClickListener(new View.OnClickListener() {
+        /*previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               exitConfirmDialog();
+                exitConfirmDialog();
             }
-        });
+        }); */
 
 
 
@@ -119,7 +144,7 @@ public class Registration1 extends AppCompatActivity{
         alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+
             }
         });
 
@@ -128,7 +153,7 @@ public class Registration1 extends AppCompatActivity{
     }
     @Override
     public void onBackPressed() {
-        // do nothing.
+        exitConfirmDialog();
     }
 
 }

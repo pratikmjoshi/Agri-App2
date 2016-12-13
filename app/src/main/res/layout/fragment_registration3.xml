@@ -3,36 +3,56 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.TextInputEditText
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:id="@+id/reg3_address_edittext"
-        android:hint="Address"
-        android:inputType="textPostalAddress"/>
-    <android.support.design.widget.TextInputEditText
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="200dp"
+        android:id="@+id/reg3_address_textview"
+        android:weightSum="1">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reg3_address_edittext"
+            android:hint="Address"
+            android:inputType="textPostalAddress"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/reg3_address_edittext"
-        android:id="@+id/reg3_province_edittext"
-        android:hint="Province"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp" />
-    <android.support.design.widget.TextInputEditText
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/reg3_address_textview"
+        android:id="@+id/reg3_province_textview"
+        android:weightSum="1">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reg3_province_edittext"
+            android:hint="Province" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/reg3_province_edittext"
-        android:id="@+id/reg3_postalcode_edittext"
-        android:hint="Postal Code"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:inputType="textPostalAddress"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"></View>
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/reg3_province_textview"
+        android:id="@+id/reg3_postalcode_textview"
+        android:weightSum="1">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reg3_postalcode_edittext"
+            android:hint="Postal Code"
+            android:inputType="textPostalAddress"/>
+    </android.support.design.widget.TextInputLayout>
+
+
 
     <RelativeLayout
         android:id="@+id/viewPagerIndicator"
@@ -40,7 +60,7 @@
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/colorPrimary">
+        android:background="@color/Turquoise">
 
 
 
@@ -55,7 +75,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_reg_next"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
         <ImageButton
             android:id="@+id/reg3_btn_back"
@@ -68,7 +88,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_reg_back"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
     </RelativeLayout>
 

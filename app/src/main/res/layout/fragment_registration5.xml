@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Which types of crop do you grow?(Tick all that apply)"
-        android:layout_marginTop="80dp"
+        android:text="Which types of crop do you grow?\n(Tick all that apply)"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/reg5_croptype_textview"/>
+        android:id="@+id/reg5_croptype_textview"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,15 +31,16 @@
         android:id="@+id/reg5_croptype_pineapple"
         android:layout_below="@id/reg5_croptype_textview"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/reg5_croptype_pineapple_checkbox"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/reg5_croptype_pineapple"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:text="Pineapple"/>
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="45dp"
+        android:text="Pineapple"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +49,7 @@
         android:layout_marginLeft="180dp"
         android:layout_marginTop="30dp"
         />
-    <ImageButton
+    <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/selector"
@@ -66,7 +69,8 @@
         android:layout_below="@id/reg5_croptype_orange"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="220dp"
-        android:text="Orange"/>
+        android:text="Orange"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,8 +98,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/reg5_croptype_banana"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="50dp"
-        android:text="Banana"/>
+        android:layout_marginLeft="55dp"
+        android:text="Banana"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,8 +128,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/reg5_croptype_cocoa"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="220dp"
-        android:text="Cacao Pod"/>
+        android:layout_marginLeft="205dp"
+        android:text="Cacao Pod"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -153,7 +159,8 @@
         android:layout_below="@id/reg5_croptype_passionfruit"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="40dp"
-        android:text="Passionfruit"/>
+        android:text="Passionfruit"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -173,16 +180,17 @@
         android:scaleType="fitCenter"
         android:id="@+id/reg5_croptype_chia"
         android:layout_below="@id/reg5_croptype_cocoa"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="45dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/reg5_croptype_chia_checkbox"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/reg5_croptype_chia"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="220dp"
-        android:text="Chia seeds"/>
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="205dp"
+        android:text="Chia seeds"
+        android:textSize="18dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -202,21 +210,17 @@
         android:scaleType="fitCenter"
         android:id="@+id/reg5_croptype_quinoa"
         android:layout_below="@id/reg5_croptype_passionfruit"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/reg5_croptype_quinoa_checkbox"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/reg5_croptype_quinoa"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="40dp"
-        android:text="Quinoa Grains"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"></View>
+        android:layout_marginLeft="35dp"
+        android:text="Quinoa Grains"
+        android:textSize="18dp"/>
 
     <RelativeLayout
         android:id="@+id/viewPagerIndicator"
@@ -224,7 +228,7 @@
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/colorPrimary">
+        android:background="@color/Turquoise">
 
 
 
@@ -239,7 +243,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_reg_next"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
         <ImageButton
             android:id="@+id/reg5_btn_back"
@@ -252,7 +256,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_reg_back"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/Turquoise"/>
 
     </RelativeLayout>
 </RelativeLayout>

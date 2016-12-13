@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -21,12 +22,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        /*myTextView=(TextView)findViewById(R.id.activity_splash_screen_name);
-        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/Roboto-Regular.ttf");
-        myTextView.setText("TU AGRI CONTROL");
-        myTextView.setTypeface(typeFace);*/
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager

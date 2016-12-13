@@ -8,22 +8,15 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/agriculture" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/activity_splash_screen_logo"
-        android:src="@drawable/logo"/>
+
     <TextView
         android:id="@+id/activity_splash_screen_name"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="200dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="TU AGRI CONTROL"
+        android:text=" TU AGRI\n\tCONTROL"
         android:textColor="#FFFF"
         android:textSize="40sp" />
 

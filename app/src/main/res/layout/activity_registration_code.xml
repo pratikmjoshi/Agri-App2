@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:textSize="25dp"
         android:id="@+id/registration_code_textview"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="120sp"
@@ -36,6 +36,8 @@
         android:layout_below="@+id/registration_code_edittext"
         android:layout_marginTop="30dp"
         android:id="@+id/registration_code_button"
-        android:text="Enter" />
+        android:text="Enter"
+        android:textColor="@color/white"
+        android:background="@color/Turquoise"/>
 
 </RelativeLayout>
