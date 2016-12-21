@@ -49,6 +49,7 @@
         android:layout_below="@+id/reg4_landname_textview"
         android:layout_marginTop="10dp"
         android:hint="Name"
+        android:inputType="text"
         android:maxLines="1"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

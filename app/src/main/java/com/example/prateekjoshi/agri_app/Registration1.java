@@ -111,8 +111,11 @@ public class Registration1 extends AppCompatActivity{
                     phone=phoneEditText.getText().toString();
                     password=passwordEditText.getText().toString();
 
+                    db.Profile1(phone,password);
+
                     Intent i=new Intent(Registration1.this,Registration2.class);
                     i.putExtra("Registerdialog",true);
+                    i.putExtra("Phone",phone);
                     startActivity(i);
                 }
             }

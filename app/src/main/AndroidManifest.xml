@@ -51,9 +51,9 @@
             android:label="RegistrationCodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuScreen"
-            android:label="@string/title_activity_menu_screen"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".MenuNavActivity"
+            android:label="@string/title_activity_menu_nav"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

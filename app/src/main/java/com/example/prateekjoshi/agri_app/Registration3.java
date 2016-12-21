@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class Registration3 extends AppCompatActivity {
     public ImageButton next;
@@ -26,6 +29,10 @@ public class Registration3 extends AppCompatActivity {
     public String address;
     public String province;
     public String postalCode;
+    public String phone;
+
+    private DBHelper db;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -35,6 +42,10 @@ public class Registration3 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        db= new DBHelper(this);
+
+        Intent i = getIntent();
+        i.getStringExtra("Phone");
 
         next=(ImageButton)findViewById(R.id.reg3_btn_next);
         previous=(ImageButton)findViewById(R.id.reg3_btn_back);
@@ -50,7 +61,10 @@ public class Registration3 extends AppCompatActivity {
                 province=editTextProvince.getText().toString();
                 postalCode=editTextPostalCode.getText().toString();
 
+                db.Profile3(phone,address,province,postalCode);
+
                 Intent i=new Intent(Registration3.this,Registration4.class);
+                i.putExtra("Phone",phone);
                 startActivity(i);
 
             }

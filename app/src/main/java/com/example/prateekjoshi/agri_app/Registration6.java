@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 
@@ -25,14 +28,17 @@ public class Registration6 extends AppCompatActivity {
     public ImageButton previous;
     public ImageView cropPicture;
     public TextView cropPictureLabel;
+    public String crop;
     public TextInputEditText cropsPerHectareEditText;
     public TextInputEditText cropQuintalsEditText;
     public double cropsPerHectare;
     public double cropQuintals;
     public ArrayList<String> crops;
     public int repeats;
+    public String phone;
 
-
+    private DBHelper db;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -41,11 +47,15 @@ public class Registration6 extends AppCompatActivity {
         setContentView(R.layout.fragment_registration6);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        db= new DBHelper(this);
+
         Intent i=getIntent();
+        phone= i.getStringExtra("Phone");
         crops= i.getStringArrayListExtra("Type of crops");
         repeats= i.getIntExtra("Loops",1);
 
-        String crop= crops.get(repeats-1);
+        crop= crops.get(repeats-1);
 
 
 
@@ -72,11 +82,15 @@ public class Registration6 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please fill in all details",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    cropsPerHectare = Integer.parseInt(cropsPerHectareEditText.getText().toString());
-                    cropQuintals = Integer.parseInt(cropQuintalsEditText.getText().toString());
+                    String hectares= cropsPerHectareEditText.getText().toString();
+                    String quintals= cropQuintalsEditText.getText().toString();
+                    cropsPerHectare = Integer.parseInt(hectares);
+                    cropQuintals = Integer.parseInt(quintals);
+                    String cropDetail=convertToString(crop,hectares,quintals);
+                    db.addCropDetail(phone,cropDetail);
                     if (repeats == 1) {
                         Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(Registration6.this, MenuScreen.class);
+                        Intent i = new Intent(Registration6.this, MenuNavActivity.class);
                         startActivity(i);
                     } else {
                         repeats--;
@@ -151,9 +165,15 @@ public class Registration6 extends AppCompatActivity {
         }
         return "Crop";
     }
+
+    public String convertToString(String crop,String hectares,String quintals) {
+        String temp = "Crop:"+ crop + "Hectares:" + hectares + "Quintals:" + quintals;
+        return temp;
+    }
     @Override
     public void onBackPressed() {
         // do nothing.
     }
+
 
 }

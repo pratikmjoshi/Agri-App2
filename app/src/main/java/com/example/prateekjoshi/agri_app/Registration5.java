@@ -15,6 +15,9 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 
@@ -23,8 +26,10 @@ public class Registration5 extends AppCompatActivity {
     public ImageButton previous;
     public CheckBox pineapple,orange,banana,passionfruit,quinoa,chia,cocoa;
     public ArrayList<String> crops;
+    public int phone;
 
-
+    private DBHelper db;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,10 @@ public class Registration5 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        db= new DBHelper(this);
+
+        Intent i = getIntent();
+        i.getStringExtra("Phone");
 
         next=(ImageButton)findViewById(R.id.reg5_btn_next);
         previous=(ImageButton)findViewById(R.id.reg5_btn_back);

@@ -22,6 +22,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rd.PageIndicatorView;
 
 import java.lang.reflect.Field;
@@ -38,6 +40,10 @@ public class Registration2 extends AppCompatActivity{
     public String firstName;
     public String middleName;
     public String lastName;
+    public String phone;
+
+    private DBHelper db;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -47,9 +53,12 @@ public class Registration2 extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        db= new DBHelper(this);
         Intent i=getIntent();
         if(i.getBooleanExtra("Registerdialog",false)==true){
-        regfinishdialog();}
+            phone=i.getStringExtra("Phone");
+            regfinishdialog();
+        }
 
         next=(ImageButton)findViewById(R.id.reg2_btn_next);
         previous=(ImageButton)findViewById(R.id.reg2_btn_back);
@@ -69,7 +78,9 @@ public class Registration2 extends AppCompatActivity{
                     middleName=editTextMiddleName.getText().toString();
                     lastName=editTextLastName.getText().toString();
 
+                    db.Profile2(phone,firstName,middleName,lastName);
                     Intent i=new Intent(Registration2.this,Registration3.class);
+                    i.putExtra("Phone",phone);
                     startActivity(i);
                 }
             }

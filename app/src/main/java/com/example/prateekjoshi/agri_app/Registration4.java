@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.StringDef;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Registration4 extends AppCompatActivity {
@@ -29,7 +33,11 @@ public class Registration4 extends AppCompatActivity {
 
     public boolean ownLand;
     public String landName;
-    public String hectares;
+    public int hectares;
+    public String phone;
+
+    private DBHelper db;
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -39,6 +47,10 @@ public class Registration4 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        db= new DBHelper(this);
+
+        Intent i =getIntent();
+        phone=i.getStringExtra("Phone");
 
         next=(ImageButton)findViewById(R.id.reg4_btn_next);
         previous=(ImageButton)findViewById(R.id.reg4_btn_back);
@@ -52,7 +64,7 @@ public class Registration4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 landName=landNameEditText.getText().toString();
-                hectares=hectaresEditText.getText().toString();
+                hectares=Integer.parseInt(hectaresEditText.getText().toString());
                 int selectedId=ownLandGroup.getCheckedRadioButtonId();
                 ownLandButton = (RadioButton)findViewById(selectedId);
                 if(selectedId==-1){
@@ -66,7 +78,10 @@ public class Registration4 extends AppCompatActivity {
                     if(ownLandButton.getText()=="Rent"){
                         ownLand=false;
                     }
+
+                    db.Profile4(phone,ownLand,landName,hectares);
                     Intent i=new Intent(Registration4.this,Registration5.class);
+                    i.putExtra("Phone",phone);
                     startActivity(i);
                 }
 

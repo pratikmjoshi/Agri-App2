@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 name=editTextName.getText().toString();
                 password=editTextPassword.getText().toString();
-                Intent i=new Intent(LoginActivity.this,MenuScreen.class);
+                Intent i=new Intent(LoginActivity.this,MenuNavActivity.class);
                 startActivity(i);
             }
         });

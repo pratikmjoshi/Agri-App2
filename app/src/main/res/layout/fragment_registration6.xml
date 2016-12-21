@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:paddingRight="15dp"
     android:layout_height="match_parent"
     android:background="@color/white">
 
@@ -34,14 +33,15 @@
         android:id="@+id/reg6_crop_per_hectare_textview"
         android:layout_below="@id/reg6_croppic"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/reg6_crop_per_hectare_textview"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Hectares"
         android:maxLines="1"
         android:inputType="number"
@@ -52,7 +52,8 @@
         android:text="How much are you producing of the crop\n(in quintals)?"
         android:layout_below="@id/reg6_crop_per_hectare_edittext"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:id="@+id/reg6_crop_quintal_textview"
         android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
@@ -61,7 +62,8 @@
         android:hint="Quintals"
         android:layout_below="@id/reg6_crop_quintal_textview"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:inputType="number"
         android:maxLines="1"
         android:id="@+id/reg6_crop_quintal_edittext"/>
