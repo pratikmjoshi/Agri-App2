@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="200dp"
         android:id="@+id/reg3_address_textview"
         android:weightSum="1">
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@+id/reg3_address_textview"
         android:id="@+id/reg3_province_textview"
         android:weightSum="1">
@@ -32,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/reg3_province_edittext"
+            android:maxLines="1"
             android:hint="Province" />
     </android.support.design.widget.TextInputLayout>
 
@@ -40,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@+id/reg3_province_textview"
         android:id="@+id/reg3_postalcode_textview"
         android:weightSum="1">
@@ -49,6 +53,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/reg3_postalcode_edittext"
             android:hint="Postal Code"
+            android:maxLines="1"
             android:inputType="textPostalAddress"/>
     </android.support.design.widget.TextInputLayout>
 

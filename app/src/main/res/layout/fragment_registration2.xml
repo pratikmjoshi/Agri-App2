@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:id="@+id/reg2_firstname_textview"
         android:weightSum="1">
 
@@ -19,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/reg2_firstname_edittext"
+            android:maxLines="1"
             android:hint="First Name"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -27,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@+id/reg2_firstname_textview"
         android:id="@+id/reg2_middlename_textview"
         android:weightSum="1">
@@ -35,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/reg2_middlename_edittext"
+            android:maxLines="1"
             android:hint="Middle Name" />
     </android.support.design.widget.TextInputLayout>
 
@@ -43,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@+id/reg2_middlename_textview"
         android:id="@+id/reg2_lastname_textview"
         android:weightSum="1">
@@ -51,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/reg2_lastname_edittext"
+            android:maxLines="1"
             android:hint="Last Name" />
     </android.support.design.widget.TextInputLayout>
 

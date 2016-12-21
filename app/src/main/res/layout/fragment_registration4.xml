@@ -9,7 +9,7 @@
         android:layout_marginTop="150dp"
         android:text="Do you rent or own this land?"
         android:id="@+id/reg4_ownland_textview"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textSize="18dp"/>
     <RadioGroup
         android:layout_width="fill_parent"
@@ -18,7 +18,7 @@
         android:layout_below="@+id/reg4_ownland_textview"
         android:id="@+id/reg4_ownland_radiogrp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="15dp">
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:layout_below="@+id/reg4_ownland_radiogrp"
         android:id="@+id/reg4_landname_textview"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="fill_parent"
@@ -50,7 +50,8 @@
         android:layout_marginTop="10dp"
         android:hint="Name"
         android:maxLines="1"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:id="@+id/reg4_landname_edittext"/>
     <TextView
         android:layout_width="wrap_content"
@@ -59,16 +60,18 @@
         android:id="@+id/reg4_hectares_textview"
         android:layout_below="@+id/reg4_landname_edittext"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textSize="18dp"/>
     <android.support.design.widget.TextInputEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Enter the number"
         android:inputType="numberDecimal"
+        android:maxLines="1"
         android:layout_below="@+id/reg4_hectares_textview"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:id="@+id/reg4_hectares_edittext"/>
 
     <RelativeLayout
