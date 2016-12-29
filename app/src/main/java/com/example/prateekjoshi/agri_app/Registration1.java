@@ -39,6 +39,8 @@ import com.rd.PageIndicatorView;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
+import io.realm.Realm;
+
 public class Registration1 extends AppCompatActivity{
     public Button next;
     public ImageButton previous;
@@ -49,7 +51,7 @@ public class Registration1 extends AppCompatActivity{
     private TextInputLayout textInputLayoutPassword;
     private String phone;
     private String password;
-    private DBHelper db;
+    private Realm realm;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     public static void setInputTextLayoutColor(TextInputLayout til, @ColorInt int color) {
@@ -79,6 +81,7 @@ public class Registration1 extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        realm = Realm.getDefaultInstance();
 
         next=(Button)findViewById(R.id.reg1_btn_next);
         //previous=(ImageButton)findViewById(R.id.reg1_btn_back);
@@ -88,7 +91,7 @@ public class Registration1 extends AppCompatActivity{
         passwordEditText.setTypeface(Typeface.DEFAULT);
         passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
 
-        db = new DBHelper(this);
+
 
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +114,7 @@ public class Registration1 extends AppCompatActivity{
                     phone=phoneEditText.getText().toString();
                     password=passwordEditText.getText().toString();
 
-                    db.Profile1(phone,password);
+                    update(realm);
 
                     Intent i=new Intent(Registration1.this,Registration2.class);
                     i.putExtra("Registerdialog",true);
@@ -157,6 +160,35 @@ public class Registration1 extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         exitConfirmDialog();
+    }
+
+    public void update(Realm realm) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                // Add a person
+                ProfileDetails profileDetails = realm.createObject(ProfileDetails.class);
+                profileDetails.setPhone(phone);
+                profileDetails.setPassword(password);
+                profileDetails.setFirstName("");
+                profileDetails.setMiddleName("");
+                profileDetails.setLastName("");
+                profileDetails.setAddress("");
+                profileDetails.setProvince("");
+                profileDetails.setPostalCode("");
+                profileDetails.setOwnLand(false);
+                profileDetails.setNameLand("");
+                profileDetails.setHectares(0);
+                profileDetails.setCropDetails("");
+            }
+        });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Remember to close Realm when done.
     }
 
 }

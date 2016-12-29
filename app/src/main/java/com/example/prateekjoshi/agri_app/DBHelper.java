@@ -2,12 +2,16 @@ package com.example.prateekjoshi.agri_app;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+
+import static android.R.attr.id;
 
 /**
  * Created by Prateek Joshi on 11/21/2016.
@@ -31,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CROPDETAILS_COLUMN= "crop_details";
     public static final String UNIQUE_ID_COLUMN= "id";
     private HashMap hp;
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -105,11 +110,18 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public boolean addCropDetail(String phone,String cropDetail) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //ContentValues contentValues = new ContentValues();
-        String query = "UPDATE profile SET " + CROPDETAILS_COLUMN + " = " + CROPDETAILS_COLUMN + cropDetail;
-        db.execSQL(query);
-        //contentValues.put(CROPDETAILS_COLUMN, cropDetail);
-        //db.update(PROFILE_TABLE_NAME, contentValues, "phone = ? ", new String[] { phone } );
+        ContentValues contentValues = new ContentValues();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        String old= new String();
+        if(res.moveToFirst()==true){
+        old = res.getString(res.getColumnIndex(CROPDETAILS_COLUMN));
+        res.close();}
+        else{
+            Log.d("Blank","Blank");
+        }
+        String cropDetailUpdated= old + cropDetail;
+        contentValues.put(CROPDETAILS_COLUMN, cropDetailUpdated);
+        db.update(PROFILE_TABLE_NAME, contentValues, "phone = ? ", new String[] { phone } );
         return true;
     }
     public Integer deleteProfile (String phone) {
@@ -117,6 +129,103 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(PROFILE_TABLE_NAME,
                 "phone = ? ",
                 new String[] { phone });
+    }
+    public String getPhone(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(PHONE_COLUMN));
+        return old;
+    }
+
+
+    public String getPassword(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(PASSWORD_COLUMN));
+        return old;
+    }
+
+    public String getAddress(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(ADDRESS_COLUMN));
+        return old;
+    }
+
+    public String getProvince(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(PROVINCE_COLUMN));
+        return old;
+    }
+
+    public String getPostalCode(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(POSTAL_CODE_COLUMN));
+        return old;
+    }
+
+    public String getFirstName(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(FIRST_NAME_COLUMN));
+        return old;
+    }
+
+    public String getMiddleName(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(MIDDLE_NAME_COLUMN));
+        return old;
+    }
+
+    public String getLastName(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(LAST_NAME_COLUMN));
+        return old;
+    }
+
+    public boolean getOwnLand(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        boolean old = res.getInt(res.getColumnIndex(OWN_LAND_COLUMN)) > 0;
+        return old;
+    }
+
+    public String getNameLand(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(NAME_LAND_COLUMN));
+        return old;
+    }
+
+    public int getHectares(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        int old = res.getInt(res.getColumnIndex(HECTARES_COLUMN));
+        return old;
+    }
+
+    public String[] getCropDetails(String phone) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profile where phone="+phone+"", null );
+        res.moveToFirst();
+        String old = res.getString(res.getColumnIndex(CROPDETAILS_COLUMN));
+        String[] crops = old.split(";");
+        return crops;
     }
 
 }

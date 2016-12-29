@@ -21,6 +21,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 
 public class Registration4 extends AppCompatActivity {
     public ImageButton next;
@@ -36,7 +39,7 @@ public class Registration4 extends AppCompatActivity {
     public int hectares;
     public String phone;
 
-    private DBHelper db;
+    private Realm realm;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
@@ -47,7 +50,7 @@ public class Registration4 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        db= new DBHelper(this);
+        realm = Realm.getDefaultInstance();
 
         Intent i =getIntent();
         phone=i.getStringExtra("Phone");
@@ -79,7 +82,7 @@ public class Registration4 extends AppCompatActivity {
                         ownLand=false;
                     }
 
-                    db.Profile4(phone,ownLand,landName,hectares);
+                    update(realm);
                     Intent i=new Intent(Registration4.this,Registration5.class);
                     i.putExtra("Phone",phone);
                     startActivity(i);
@@ -116,6 +119,25 @@ public class Registration4 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // do nothing.
+    }
+    public void update(Realm realm) {
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone).findAll();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                for(ProfileDetails profileDetails : results) {
+                    profileDetails.setOwnLand(ownLand);
+                    profileDetails.setNameLand(landName);
+                    profileDetails.setHectares(hectares);
+                }
+            }
+        });
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Remember to close Realm when done.
     }
 }
 

@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class Registration3 extends AppCompatActivity {
@@ -31,7 +35,7 @@ public class Registration3 extends AppCompatActivity {
     public String postalCode;
     public String phone;
 
-    private DBHelper db;
+    private Realm realm;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
@@ -42,10 +46,12 @@ public class Registration3 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        db= new DBHelper(this);
+        realm = Realm.getDefaultInstance();
 
         Intent i = getIntent();
-        i.getStringExtra("Phone");
+        phone=i.getStringExtra("Phone");
+
+
 
         next=(ImageButton)findViewById(R.id.reg3_btn_next);
         previous=(ImageButton)findViewById(R.id.reg3_btn_back);
@@ -61,7 +67,7 @@ public class Registration3 extends AppCompatActivity {
                 province=editTextProvince.getText().toString();
                 postalCode=editTextPostalCode.getText().toString();
 
-                db.Profile3(phone,address,province,postalCode);
+                update(realm);
 
                 Intent i=new Intent(Registration3.this,Registration4.class);
                 i.putExtra("Phone",phone);
@@ -82,7 +88,27 @@ public class Registration3 extends AppCompatActivity {
     public void onBackPressed() {
         // do nothing.
     }
+    public void update(Realm realm) {
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone).findAll();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                for(ProfileDetails profileDetails : results) {
+                    profileDetails.setAddress(address);
+                    profileDetails.setProvince(province);
+                    profileDetails.setPostalCode(postalCode);
+                    Log.d("kk",profileDetails.getFirstName());
+                }
+            }
+        });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Remember to close Realm when done.
+    }
 
 }
 

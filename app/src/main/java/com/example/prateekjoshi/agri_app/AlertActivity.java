@@ -1,0 +1,112 @@
+package com.example.prateekjoshi.agri_app;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
+
+import static android.R.id.list;
+
+public class AlertActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
+
+    private Button notifClear;
+
+    List<String> alerts;
+
+    private static final int PREFERENCE_MODE_PRIVATE = 0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_alert);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        notifClear = (Button) findViewById(R.id.notif_clear_button);
+
+        sharedPreferences = getPreferences(PREFERENCE_MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
+
+        alerts = load();
+
+        mRecyclerView = (RecyclerView)findViewById(R.id.alert_recycler_view);
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        Intent i= getIntent();
+        String alert = i.getStringExtra("Alert Message");
+        if(alert!=null) {
+            alerts.add(alert);
+        }
+
+
+        store(alerts);
+
+
+        mAdapter = new AlertAdapter(this, alerts);
+        mRecyclerView.setAdapter(mAdapter);
+
+        notifClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alerts.clear();
+                store(alerts);
+                mAdapter = new AlertAdapter(getApplicationContext(), alerts);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        });
+
+
+    }
+    public List<String> load() {
+        String csvList = sharedPreferences.getString("myList","");
+        String[] items = csvList.split(",");
+        List<String> list = new ArrayList<String>();
+        int num = 0;
+        if(csvList==""){
+            num=1;
+        }
+        for(int i=num; i < items.length; i++){
+            list.add(items[i]);
+        }
+        return list;
+    }
+
+    public void store(List<String> alerts) {
+        StringBuilder csvList = new StringBuilder();
+        for(String s : alerts){
+            csvList.append(s);
+            csvList.append(",");
+        }
+
+        sharedPreferencesEditor.putString("myList", csvList.toString());
+        sharedPreferencesEditor.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i =new Intent(this, MenuNavActivity.class);
+        startActivity(i);
+    }
+}

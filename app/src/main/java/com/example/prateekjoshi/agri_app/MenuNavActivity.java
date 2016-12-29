@@ -29,18 +29,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class MenuNavActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+    public TextView lol;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
-    private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +51,14 @@ public class MenuNavActivity extends Activity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
 
+        navigationView.setNavigationItemSelectedListener(this);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -82,8 +84,8 @@ public class MenuNavActivity extends Activity
 
         } else if (id == R.id.nav_alert) {
 
-            //Intent sponsorActivity = new Intent(MainActivity.this, Sponsors.class);
-            //startActivity(sponsorActivity);
+            Intent intent = new Intent(this,AlertActivity.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.nav_crop) {
@@ -101,13 +103,6 @@ public class MenuNavActivity extends Activity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
     }
 
     /**

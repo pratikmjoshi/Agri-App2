@@ -5,16 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by Prateek Joshi on 11/21/2016.
  */
 
-public class ProfileDetails {
+public class ProfileDetails extends RealmObject{
 
     private String phone;
     private String password;
-    private String teamMemberCount;
-    private String uid;
 
     private String address;
     private String province;
@@ -28,7 +29,7 @@ public class ProfileDetails {
     private String nameLand;
     private int hectares;
 
-    private Vector<String> cropDetails;
+    private String cropDetails;
 
 
     public ProfileDetails() {
@@ -56,6 +57,30 @@ public class ProfileDetails {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getFirstName() {
+        return firstname;
+    }
+
+    public void setFirstName(String firstname) {
+        this.firstname=firstname;
     }
 
     public String getMiddleName() {
@@ -98,30 +123,25 @@ public class ProfileDetails {
         this.hectares=hectares;
     }
 
-    public Vector<String> getCropDetails() {
+    public String getCropDetails() {
         return cropDetails;
     }
 
-    public void setCropDetails(Vector<String> cropDetails) {
+    public void setCropDetails(String cropDetails) {
         this.cropDetails=cropDetails;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("User ID", uid);
         map.put("Phone Number", phone);
         map.put("Password", password);
         map.put("First Name", firstname);
         map.put("Middle Name", middlename);
         map.put("Last Name", lastname);
+        map.put("Address",address);
+        map.put("Province",province);
+        map.put("Postal Code",postalCode);
         map.put("Rent or Own Land",ownLand);
         map.put("Name Land", nameLand);
         map.put("Hectares of Land", hectares);

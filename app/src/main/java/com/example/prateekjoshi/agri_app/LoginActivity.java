@@ -14,6 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmList;
+
 public class LoginActivity extends AppCompatActivity {
     private String name;
     private String password;
@@ -23,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     public EditText editTextName;
     public EditText editTextPassword;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         overridePendingTransition(0, 0);
+
 
         logbutton= (Button)findViewById(R.id.login_button_login);
         regbutton=(TextView) findViewById(R.id.login_notregistered_link);
@@ -61,5 +68,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
 
 }

@@ -19,6 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class Registration5 extends AppCompatActivity {
@@ -26,9 +30,9 @@ public class Registration5 extends AppCompatActivity {
     public ImageButton previous;
     public CheckBox pineapple,orange,banana,passionfruit,quinoa,chia,cocoa;
     public ArrayList<String> crops;
-    public int phone;
+    public String phone;
 
-    private DBHelper db;
+    private Realm realm;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
@@ -38,14 +42,14 @@ public class Registration5 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        db= new DBHelper(this);
+        realm = Realm.getDefaultInstance();
 
         Intent i = getIntent();
-        i.getStringExtra("Phone");
+        phone= i.getStringExtra("Phone");
 
         next=(ImageButton)findViewById(R.id.reg5_btn_next);
         previous=(ImageButton)findViewById(R.id.reg5_btn_back);
-        crops= new ArrayList<String>();
+        crops= new ArrayList<>();
         pineapple=(CheckBox)findViewById(R.id.reg5_croptype_pineapple_checkbox);
         orange=(CheckBox)findViewById(R.id.reg5_croptype_orange_checkbox);
         banana=(CheckBox)findViewById(R.id.reg5_croptype_banana_checkbox);
@@ -68,6 +72,7 @@ public class Registration5 extends AppCompatActivity {
                 else {
                     Intent i = new Intent(Registration5.this, Registration6.class);
                     i.putExtra("Loops", amount);
+                    i.putExtra("Phone",phone);
                     i.putStringArrayListExtra("Type of crops", crops);
                     startActivity(i);
                 }
@@ -109,5 +114,11 @@ public class Registration5 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // do nothing.
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Remember to close Realm when done.
     }
 }
