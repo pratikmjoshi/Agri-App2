@@ -72,9 +72,8 @@ public class MenuNavActivity extends Activity
 
         if (id == R.id.nav_profile) {
 
-            //Intent RegistrationActivity = new Intent(MainActivity.this, Registration.class);
-            //ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(this, R.anim.simple_slide_in_right, R.anim.empty);
-            //startActivity(RegistrationActivity, activityOptionsCompat.toBundle());
+            Intent i = new Intent(this,ProfileActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_teacher) {
 

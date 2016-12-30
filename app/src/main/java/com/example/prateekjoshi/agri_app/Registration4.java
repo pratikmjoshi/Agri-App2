@@ -40,7 +40,6 @@ public class Registration4 extends AppCompatActivity {
     public String phone;
 
     private Realm realm;
-    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
     @Override

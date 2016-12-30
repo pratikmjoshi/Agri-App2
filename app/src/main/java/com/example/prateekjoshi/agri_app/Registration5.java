@@ -33,7 +33,6 @@ public class Registration5 extends AppCompatActivity {
     public String phone;
 
     private Realm realm;
-    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

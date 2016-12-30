@@ -40,6 +40,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class Registration1 extends AppCompatActivity{
     public Button next;
@@ -163,6 +164,14 @@ public class Registration1 extends AppCompatActivity{
     }
 
     public void update(Realm realm) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<ProfileDetails> result = realm.where(ProfileDetails.class).findAll();
+                result.deleteAllFromRealm();
+            }
+        });
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {

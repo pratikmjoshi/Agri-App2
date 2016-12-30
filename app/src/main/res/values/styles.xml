@@ -22,4 +22,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MyCustomTheme" parent="AppTheme.NoActionBar">
+        <item name="android:actionOverflowButtonStyle">@style/MyCustomTheme.OverFlow</item>
+    </style>
+
+    <style name="MyCustomTheme.OverFlow">
+        <item name="android:src">@drawable/ic_action_settings</item>
+    </style>
+
 </resources>
