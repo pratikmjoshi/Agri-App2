@@ -37,7 +37,8 @@ import io.realm.RealmResults;
 public class MenuNavActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public TextView lol;
+    private Realm realm;
+    private String phone;
 
 
     @Override
@@ -46,10 +47,16 @@ public class MenuNavActivity extends Activity
         setContentView(R.layout.activity_menu_nav);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
-        toolbar.setTitle("Tu Agri Control");
+        toolbar.setTitle("KIKI Central");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        realm = Realm.getDefaultInstance();
+
+        RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
+        for(ProfileDetails temp : results) {
+            phone = temp.getPhone();
+        }
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -89,8 +96,10 @@ public class MenuNavActivity extends Activity
 
         } else if (id == R.id.nav_crop) {
 
-            //Intent sponsorActivity = new Intent(MainActivity.this, Pro_nights.class);
-            //startActivity(sponsorActivity);
+            Intent i = new Intent(getApplicationContext(),HarvestActivity.class);
+            i.putExtra("phone",phone);
+            startActivity(i);
+
 
         } else if (id == R.id.nav_delivery) {
             //Intent intent = new Intent(MainActivity.this, Shirts.class);
@@ -136,6 +145,11 @@ public class MenuNavActivity extends Activity
             return rootView;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing.
     }
 
 }

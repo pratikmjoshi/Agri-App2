@@ -13,12 +13,12 @@
     tools:showIn="@layout/activity_login"
     android:background="@color/white">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/activity_splash_screen_logo"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/kiki"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"

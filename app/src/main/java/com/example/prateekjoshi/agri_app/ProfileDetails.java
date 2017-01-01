@@ -32,6 +32,7 @@ public class ProfileDetails extends RealmObject{
     private String cropDetails;
 
 
+
     public ProfileDetails() {
     }
 
@@ -130,7 +131,6 @@ public class ProfileDetails extends RealmObject{
     public void setCropDetails(String cropDetails) {
         this.cropDetails=cropDetails;
     }
-
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<String, Object>();

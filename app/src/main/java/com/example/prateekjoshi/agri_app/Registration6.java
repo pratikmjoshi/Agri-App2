@@ -239,7 +239,6 @@ public class Registration6 extends AppCompatActivity {
 
         String uniqueId = ref.child("Registration").push().getKey();
 
-
         finalMap.put("Registration/" + uniqueId,map);
 
         ref.updateChildren(finalMap);
@@ -256,6 +255,7 @@ public class Registration6 extends AppCompatActivity {
         }
         return newValues;
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

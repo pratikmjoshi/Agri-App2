@@ -3,19 +3,15 @@ package com.example.prateekjoshi.agri_app;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.provider.MediaStore;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,92 +21,71 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileCropDetailsActivity extends AppCompatActivity {
 
     private Realm realm;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-    private TextInputEditText phone;
-    private TextInputEditText password;
-    private TextInputEditText firstName;
-    private TextInputEditText middleName;
-    private TextInputEditText lastName;
-    private TextInputEditText address;
-    private TextInputEditText province;
-    private TextInputEditText postalCode;
-    private RadioGroup ownLandGroup;
-    private RadioButton ownLandButton;
-    private RadioButton ownLandButtonyes;
-    private RadioButton ownLandButtonno;
-    private TextInputEditText nameLand;
-    private TextInputEditText hectares;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
-    private Button cropDetailsButton;
+    List<CropItem> crops;
 
     private MenuItem edit;
     private MenuItem save;
     private MenuItem cancel;
 
     private boolean editmenu;
-    public boolean ownLand;
+    private String phone;
 
     public boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_crop_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.profileactivity_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
         toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
 
+        Intent i =getIntent();
+        phone = i.getStringExtra("phone");
+
         editmenu=false;
 
         realm = Realm.getDefaultInstance();
 
-        phone = (TextInputEditText)findViewById(R.id.profile_phone_edittext);
-        password = (TextInputEditText)findViewById(R.id.profile_password_edittext);
-        firstName = (TextInputEditText)findViewById(R.id.profile_firstname_edittext);
-        middleName = (TextInputEditText)findViewById(R.id.profile_middlename_edittext);
-        lastName = (TextInputEditText)findViewById(R.id.profile_lastname_edittext);
-        address = (TextInputEditText)findViewById(R.id.profile_address_edittext);
-        province = (TextInputEditText)findViewById(R.id.profile_province_edittext);
-        postalCode = (TextInputEditText)findViewById(R.id.profile_postalcode_edittext);
-        nameLand = (TextInputEditText)findViewById(R.id.profile_landname_edittext);
-        hectares = (TextInputEditText)findViewById(R.id.profile_hectares_edittext);
+        crops = update(realm);
 
-        ownLandGroup= (RadioGroup) findViewById(R.id.profile_ownland_radiogrp);
-        ownLandButtonyes = (RadioButton)findViewById(R.id.profile_ownland_radiobtnyes);
-        ownLandButtonno = (RadioButton)findViewById(R.id.profile_ownland_radiobtnno);
+        mRecyclerView = (RecyclerView)findViewById(R.id.profile_cropdetails_recycler_view);
 
-        cropDetailsButton = (Button)findViewById(R.id.profile_cropdetails_button);
+        mRecyclerView.setHasFixedSize(true);
 
-        update(realm);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        disableFields();
+        mAdapter = new CropDetailsAdapter(this, crops,editmenu,false);
+        mRecyclerView.setAdapter(mAdapter);
 
 
-        cropDetailsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),ProfileCropDetailsActivity.class);
-                i.putExtra("phone",phone.getText().toString());
-                startActivity(i);
-            }
-        });
+
+
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -133,24 +108,32 @@ public class ProfileActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.profile_edit) {
-            enableFields();
+
             editmenu = true;
+            mAdapter = new CropDetailsAdapter(this, crops,editmenu,false);
+            mRecyclerView.setAdapter(mAdapter);
             invalidateOptionsMenu();
         }
         else
         if (id == R.id.profile_cancel) {
-            disableFields();
+
             editmenu = false;
+            crops=update(realm);
+            mAdapter = new CropDetailsAdapter(this, crops,editmenu,false);
+            mRecyclerView.setAdapter(mAdapter);
             invalidateOptionsMenu();
         }
         else
         if (id==R.id.profile_save) {
-            saveNew(realm);
+            saveNew(realm,crops);
             if(isNetworkAvailable(getApplicationContext())) {
                 updateOnlineRegistrationDetails();
             }
-            disableFields();
+
             editmenu = false;
+            crops=update(realm);
+            mAdapter = new CropDetailsAdapter(this, crops,editmenu,true);
+            mRecyclerView.setAdapter(mAdapter);
             invalidateOptionsMenu();
         }
         return super.onOptionsItemSelected(item);
@@ -178,41 +161,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent i =new Intent(this, MenuNavActivity.class);
+        Intent i =new Intent(this, ProfileActivity.class);
         startActivity(i);
     }
-    public void disableFields() {
-        phone.setEnabled(false);
-        password.setEnabled(false);
-        firstName.setEnabled(false);
-        middleName.setEnabled(false);
-        lastName.setEnabled(false);
-        address.setEnabled(false);
-        province.setEnabled(false);
-        postalCode.setEnabled(false);
-        nameLand.setEnabled(false);
-        hectares.setEnabled(false);
-        ownLandButtonyes.setEnabled(false);
-        ownLandButtonno.setEnabled(false);
-    }
 
-    public void enableFields() {
-        phone.setEnabled(true);
-        password.setEnabled(true);
-        firstName.setEnabled(true);
-        middleName.setEnabled(true);
-        lastName.setEnabled(true);
-        address.setEnabled(true);
-        province.setEnabled(true);
-        postalCode.setEnabled(true);
-        nameLand.setEnabled(true);
-        hectares.setEnabled(true);
-        ownLandButtonyes.setEnabled(true);
-        ownLandButtonno.setEnabled(true);
-
-
-    }
-    public void update(Realm realm) {
+    public List<CropItem> update(Realm realm) {
 
         RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
         ProfileDetails profile = new ProfileDetails();
@@ -220,66 +173,51 @@ public class ProfileActivity extends AppCompatActivity {
             profile = temp;
         }
 
-        phone.setText(profile.getPhone());
-        password.setText(profile.getPassword());
-        firstName.setText(profile.getFirstName());
-        middleName.setText(profile.getMiddleName());
-        lastName.setText(profile.getLastName());
-        address.setText(profile.getAddress());
-        province.setText(profile.getProvince());
-        postalCode.setText(profile.getPostalCode());
-        nameLand.setText(profile.getNameLand());
-        if(hectares!=null) {
-            hectares.setText(Integer.toString(profile.getHectares()));
+        String csvList = profile.getCropDetails();
+        String[] items = csvList.split(";");
+        List<CropItem> list = new ArrayList<CropItem>();
+        int num = 0;
+        if(csvList==""){
+            num=1;
         }
-
-        if(profile.getOwnLand()){
-            ownLandButtonyes.setChecked(true);
-            ownLandButtonno.setChecked(false);
+        for(int i=num; i < items.length; i++){
+            String[] details = items[i].split(":");
+            CropItem temp = new CropItem();
+            temp.setCrop(details[0]);
+            temp.setHectares(Integer.parseInt(details[1]));
+            temp.setQuintals(Integer.parseInt(details[2]));
+            list.add(temp);
         }
-        else {
-            ownLandButtonno.setChecked(true);
-            ownLandButtonyes.setChecked(false);
-        }
+        return list;
 
     }
 
-    public void saveNew(Realm realm) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone.getText().toString()).findAll();
-        int selectedId=ownLandGroup.getCheckedRadioButtonId();
-        ownLandButton = (RadioButton)findViewById(selectedId);
-        if(selectedId==-1){
-            Toast.makeText(getApplicationContext(),"Please select if you rent or own land",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            if (ownLandButton.getText() == "Own") {
-                ownLand = true;
-            } else if (ownLandButton.getText() == "Rent") {
-                ownLand = false;
-            }
+
+
+    public void saveNew(Realm realm,List<CropItem> crops) {
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone).findAll();
+        final StringBuilder csvList = new StringBuilder();
+        for(CropItem s : crops){
+            String temp=convertToString(s.getCrop(),Integer.toString(s.getHectares()),Integer.toString(s.getQuintals()));
+            csvList.append(temp);
         }
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 for(ProfileDetails profileDetails : results) {
-                    profileDetails.setPhone(phone.getText().toString());
-                    profileDetails.setPassword(password.getText().toString());
-                    profileDetails.setFirstName(firstName.getText().toString());
-                    profileDetails.setMiddleName(middleName.getText().toString());
-                    profileDetails.setLastName(lastName.getText().toString());
-                    profileDetails.setAddress(address.getText().toString());
-                    profileDetails.setProvince(province.getText().toString());
-                    profileDetails.setPostalCode(postalCode.getText().toString());
-                    profileDetails.setOwnLand(ownLand);
-                    profileDetails.setNameLand(nameLand.getText().toString());
-                    profileDetails.setHectares(Integer.parseInt(hectares.getText().toString()));
+                    profileDetails.setCropDetails(csvList.toString());
                 }
             }
         });
     }
+    public String convertToString(String crop,String hectares,String quintals) {
+        String temp = new String();
+        temp=crop + ":" + hectares + ":" + quintals + ";";
+        return temp;
+    }
 
     public Map<String, Object> realmMap(Realm realm) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone.getText().toString()).findAll();
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone).findAll();
         Map<String, Object> map = new HashMap<String, Object>();
         for(ProfileDetails temp: results) {
             Map<String, Object> post = temp.toMap();
@@ -326,5 +264,4 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
-
 }

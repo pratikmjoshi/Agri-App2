@@ -309,6 +309,16 @@
                 android:layout_marginTop="40dp"
                 android:background="@color/gray"/>
 
+            <Button
+                android:layout_below="@+id/profile_cropdetails_view"
+                android:id="@+id/profile_cropdetails_button"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Click to see Crop Details"
+                android:textColor="@color/white"
+                android:background="@color/Turquoise"/>
 
 
 

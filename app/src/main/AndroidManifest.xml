@@ -3,14 +3,12 @@
     package="com.example.prateekjoshi.agri_app">
 
     <application
-
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/kiki"
         android:label="Tu Agri Control"
         android:supportsRtl="true"
         android:theme="@android:style/Theme">
-
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
@@ -64,12 +62,21 @@
         <activity
             android:name=".ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileCropDetailsActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HarvestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name=".FirebaseAlertService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+
     </application>
 
 </manifest>
