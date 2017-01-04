@@ -102,8 +102,9 @@ public class MenuNavActivity extends Activity
 
 
         } else if (id == R.id.nav_delivery) {
-            //Intent intent = new Intent(MainActivity.this, Shirts.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, DeliveryActivity.class);
+            intent.putExtra("phone",phone);
+            startActivity(intent);
 
         }
 

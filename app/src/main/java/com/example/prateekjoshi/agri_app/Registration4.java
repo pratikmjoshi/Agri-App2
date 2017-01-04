@@ -66,7 +66,12 @@ public class Registration4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 landName=landNameEditText.getText().toString();
-                hectares=Integer.parseInt(hectaresEditText.getText().toString());
+                if(hectaresEditText.getText().toString()==""){
+                    hectares=0;
+                }
+                else {
+                    hectares = Integer.parseInt(hectaresEditText.getText().toString());
+                }
                 int selectedId=ownLandGroup.getCheckedRadioButtonId();
                 ownLandButton = (RadioButton)findViewById(selectedId);
                 if(selectedId==-1){

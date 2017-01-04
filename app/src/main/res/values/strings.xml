@@ -18,4 +18,21 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="location_array">
+        <item>Local Market</item>
+        <item>Warehouse w/ Refridgeration</item>
+        <item>Warehouse w/o Refridgeration</item>
+        <item>Local food processing facility</item>
+    </string-array>
+
+    <string-array name="crop_array">
+        <item>pineapple</item>
+        <item>orange</item>
+        <item>banana</item>
+        <item>cacao pod</item>
+        <item>passionfruit</item>
+        <item>chia seeds</item>
+        <item>quinoa grains</item>
+    </string-array>
 </resources>

@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 /**
  * Created by Prateek Joshi on 12/31/2016.
  */
@@ -19,16 +22,24 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     boolean edit;
     boolean save;
 
+    private Realm realm;
+
+    StringBuilder csvList;
+
     public CropDetailsAdapter(Context context,List<CropItem> list,boolean edit,boolean save) {
         this.list = list;
         this.context = context;
         this.edit= edit;
         this.save= save;
+
+        csvList = new StringBuilder();
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
+        realm = Realm.getDefaultInstance();
 
         switch (viewType) {
             case 0:
@@ -43,14 +54,25 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() == 0) {
 
-
-
             CropDetailsViewHolder vh = (CropDetailsViewHolder) holder;
-            vh.cropName.setText(list.get(position).getCrop());
-            vh.cropHectares.setText(Integer.toString(list.get(position).getHectares()));
-            vh.cropQuintals.setText(Integer.toString(list.get(position).getQuintals()));
-            vh.cropPicture.setImageResource(setImage(list.get(position).getCrop()));
 
+            if(save==true) {
+                String cropName = vh.cropName.getText().toString();
+                String hectares = vh.cropHectares.getText().toString();
+                String quintals = vh.cropQuintals.getText().toString();
+                vh.cropName.setText(cropName);
+                vh.cropHectares.setText(hectares);
+                vh.cropQuintals.setText(quintals);
+                addCrop(realm,cropName,hectares,quintals);
+
+            }
+            else {
+                vh.cropName.setText(list.get(position).getCrop());
+                vh.cropHectares.setText(Integer.toString(list.get(position).getHectares()));
+                vh.cropQuintals.setText(Integer.toString(list.get(position).getQuintals()));
+                vh.cropPicture.setImageResource(setImage(list.get(position).getCrop()));
+
+            }
             if(edit==false) {
                 vh.cropHectares.setEnabled(false);
                 vh.cropQuintals.setEnabled(false);
@@ -61,9 +83,7 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 vh.cropQuintals.setEnabled(true);
             }
 
-            if(save==true) {
 
-            }
 
 
         }
@@ -102,5 +122,26 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         return 0;
     }
+
+    public void addCrop(Realm realm,String cropName,String hectares,String quintals) {
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
+        String temp=convertToString(cropName,hectares,quintals);
+        csvList.append(temp);
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                for(ProfileDetails profileDetails : results) {
+                    profileDetails.setCropDetails(csvList.toString());
+                }
+            }
+        });
+    }
+
+    public String convertToString(String crop,String hectares,String quintals) {
+        String temp = new String();
+        temp=crop + ":" + hectares + ":" + quintals + ";";
+        return temp;
+    }
+
 
 }
