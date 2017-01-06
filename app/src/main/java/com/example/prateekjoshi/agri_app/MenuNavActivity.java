@@ -26,8 +26,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -37,7 +45,11 @@ import io.realm.RealmResults;
 public class MenuNavActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Registration");
+    Query query;
     private Realm realm;
+    private ValueEventListener listener;
+
     private String phone;
 
 
@@ -52,11 +64,14 @@ public class MenuNavActivity extends Activity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         realm = Realm.getDefaultInstance();
+        Intent i = getIntent();
+        phone = i.getStringExtra("phone");
 
-        RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
-        for(ProfileDetails temp : results) {
-            phone = temp.getPhone();
-        }
+        listener = returnEventListener();
+        query = ref.orderByChild("Phone Number").equalTo(phone);
+        query.addValueEventListener(listener);
+
+        //syncLocalToOnline();
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -147,10 +162,160 @@ public class MenuNavActivity extends Activity
         }
 
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+        realm = Realm.getDefaultInstance();
+
+        listener = returnEventListener();
+        query = ref.orderByChild("Phone Number").equalTo(phone);
+        query.addValueEventListener(listener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        query.removeEventListener(listener);
+        realm.close();
+    }
+
+    private ValueEventListener returnEventListener() {
+        return new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        realm.delete(ProfileDetails.class);
+                    }
+                });
+                for (DataSnapshot shot : dataSnapshot.getChildren()) {
+
+                    try {
+                        final String phone = shot.child("Phone Number").getValue().toString();
+                        final String password = shot.child("Password").getValue().toString();
+                        final String firstName = shot.child("First Name").getValue().toString();
+                        final String middleName = shot.child("Middle Name").getValue().toString();
+                        final String lastName = shot.child("Last Name").getValue().toString();
+                        final String address = shot.child("Address").getValue().toString();
+                        final String province = shot.child("Province").getValue().toString();
+                        final String postalCode = shot.child("Postal Code").getValue().toString();
+                        final boolean ownLand = (Boolean) shot.child("Rent or Own Land").getValue();
+                        final String nameLand = shot.child("Name Land").getValue().toString();
+                        final int hectares = (int) (long) shot.child("Hectares of Land").getValue();
+                        final String cropDetails = shot.child("Crop Details").getValue().toString();
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                ProfileDetails bar = realm.createObject(ProfileDetails.class);
+                                bar.setPhone(phone);
+                                bar.setPassword(password);
+                                Log.d("pass",password);
+                                bar.setFirstName(firstName);
+                                bar.setMiddleName(middleName);
+                                bar.setLastName(lastName);
+                                bar.setAddress(address);
+                                bar.setProvince(province);
+                                bar.setPostalCode(postalCode);
+                                bar.setOwnLand(ownLand);
+                                bar.setNameLand(nameLand);
+                                bar.setHectares(hectares);
+                                bar.setCropDetails(cropDetails);
+                            }
+                        });
+                    } catch (Exception e) {
+                        Log.d("Exception", "not saved");
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Random:", "onCancelled", databaseError.toException());
+            }
+        };
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Remember to close Realm when done.
+    }
 
     @Override
     public void onBackPressed() {
         // do nothing.
     }
 
+    /*public void syncLocalToOnline() {
+        Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(phone);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            RealmResults<ProfileDetails> result = realm.where(ProfileDetails.class).findAll();
+                            result.deleteAllFromRealm();
+                        }
+                    });
+                for (DataSnapshot shot : dataSnapshot.getChildren()) {
+
+                    try {
+                            final String phone = shot.child("Phone Number").getValue().toString();
+                            final String password = shot.child("Password").getValue().toString();
+                            final String firstName = shot.child("First Name").getValue().toString();
+                            final String middleName = shot.child("Middle Name").getValue().toString();
+                            final String lastName = shot.child("Last Name").getValue().toString();
+                            final String address = shot.child("Address").getValue().toString();
+                            final String province = shot.child("Province").getValue().toString();
+                            final String postalCode = shot.child("Postal Code").getValue().toString();
+                            final boolean ownLand = (Boolean) shot.child("Rent or Own Land").getValue();
+                            final String nameLand = shot.child("Name Land").getValue().toString();
+                            final int hectares = (Integer) shot.child("Hectares").getValue();
+                            final String cropDetails = shot.child("Crop Details").getValue().toString();
+                            realm.executeTransaction(new Realm.Transaction() {
+                                @Override
+                                public void execute(Realm realm) {
+                                    ProfileDetails bar = realm.createObject(ProfileDetails.class);
+                                    bar.setPhone(phone);
+                                    bar.setPassword(password);
+                                    bar.setFirstName(firstName);
+                                    bar.setMiddleName(middleName);
+                                    bar.setLastName(lastName);
+                                    bar.setAddress(address);
+                                    bar.setProvince(province);
+                                    bar.setPostalCode(postalCode);
+                                    bar.setOwnLand(ownLand);
+                                    bar.setNameLand(nameLand);
+                                    bar.setHectares(hectares);
+                                    bar.setCropDetails(cropDetails);
+                                }
+                            });
+                        } catch (Exception e) {
+                            Log.d("Exception2","Naat");
+                            e.printStackTrace();
+                        }
+
+                    }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Random:", "onCancelled", databaseError.toException());
+            }
+        });
+    }*/
+
+    public void update(Realm realm) {
+
+
+
+    }
 }

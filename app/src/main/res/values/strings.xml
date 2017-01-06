@@ -21,8 +21,8 @@
 
     <string-array name="location_array">
         <item>Local Market</item>
-        <item>Warehouse w/ Refridgeration</item>
-        <item>Warehouse w/o Refridgeration</item>
+        <item>Warehouse w/ Refrigeration</item>
+        <item>Warehouse w/o Refrigeration</item>
         <item>Local food processing facility</item>
     </string-array>
 

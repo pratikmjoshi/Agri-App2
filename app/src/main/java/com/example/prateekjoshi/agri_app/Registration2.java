@@ -53,7 +53,9 @@ public class Registration2 extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_registration2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.reg2_toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
+        toolbar.setTitle("Registration");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -61,7 +63,6 @@ public class Registration2 extends AppCompatActivity{
         Intent i=getIntent();
         if(i.getBooleanExtra("Registerdialog",false)==true){
             phone=i.getStringExtra("Phone");
-            Toast.makeText(getApplicationContext(),phone,Toast.LENGTH_SHORT).show();
             regfinishdialog();
         }
 

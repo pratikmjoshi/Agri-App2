@@ -41,7 +41,9 @@ public class Registration3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_registration3);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.reg3_toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
+        toolbar.setTitle("Registration");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();

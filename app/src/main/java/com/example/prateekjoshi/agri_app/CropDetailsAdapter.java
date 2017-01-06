@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.List;
 
@@ -17,7 +18,9 @@ import io.realm.RealmResults;
  */
 
 public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     List<CropItem> list;
+
     Context context;
     boolean edit;
     boolean save;
@@ -26,11 +29,13 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     StringBuilder csvList;
 
-    public CropDetailsAdapter(Context context,List<CropItem> list,boolean edit,boolean save) {
+
+
+
+    public CropDetailsAdapter(Context context,List<CropItem> list,boolean edit) {
         this.list = list;
         this.context = context;
         this.edit= edit;
-        this.save= save;
 
         csvList = new StringBuilder();
     }
@@ -56,33 +61,15 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             CropDetailsViewHolder vh = (CropDetailsViewHolder) holder;
 
-            if(save==true) {
-                String cropName = vh.cropName.getText().toString();
-                String hectares = vh.cropHectares.getText().toString();
-                String quintals = vh.cropQuintals.getText().toString();
-                vh.cropName.setText(cropName);
-                vh.cropHectares.setText(hectares);
-                vh.cropQuintals.setText(quintals);
-                addCrop(realm,cropName,hectares,quintals);
 
-            }
-            else {
                 vh.cropName.setText(list.get(position).getCrop());
                 vh.cropHectares.setText(Integer.toString(list.get(position).getHectares()));
                 vh.cropQuintals.setText(Integer.toString(list.get(position).getQuintals()));
                 vh.cropPicture.setImageResource(setImage(list.get(position).getCrop()));
 
-            }
-            if(edit==false) {
+
                 vh.cropHectares.setEnabled(false);
                 vh.cropQuintals.setEnabled(false);
-            }
-            else {
-
-                vh.cropHectares.setEnabled(true);
-                vh.cropQuintals.setEnabled(true);
-            }
-
 
 
 
@@ -123,24 +110,29 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return 0;
     }
 
-    public void addCrop(Realm realm,String cropName,String hectares,String quintals) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
-        String temp=convertToString(cropName,hectares,quintals);
-        csvList.append(temp);
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                for(ProfileDetails profileDetails : results) {
-                    profileDetails.setCropDetails(csvList.toString());
-                }
-            }
-        });
-    }
-
-    public String convertToString(String crop,String hectares,String quintals) {
-        String temp = new String();
-        temp=crop + ":" + hectares + ":" + quintals + ";";
-        return temp;
+    public String setCropText(String crop){
+        if(crop.equals("pineapple")){
+            return "Pineapple";
+        }
+        if(crop.equals("orange")){
+            return "Orange";
+        }
+        if(crop.equals("banana")){
+            return "Banana";
+        }
+        if(crop.equals("cacao pod")){
+            return "Cacao Pod";
+        }
+        if(crop.equals("passionfruit")){
+            return "Passionfruit";
+        }
+        if(crop.equals("chia seeds")){
+            return "Chia Seeds";
+        }
+        if(crop.equals("quinoa grains")){
+            return "Quinoa Grains";
+        }
+        return "Crop";
     }
 
 

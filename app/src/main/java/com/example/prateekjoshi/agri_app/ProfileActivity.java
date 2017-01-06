@@ -56,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
     private MenuItem edit;
     private MenuItem save;
     private MenuItem cancel;
+    private MenuItem delete;
 
     private boolean editmenu;
     public boolean ownLand;
@@ -118,6 +119,8 @@ public class ProfileActivity extends AppCompatActivity {
         edit = menu.findItem(R.id.profile_edit);
         save = menu.findItem(R.id.profile_save);
         cancel = menu.findItem(R.id.profile_cancel);
+        delete = menu.findItem(R.id.profile_delete);
+        delete.setVisible(false);
         edit.setVisible(true);
         save.setVisible(false);
         cancel.setVisible(false);
@@ -163,11 +166,13 @@ public class ProfileActivity extends AppCompatActivity {
             edit.setVisible(false);
             save.setVisible(true);
             cancel.setVisible(true);
+            delete.setVisible(false);
         }
         else {
             edit.setVisible(true);
             save.setVisible(false);
             cancel.setVisible(false);
+            delete.setVisible(false);
         }
         return true;
     }

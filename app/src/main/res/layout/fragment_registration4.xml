@@ -1,116 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_marginTop="150dp"
-        android:text="Do you rent or own this land?"
-        android:id="@+id/reg4_ownland_textview"
-        android:layout_marginLeft="15dp"
-        android:textSize="18dp"/>
-    <RadioGroup
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/reg4_ownland_textview"
-        android:id="@+id/reg4_ownland_radiogrp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp">
-        <RadioButton
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile"
+    android:fitsSystemWindows="true"
+    android:background="@color/Turquoise"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.prateekjoshi.agri_app.ProfileActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/reg4_toolbar"
+            layout = "@layout/registration_toolbar"/>
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rent"
-            android:textSize="15dp"
-            android:id="@+id/reg4_ownland_radiobtnyes"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Own"
-            android:textSize="15dp"
-            android:id="@+id/reg4_ownland_radiobtnno"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Under whose name is your farming land under?"
-        android:layout_below="@+id/reg4_ownland_radiogrp"
-        android:id="@+id/reg4_landname_textview"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:textSize="18dp"/>
-    <android.support.design.widget.TextInputEditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/reg4_landname_textview"
-        android:layout_marginTop="10dp"
-        android:hint="Name"
-        android:inputType="text"
-        android:maxLines="1"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:id="@+id/reg4_landname_edittext"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How many hectares?"
-        android:id="@+id/reg4_hectares_textview"
-        android:layout_below="@+id/reg4_landname_edittext"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:textSize="18dp"/>
-    <android.support.design.widget.TextInputEditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter the number"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        android:layout_below="@+id/reg4_hectares_textview"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:id="@+id/reg4_hectares_edittext"/>
-
-    <RelativeLayout
-        android:id="@+id/viewPagerIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:background="@color/Turquoise">
-
-
-
-        <ImageButton
-            android:id="@+id/reg4_btn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:maxWidth="3000dp"
-            android:maxHeight="3000dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/ic_reg_next"
-            android:background="@color/Turquoise"/>
-
-        <ImageButton
-            android:id="@+id/reg4_btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentLeft="true"
+            android:layout_marginTop="150dp"
+            android:text="Do you rent or own this land?"
+            android:id="@+id/reg4_ownland_textview"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_reg_back"
-            android:background="@color/Turquoise"/>
+            android:textSize="18dp"/>
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/reg4_ownland_textview"
+            android:id="@+id/reg4_ownland_radiogrp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rent"
+                android:textSize="15dp"
+                android:id="@+id/reg4_ownland_radiobtnyes"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Own"
+                android:textSize="15dp"
+                android:id="@+id/reg4_ownland_radiobtnno"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Under whose name is your farming land under?"
+            android:layout_below="@+id/reg4_ownland_radiogrp"
+            android:id="@+id/reg4_landname_textview"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"/>
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reg4_landname_textview"
+            android:layout_marginTop="10dp"
+            android:hint="Name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/reg4_landname_edittext"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How many hectares?"
+            android:id="@+id/reg4_hectares_textview"
+            android:layout_below="@+id/reg4_landname_edittext"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"/>
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter the number"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:layout_below="@+id/reg4_hectares_textview"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/reg4_hectares_edittext"/>
+
+        <RelativeLayout
+            android:id="@+id/viewPagerIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:background="@color/Turquoise">
+
+
+
+            <ImageButton
+                android:id="@+id/reg4_btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="3000dp"
+                android:maxHeight="3000dp"
+                android:scaleType="fitCenter"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_reg_next"
+                android:background="@color/Turquoise"/>
+
+            <ImageButton
+                android:id="@+id/reg4_btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="100dp"
+                android:maxHeight="100dp"
+                android:scaleType="fitCenter"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/ic_reg_back"
+                android:background="@color/Turquoise"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
