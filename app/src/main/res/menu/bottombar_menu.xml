@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bb_menu_teacher"
+        android:icon="@drawable/ic_local_library_black_24dp"
+        android:title="Teacher" />
+    <item
+        android:id="@+id/bb_menu_alert"
+        android:icon="@drawable/ic_alert_bottombar"
+        android:title="Alerts" />
+    <item
+        android:id="@+id/bb_menu_harvest"
+        android:icon="@drawable/ic_harvest_bottombar"
+        android:title="Harvest" />
+    <item
+        android:id="@+id/bb_menu_delivery"
+        android:icon="@drawable/ic_delivery_bottombar"
+        android:title="Delivery" />
+
+</menu>

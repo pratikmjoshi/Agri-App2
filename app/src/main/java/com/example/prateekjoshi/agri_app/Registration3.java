@@ -69,7 +69,7 @@ public class Registration3 extends AppCompatActivity {
 
                 update(realm);
 
-                Intent i=new Intent(Registration3.this,Registration4.class);
+                Intent i=new Intent(Registration3.this,Registration5.class);
                 i.putExtra("Phone",phone);
                 startActivity(i);
 

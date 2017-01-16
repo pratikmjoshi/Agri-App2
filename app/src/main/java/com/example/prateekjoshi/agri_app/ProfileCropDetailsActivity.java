@@ -254,6 +254,7 @@ public class ProfileCropDetailsActivity extends AppCompatActivity {
         final Map<String,Object> finalMap = new HashMap<String,Object>();
         map.put("Phone Number", realmValueMap.get("Phone Number"));
         map.put("Password",realmValueMap.get("Password") );
+        map.put("Version",realmValueMap.get("Version"));
         map.put("First Name", realmValueMap.get("First Name"));
         map.put("Middle Name", realmValueMap.get("Middle Name"));
         map.put("Last Name", realmValueMap.get("Last Name"));

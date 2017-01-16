@@ -25,5 +25,4 @@ tools:openDrawer="start">
     app:menu="@menu/menu_nav"/>
 
 
-
 </android.support.v4.widget.DrawerLayout>

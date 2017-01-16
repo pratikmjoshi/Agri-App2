@@ -28,6 +28,10 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".PreRegistration"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Registration1"
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -72,7 +76,11 @@
         <activity
             android:name=".DeliveryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SingleCropProfileActivity"
+        <activity
+            android:name=".SingleCropProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TeacherActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name=".FirebaseAlertService">

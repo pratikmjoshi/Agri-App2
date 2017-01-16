@@ -1,0 +1,18 @@
+<tabs>
+    <tab
+        id="@+id/tab_teacher"
+        icon="@drawable/ic_local_library_black_24dp"
+        title="Teacher" />
+    <tab
+        id="@+id/tab_alert"
+        icon="@drawable/ic_alert_bottombar"
+        title="Alert" />
+    <tab
+        id="@+id/tab_harvest"
+        icon="@drawable/ic_harvest_bottombar"
+        title="Harvest" />
+    <tab
+        id="@+id/tab_delivery"
+        icon="@drawable/ic_delivery_bottombar"
+        title="Delivery" />
+</tabs>

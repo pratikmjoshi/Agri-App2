@@ -117,7 +117,7 @@ public class Registration1 extends AppCompatActivity{
 
                     update(realm);
 
-                    Intent i=new Intent(Registration1.this,Registration2.class);
+                    Intent i=new Intent(Registration1.this,PreRegistration.class);
                     i.putExtra("Registerdialog",true);
                     i.putExtra("Phone",phone);
                     startActivity(i);
@@ -179,6 +179,7 @@ public class Registration1 extends AppCompatActivity{
                 ProfileDetails profileDetails = realm.createObject(ProfileDetails.class);
                 profileDetails.setPhone(phone);
                 profileDetails.setPassword(password);
+                profileDetails.setVersion("");
                 profileDetails.setFirstName("");
                 profileDetails.setMiddleName("");
                 profileDetails.setLastName("");

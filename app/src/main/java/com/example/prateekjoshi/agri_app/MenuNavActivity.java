@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
@@ -36,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 import org.w3c.dom.Text;
 
@@ -49,6 +52,8 @@ public class MenuNavActivity extends Activity
     Query query;
     private Realm realm;
     private ValueEventListener listener;
+    private BottomBar mBottomBar;
+
 
     private String phone;
 
@@ -62,6 +67,17 @@ public class MenuNavActivity extends Activity
         toolbar.setTitle("KIKI Central");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_teacher) {
+                    // The tab with id R.id.tab_favorites was selected,
+                    // change your content accordingly.
+                }
+            }
+        });
 
         realm = Realm.getDefaultInstance();
         Intent i = getIntent();
@@ -99,8 +115,8 @@ public class MenuNavActivity extends Activity
 
         } else if (id == R.id.nav_teacher) {
 
-            //Intent aboutUsActivity = new Intent(MainActivity.this, WavesAbout.class);
-            //startActivity(aboutUsActivity);
+            Intent aboutUsActivity = new Intent(this, TeacherActivity.class);
+            startActivity(aboutUsActivity);
 
 
         } else if (id == R.id.nav_alert) {

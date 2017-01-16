@@ -73,7 +73,7 @@ public class Registration5 extends AppCompatActivity {
                 else {
                     Intent i = new Intent(Registration5.this, Registration6.class);
                     i.putExtra("Loops", amount);
-                    i.putExtra("Phone",phone);
+                    i.putExtra("phone",phone);
                     i.putStringArrayListExtra("Type of crops", crops);
                     startActivity(i);
                 }
@@ -84,7 +84,8 @@ public class Registration5 extends AppCompatActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(Registration5.this,Registration4.class);
+                Intent i=new Intent(Registration5.this,Registration3.class);
+                i.putExtra("Phone",phone);
                 startActivity(i);
             }
         });

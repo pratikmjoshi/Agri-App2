@@ -47,8 +47,6 @@ public class Registration6 extends AppCompatActivity {
     public String phone;
 
     private Realm realm;
-    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-
 
     public boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
@@ -68,7 +66,7 @@ public class Registration6 extends AppCompatActivity {
         realm= Realm.getDefaultInstance();
 
         Intent i=getIntent();
-        phone= i.getStringExtra("Phone");
+        phone= i.getStringExtra("phone");
         crops= i.getStringArrayListExtra("Type of crops");
         repeats= i.getIntExtra("Loops",1);
 
@@ -107,15 +105,14 @@ public class Registration6 extends AppCompatActivity {
                     Log.d("Fruity",cropDetail);
                     update(realm);
                     if (repeats == 1) {
-                        updateOnlineRegistrationDetails();
-                        Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(Registration6.this, MenuNavActivity.class);
+                        Intent i = new Intent(Registration6.this, Registration4.class);
+                        i.putExtra("phone",phone);
                         startActivity(i);
                     } else {
                         repeats--;
                         Intent i = new Intent(Registration6.this, Registration6.class);
                         i.putStringArrayListExtra("Type of crops", crops);
-                        i.putExtra("Phone",phone);
+                        i.putExtra("phone",phone);
                         i.putExtra("Loops", repeats);
                         startActivity(i);
                     }
@@ -210,43 +207,6 @@ public class Registration6 extends AppCompatActivity {
 
     }
 
-    public Map<String, Object> realmMap(Realm realm) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone).findAll();
-        Map<String, Object> map = new HashMap<String, Object>();
-        for(ProfileDetails temp: results) {
-            Map<String, Object> post = temp.toMap();
-            map.put("Registration/", post);
-            return map;
-        }
-        return map;
-    }
-    public void updateOnlineRegistrationDetails() {
-        Map<String,Object> realmMap = realmMap(realm);
-        Map<String,Object> realmValueMap = (Map<String,Object>) realmMap.get("Registration/");
-        Map<String,Object> map= new HashMap<>();
-        Map<String,Object> finalMap = new HashMap<String,Object>();
-        map.put("Phone Number", realmValueMap.get("Phone Number"));
-        map.put("Password",realmValueMap.get("Password") );
-        map.put("First Name", realmValueMap.get("First Name"));
-        map.put("Middle Name", realmValueMap.get("Middle Name"));
-        map.put("Last Name", realmValueMap.get("Last Name"));
-        map.put("Address",realmValueMap.get("Address"));
-        map.put("Province",realmValueMap.get("Province"));
-        map.put("Postal Code",realmValueMap.get("Postal Code"));
-        map.put("Rent or Own Land",realmValueMap.get("Rent or Own Land"));
-        map.put("Name Land", realmValueMap.get("Name Land"));
-        map.put("Hectares of Land", realmValueMap.get("Hectares of Land"));
-        map.put("Crop Details",realmValueMap.get("Crop Details"));
-
-
-        String uniqueId = ref.child("Registration").push().getKey();
-
-        finalMap.put("Registration/" + uniqueId,map);
-
-        ref.updateChildren(finalMap);
-
-
-    }
 
     public ArrayList<String> convertRealmList(RealmList<RealmString> values) {
         ArrayList<String> newValues = new ArrayList<String>();

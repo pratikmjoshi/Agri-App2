@@ -61,10 +61,8 @@ public class Registration2 extends AppCompatActivity{
         realm = Realm.getDefaultInstance();
 
         Intent i=getIntent();
-        if(i.getBooleanExtra("Registerdialog",false)==true){
-            phone=i.getStringExtra("Phone");
-            regfinishdialog();
-        }
+        phone=i.getStringExtra("Phone");
+
 
         next=(ImageButton)findViewById(R.id.reg2_btn_next);
         previous=(ImageButton)findViewById(R.id.reg2_btn_back);
@@ -95,8 +93,9 @@ public class Registration2 extends AppCompatActivity{
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent i=new Intent(Registration2.this,Registration1.class);
-                //startActivity(i);
+                Intent i=new Intent(Registration2.this,PreRegistration.class);
+                i.putExtra("Phone",phone);
+                startActivity(i);
             }
         });
 

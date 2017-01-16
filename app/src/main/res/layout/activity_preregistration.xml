@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_preregistration"
+    android:fitsSystemWindows="true"
+    android:background="@color/Turquoise"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.prateekjoshi.agri_app.PreRegistration">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/white"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/prereg_toolbar"
+            layout = "@layout/registration_toolbar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="Select your version:"
+            android:id="@+id/prereg_version_textview"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"/>
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/prereg_version_textview"
+            android:id="@+id/prereg_version_radiogrp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Smartphone"
+                android:textSize="15dp"
+                android:id="@+id/prereg_smartphone_radiobtn" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Mobile Phone"
+                android:textSize="15dp"
+                android:id="@+id/prereg_mobilephone_radiobtn"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Personal Computer"
+                android:textSize="15dp"
+                android:id="@+id/prereg_computer_radiobtn"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Telephone Landline(Voice)"
+                android:textSize="15dp"
+                android:id="@+id/prereg_landline_radiobtn"/>
+        </RadioGroup>
+
+
+
+        <RelativeLayout
+            android:id="@+id/viewPagerIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:background="@color/Turquoise">
+
+
+
+            <ImageButton
+                android:id="@+id/prereg_btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="3000dp"
+                android:maxHeight="3000dp"
+                android:scaleType="fitCenter"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_reg_next"
+                android:background="@color/Turquoise"/>
+
+            <ImageButton
+                android:id="@+id/prereg_btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="100dp"
+                android:maxHeight="100dp"
+                android:scaleType="fitCenter"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/ic_reg_back"
+                android:background="@color/Turquoise"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

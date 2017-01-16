@@ -17,6 +17,8 @@ public class ProfileDetails extends RealmObject{
     private String phone;
     private String password;
 
+    private String version;
+
     private String address;
     private String province;
     private String postalCode;
@@ -50,6 +52,14 @@ public class ProfileDetails extends RealmObject{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public String getAddress() {
@@ -136,6 +146,7 @@ public class ProfileDetails extends RealmObject{
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("Phone Number", phone);
         map.put("Password", password);
+        map.put("Version",version);
         map.put("First Name", firstname);
         map.put("Middle Name", middlename);
         map.put("Last Name", lastname);

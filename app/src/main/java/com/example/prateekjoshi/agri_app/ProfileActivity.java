@@ -60,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private boolean editmenu;
     public boolean ownLand;
+    private String version;
 
     public boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
@@ -227,6 +228,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         phone.setText(profile.getPhone());
         password.setText(profile.getPassword());
+        version = profile.getVersion();
         firstName.setText(profile.getFirstName());
         middleName.setText(profile.getMiddleName());
         lastName.setText(profile.getLastName());
@@ -269,6 +271,7 @@ public class ProfileActivity extends AppCompatActivity {
                 for(ProfileDetails profileDetails : results) {
                     profileDetails.setPhone(phone.getText().toString());
                     profileDetails.setPassword(password.getText().toString());
+                    profileDetails.setVersion(version);
                     profileDetails.setFirstName(firstName.getText().toString());
                     profileDetails.setMiddleName(middleName.getText().toString());
                     profileDetails.setLastName(lastName.getText().toString());
@@ -300,6 +303,7 @@ public class ProfileActivity extends AppCompatActivity {
         final Map<String,Object> finalMap = new HashMap<String,Object>();
         map.put("Phone Number", realmValueMap.get("Phone Number"));
         map.put("Password",realmValueMap.get("Password") );
+        map.put("Version",realmValueMap.get("Version"));
         map.put("First Name", realmValueMap.get("First Name"));
         map.put("Middle Name", realmValueMap.get("Middle Name"));
         map.put("Last Name", realmValueMap.get("Last Name"));

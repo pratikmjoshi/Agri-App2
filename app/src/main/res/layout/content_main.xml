@@ -10,16 +10,22 @@
     tools:showIn="@layout/app_bar_main">
 
 
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="centerCrop"
-    android:src="@drawable/agriculture"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lol"/>
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#795548"
+        app:bb_inActiveTabColor="@color/white"
+        app:bb_showShadow="true"
+        app:bb_badgeBackgroundColor="#795548"
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
 
 </RelativeLayout>
 

@@ -23,7 +23,6 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     Context context;
     boolean edit;
-    boolean save;
 
     private Realm realm;
 
