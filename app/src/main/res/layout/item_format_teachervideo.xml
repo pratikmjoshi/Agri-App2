@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="8dp"
+    android:id="@+id/back_layout"
+    app:cardCornerRadius="8dp"
+    android:background="@drawable/edit_text_backround">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/teacher_video_title"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
         android:text="Temp"
-        android:layout_marginTop="40dp"
+        android:gravity="center"
         android:textSize="18sp"
+        android:padding="8dp"
+
         android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="60dp" />
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_toStartOf="@+id/teacher_videopic" />
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_chrome_reader_mode_white_24dp"
         android:id="@+id/teacher_videopic"
-        android:adjustViewBounds="true"
         android:maxWidth="100dp"
         android:maxHeight="100dp"
         android:scaleType="fitCenter"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        />
 
-</RelativeLayout>
+        />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

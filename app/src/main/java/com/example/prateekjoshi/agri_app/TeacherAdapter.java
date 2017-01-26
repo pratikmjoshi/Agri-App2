@@ -1,6 +1,10 @@
 package com.example.prateekjoshi.agri_app;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,14 +45,14 @@ public class TeacherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() == 0) {
 
-            TeacherViewHolder vh = (TeacherViewHolder) holder;
-
+            final TeacherViewHolder vh = (TeacherViewHolder) holder;
 
             vh.videoName.setText(list.get(position).getVideoName());
-            vh.videoPicture.setImageResource(list.get(position).getVideoPicture());
+            vh.videoPicture.setImageURI(Uri.parse("res:///" + list.get(position).getVideoPicture()));
+
 
 
         }
