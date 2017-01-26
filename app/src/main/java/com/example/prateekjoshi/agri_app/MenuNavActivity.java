@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -31,16 +32,21 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
+import com.ncapdevi.fragnav.FragNavController;
+
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -52,7 +58,6 @@ public class MenuNavActivity extends Activity
     Query query;
     private Realm realm;
     private ValueEventListener listener;
-    private BottomBar mBottomBar;
 
 
     private String phone;
@@ -63,19 +68,89 @@ public class MenuNavActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_nav);
 
+        FragmentTransaction tx = getFragmentManager().beginTransaction();
+        tx.replace(R.id.your_placehodler, TeacherFragment.newInstance());
+        tx.commit();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         toolbar.setTitle("KIKI Central");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+        final BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+
+
+        bottomNavigationBar
+                .addItem(new BottomNavigationItem(R.drawable.ic_local_library, "Teacher"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_warning, "Alerts"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_timeline, "Harvest"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_local_shipping, "Delivery"))
+                .initialise();
+
+        bottomNavigationBar
+                .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
+        bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.tab_teacher) {
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
+            public void onTabSelected(int position) {
+
+                FragmentManager fm = getFragmentManager();
+
+                FragmentTransaction ft = fm.beginTransaction();
+
+
+
+                switch (position) {
+                    case 0:
+                        TeacherFragment t = new TeacherFragment().newInstance();
+                        ft.replace(R.id.your_placehodler, t);
+                        ft.commit();
+                        break;
+
+                    case 2:
+                        HarvestFragment h = new HarvestFragment().newInstance();
+                        ft.replace(R.id.your_placehodler, h);
+                        ft.commit();
+                        break;
+
+                    case 1:
+                        AlertFragment a = new AlertFragment().newInstance();
+                        ft.replace(R.id.your_placehodler, a);
+                        ft.commit();
+                        break;
+
+
+                    case 3:
+                        DeliveryFragment d = new DeliveryFragment().newInstance();
+                        ft.replace(R.id.your_placehodler, d);
+                        ft.commit();
+                        break;
+                    default:
+                        TeacherFragment def = new TeacherFragment().newInstance();
+                        ft.replace(R.id.your_placehodler, def);
+                        ft.commit();
+                        break;
+
+
+
                 }
+
+
+            }
+
+            @Override
+            public void onTabUnselected(int position) {
+
+
+
+
+            }
+
+            @Override
+            public void onTabReselected(int position) {
+
+                //Refresh Data here
+
             }
         });
 
@@ -110,7 +185,7 @@ public class MenuNavActivity extends Activity
 
         if (id == R.id.nav_profile) {
 
-            Intent i = new Intent(this,ProfileActivity.class);
+            Intent i = new Intent(this, ProfileActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_teacher) {
@@ -121,20 +196,20 @@ public class MenuNavActivity extends Activity
 
         } else if (id == R.id.nav_alert) {
 
-            Intent intent = new Intent(this,AlertActivity.class);
+            Intent intent = new Intent(this, AlertActivity.class);
             startActivity(intent);
 
 
         } else if (id == R.id.nav_crop) {
 
-            Intent i = new Intent(getApplicationContext(),HarvestActivity.class);
-            i.putExtra("phone",phone);
+            Intent i = new Intent(getApplicationContext(), HarvestActivity.class);
+            i.putExtra("phone", phone);
             startActivity(i);
 
 
         } else if (id == R.id.nav_delivery) {
             Intent intent = new Intent(this, DeliveryActivity.class);
-            intent.putExtra("phone",phone);
+            intent.putExtra("phone", phone);
             startActivity(intent);
 
         }
@@ -178,6 +253,7 @@ public class MenuNavActivity extends Activity
         }
 
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -228,7 +304,7 @@ public class MenuNavActivity extends Activity
                                 ProfileDetails bar = realm.createObject(ProfileDetails.class);
                                 bar.setPhone(phone);
                                 bar.setPassword(password);
-                                Log.d("pass",password);
+                                Log.d("pass", password);
                                 bar.setFirstName(firstName);
                                 bar.setMiddleName(middleName);
                                 bar.setLastName(lastName);
@@ -256,6 +332,7 @@ public class MenuNavActivity extends Activity
             }
         };
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -330,7 +407,6 @@ public class MenuNavActivity extends Activity
     }*/
 
     public void update(Realm realm) {
-
 
 
     }

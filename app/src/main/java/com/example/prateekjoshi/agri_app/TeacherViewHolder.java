@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -18,7 +22,8 @@ import java.util.List;
 public class TeacherViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView videoName;
-    public ImageView videoPicture;
+    public SimpleDraweeView videoPicture;
+    public CardView rel;
     List<VideoItem> list;
     private Context context;
 
@@ -27,7 +32,8 @@ public class TeacherViewHolder  extends RecyclerView.ViewHolder implements View.
         this.context = context;
         this.list = list;
         videoName = (TextView) itemView.findViewById(R.id.teacher_video_title);
-        videoPicture = (ImageView)itemView.findViewById(R.id.teacher_videopic);
+        videoPicture = (SimpleDraweeView)itemView.findViewById(R.id.teacher_videopic);
+        rel = (CardView) itemView.findViewById(R.id.back_layout);
 
 
         itemView.setOnClickListener(this);
