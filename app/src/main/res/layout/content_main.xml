@@ -7,25 +7,24 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main">
+    >
 
-
-
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lol"/>
+        android:id="@+id/your_placehodler"
+        android:layout_marginBottom="56dp"
+        />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#795548"
-        app:bb_inActiveTabColor="@color/white"
-        app:bb_showShadow="true"
-        app:bb_badgeBackgroundColor="#795548"
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+        android:id="@+id/bottom_navigation_bar"
+        app:bnbMode="mode_fixed"
+        android:background="@color/colorPrimaryDark"
+        app:bnbBackgroundStyle="background_style_ripple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
 

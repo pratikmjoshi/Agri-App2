@@ -1,18 +1,32 @@
 <tabs>
     <tab
         id="@+id/tab_teacher"
-        icon="@drawable/ic_local_library_black_24dp"
-        title="Teacher" />
+        icon="@drawable/ic_local_library"
+        title="Teacher"
+        activeColor="#ffffff"
+        inActiveColor="#10ffffff"
+        barColorWhenSelected="#01579B"/>
     <tab
         id="@+id/tab_alert"
-        icon="@drawable/ic_alert_bottombar"
+        icon="@drawable/ic_warning"
+        activeColor="#ffffff"
+        inActiveColor="#10ffffff"
+        barColorWhenSelected="#c62828"
         title="Alert" />
     <tab
         id="@+id/tab_harvest"
-        icon="@drawable/ic_harvest_bottombar"
+        icon="@drawable/ic_timeline"
+        activeColor="#ffffff"
+        inActiveColor="#10ffffff"
+
+        barColorWhenSelected="#1B5E20"
         title="Harvest" />
     <tab
         id="@+id/tab_delivery"
-        icon="@drawable/ic_delivery_bottombar"
+        icon="@drawable/ic_local_shipping"
+        activeColor="#ffffff"
+        inActiveColor="#10ffffff"
+
+        barColorWhenSelected="#263238"
         title="Delivery" />
 </tabs>
