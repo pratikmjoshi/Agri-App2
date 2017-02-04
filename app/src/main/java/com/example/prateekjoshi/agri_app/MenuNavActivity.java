@@ -162,6 +162,10 @@ public class MenuNavActivity extends Activity
         query = ref.orderByChild("Phone Number").equalTo(phone);
         query.addValueEventListener(listener);
 
+        if(i.getBooleanExtra("openAlerts", false)) {
+            bottomNavigationBar.selectTab(1);
+        }
+
         //syncLocalToOnline();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -187,30 +191,6 @@ public class MenuNavActivity extends Activity
 
             Intent i = new Intent(this, ProfileActivity.class);
             startActivity(i);
-
-        } else if (id == R.id.nav_teacher) {
-
-            Intent aboutUsActivity = new Intent(this, TeacherActivity.class);
-            startActivity(aboutUsActivity);
-
-
-        } else if (id == R.id.nav_alert) {
-
-            Intent intent = new Intent(this, AlertActivity.class);
-            startActivity(intent);
-
-
-        } else if (id == R.id.nav_crop) {
-
-            Intent i = new Intent(getApplicationContext(), HarvestActivity.class);
-            i.putExtra("phone", phone);
-            startActivity(i);
-
-
-        } else if (id == R.id.nav_delivery) {
-            Intent intent = new Intent(this, DeliveryActivity.class);
-            intent.putExtra("phone", phone);
-            startActivity(intent);
 
         }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -32,12 +34,9 @@ public class AlertFragment extends Fragment {
 
     private static final int PREFERENCE_MODE_PRIVATE = 0;
 
-
-
     public AlertFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,26 +57,23 @@ public class AlertFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        sharedPreferences = this.getActivity().getPreferences(PREFERENCE_MODE_PRIVATE);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sharedPreferencesEditor = sharedPreferences.edit();
 
         alerts = load();
 
-        mRecyclerView = (RecyclerView)getView().findViewById(R.id.alert_recycler_view);
-        clear = (Button)getView().findViewById(R.id.submit);
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.alert_recycler_view);
+        clear = (Button) getView().findViewById(R.id.submit);
 
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
-        store(alerts);
-
+        // store(alerts);
 
         mAdapter = new AlertAdapter(getContext(), alerts);
         mRecyclerView.setAdapter(mAdapter);
-
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,30 +85,23 @@ public class AlertFragment extends Fragment {
 
             }
         });
-
-
-
-
-
     }
 
     public List<String> load() {
-        String csvList = sharedPreferences.getString("myList","");
+        String csvList = sharedPreferences.getString("myList", "");
         String[] items = csvList.split(",");
         List<String> list = new ArrayList<String>();
         int num = 0;
-        if(csvList==""){
-            num=1;
+        if (csvList.isEmpty()) {
+            num = 1;
         }
-        for(int i=num; i < items.length; i++){
-            list.add(items[i]);
-        }
+        list.addAll(Arrays.asList(items).subList(num, items.length));
         return list;
     }
 
     public void store(List<String> alerts) {
         StringBuilder csvList = new StringBuilder();
-        for(String s : alerts){
+        for (String s : alerts) {
             csvList.append(s);
             csvList.append(",");
         }

@@ -44,8 +44,6 @@ public class AlertActivity extends AppCompatActivity {
         toolbar.setTitle("Alert Notifications");
         setSupportActionBar(toolbar);
 
-
-
         sharedPreferences = getPreferences(PREFERENCE_MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
 
