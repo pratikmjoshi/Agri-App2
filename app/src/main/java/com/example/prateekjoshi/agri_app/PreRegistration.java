@@ -1,6 +1,5 @@
 package com.example.prateekjoshi.agri_app;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,53 +39,46 @@ public class PreRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preregistration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.prereg_toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
         toolbar.setTitle("Registration");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
 
         Intent i = getIntent();
-        if(i.getBooleanExtra("Registerdialog",false)==true){
-            phone=i.getStringExtra("Phone");
-            Log.d("confirm",phone);
+        if (i.getBooleanExtra("Registerdialog", false) == true) {
+            phone = i.getStringExtra("Phone");
+            Log.d("confirm", phone);
             regfinishdialog();
         }
 
         versionGroup = (RadioGroup) findViewById(R.id.prereg_version_radiogrp);
 
-        next=(ImageButton)findViewById(R.id.prereg_btn_next);
-        previous=(ImageButton)findViewById(R.id.prereg_btn_back);
+        next = (ImageButton) findViewById(R.id.prereg_btn_next);
+        previous = (ImageButton) findViewById(R.id.prereg_btn_back);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                int selectedId=versionGroup.getCheckedRadioButtonId();
-                versionButton = (RadioButton)findViewById(selectedId);
-                if(selectedId==-1){
-                    Toast.makeText(getApplicationContext(),"Please select a version",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    if(versionButton.getText().toString().equals("Smartphone")){
-                        version="Smartphone";
-                    }
-                    else
-                    if(versionButton.getText().toString().equals("Mobile Phone")){
+                int selectedId = versionGroup.getCheckedRadioButtonId();
+                versionButton = (RadioButton) findViewById(selectedId);
+                if (selectedId == -1) {
+                    Toast.makeText(getApplicationContext(), "Please select a version", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (versionButton.getText().toString().equals("Smartphone")) {
+                        version = "Smartphone";
+                    } else if (versionButton.getText().toString().equals("Mobile Phone")) {
                         version = "Mobile Phone";
-                    }
-                    else
-                    if(versionButton.getText().toString().equals("Personal Computer")){
+                    } else if (versionButton.getText().toString().equals("Personal Computer")) {
                         version = "Personal Computer";
-                    }
-                    else
-                    if(versionButton.getText().toString().equals("Telephone Landline(Voice)")){
+                    } else if (versionButton.getText().toString().equals("Telephone Landline(Voice)")) {
                         version = "Telephone";
                     }
-                    Log.d("version",version);
+                    Log.d("version", version);
                     update(realm);
-                    Intent i=new Intent(PreRegistration.this,Registration2.class);
-                    i.putExtra("Phone",phone);
+                    Intent i = new Intent(PreRegistration.this, Registration2.class);
+                    i.putExtra("Phone", phone);
                     startActivity(i);
                 }
 
@@ -101,17 +93,18 @@ public class PreRegistration extends AppCompatActivity {
         });
 
     }
+
     @Override
     public void onBackPressed() {
         // do nothing.
     }
 
     public void update(Realm realm) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone).findAll();
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone).findAll();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                for(ProfileDetails profileDetails : results) {
+                for (ProfileDetails profileDetails : results) {
                     profileDetails.setVersion(version);
                 }
             }
@@ -125,7 +118,7 @@ public class PreRegistration extends AppCompatActivity {
         realm.close(); // Remember to close Realm when done.
     }
 
-    public void regfinishdialog(){
+    public void regfinishdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("\t\t\t Your registration is complete!\n\t\tPlease fill out your profile details.")
                 .setTitle("\t\t\t\tRegistration complete")
@@ -138,7 +131,7 @@ public class PreRegistration extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
         WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.dimAmount=0.6f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+        lp.dimAmount = 0.6f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
         dialog.getWindow().setAttributes(lp);
 
     }

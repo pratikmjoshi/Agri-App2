@@ -1,16 +1,12 @@
 package com.example.prateekjoshi.agri_app;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -19,6 +15,7 @@ import android.widget.TextView;
 
 public class SplashScreenActivity extends AppCompatActivity {
     TextView myTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +46,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         });*/
 
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -60,6 +56,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }, 2000);
 
     }
+
     @Override
     public void onBackPressed() {
         // do nothing.

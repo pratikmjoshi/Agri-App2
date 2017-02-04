@@ -22,7 +22,7 @@ public class CropItem {
     }
 
     public void setHectares(int hectares) {
-        this.hectares=hectares;
+        this.hectares = hectares;
     }
 
     public int getQuintals() {

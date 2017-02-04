@@ -1,10 +1,9 @@
 package com.example.prateekjoshi.agri_app;
 
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,10 +24,8 @@ public class AlertFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
-    private Button clear;
 
     List<String> alerts;
 
@@ -63,11 +60,11 @@ public class AlertFragment extends Fragment {
         alerts = load();
 
         mRecyclerView = (RecyclerView) getView().findViewById(R.id.alert_recycler_view);
-        clear = (Button) getView().findViewById(R.id.submit);
+        Button clear = (Button) getView().findViewById(R.id.submit);
 
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // store(alerts);

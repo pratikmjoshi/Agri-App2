@@ -7,12 +7,17 @@ import java.util.HashMap;
  */
 
 public interface OnFragmentInteractionListener {
-    public HashMap<String,String> onReg1Completed(String phone,String password);
-    public HashMap<String,String> onReg2Completed();
-    public HashMap<String,String> onReg3Completed();
-    public HashMap<String,String> onReg4Completed();
-    public HashMap<String,String> onReg5Completed();
-    public HashMap<String,String> onReg6Completed();
+    HashMap<String, String> onReg1Completed(String phone, String password);
+
+    HashMap<String, String> onReg2Completed();
+
+    HashMap<String, String> onReg3Completed();
+
+    HashMap<String, String> onReg4Completed();
+
+    HashMap<String, String> onReg5Completed();
+
+    HashMap<String, String> onReg6Completed();
 
 
 }

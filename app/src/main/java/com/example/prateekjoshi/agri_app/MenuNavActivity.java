@@ -1,36 +1,21 @@
 package com.example.prateekjoshi.agri_app;
 
 import android.app.Activity;
-
-import android.app.ActionBar;
-import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -40,16 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.ncapdevi.fragnav.FragNavController;
-
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class MenuNavActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,7 +76,6 @@ public class MenuNavActivity extends Activity
                 FragmentTransaction ft = fm.beginTransaction();
 
 
-
                 switch (position) {
                     case 0:
                         TeacherFragment t = new TeacherFragment().newInstance();
@@ -132,7 +108,6 @@ public class MenuNavActivity extends Activity
                         break;
 
 
-
                 }
 
 
@@ -140,8 +115,6 @@ public class MenuNavActivity extends Activity
 
             @Override
             public void onTabUnselected(int position) {
-
-
 
 
             }
@@ -162,7 +135,7 @@ public class MenuNavActivity extends Activity
         query = ref.orderByChild("Phone Number").equalTo(phone);
         query.addValueEventListener(listener);
 
-        if(i.getBooleanExtra("openAlerts", false)) {
+        if (i.getBooleanExtra("openAlerts", false)) {
             bottomNavigationBar.selectTab(1);
         }
 

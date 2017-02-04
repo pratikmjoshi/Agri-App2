@@ -3,11 +3,8 @@ package com.example.prateekjoshi.agri_app;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +21,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.ArrayList;
-
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,11 +51,11 @@ public class LoginActivity extends AppCompatActivity {
 
         realm = Realm.getDefaultInstance();
 
-        logbutton= (Button)findViewById(R.id.login_button_login);
-        regbutton=(TextView) findViewById(R.id.login_notregistered_link);
+        logbutton = (Button) findViewById(R.id.login_button_login);
+        regbutton = (TextView) findViewById(R.id.login_notregistered_link);
 
-        editTextName= (EditText)findViewById(R.id.login_name_edittext);
-        editTextPassword= (EditText)findViewById(R.id.login_password_edittext);
+        editTextName = (EditText) findViewById(R.id.login_name_edittext);
+        editTextPassword = (EditText) findViewById(R.id.login_password_edittext);
         editTextPassword.setTransformationMethod(new PasswordTransformationMethod());
         editTextPassword.setTypeface(Typeface.DEFAULT);
 
@@ -69,16 +63,16 @@ public class LoginActivity extends AppCompatActivity {
         logbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name=editTextName.getText().toString();
-                password=editTextPassword.getText().toString();
-                verify(realm,name,password);
+                name = editTextName.getText().toString();
+                password = editTextPassword.getText().toString();
+                verify(realm, name, password);
             }
         });
 
         regbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i= new Intent(LoginActivity.this,RegistrationCodeActivity.class);
+                Intent i = new Intent(LoginActivity.this, RegistrationCodeActivity.class);
                 startActivity(i);
             }
         });
@@ -88,30 +82,29 @@ public class LoginActivity extends AppCompatActivity {
 
     public void verify(Realm realm, String name, final String password) {
         boolean onPhone = false;
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",name).findAll();
-        for(ProfileDetails profile : results) {
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", name).findAll();
+        for (ProfileDetails profile : results) {
             if (profile.getPassword().equals(password)) {
                 onPhone = true;
-                Intent i=new Intent(LoginActivity.this,MenuNavActivity.class);
+                Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
                 startActivity(i);
             }
         }
-        if(!onPhone) {
+        if (!onPhone) {
             final String phone = name;
             Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(name);
 
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
+                    for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
 
-                        if(Snapshot.child("Password").getValue().toString().equals(password)) {
-                            Intent i=new Intent(LoginActivity.this,MenuNavActivity.class);
-                            i.putExtra("phone",phone);
+                        if (Snapshot.child("Password").getValue().toString().equals(password)) {
+                            Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
+                            i.putExtra("phone", phone);
                             startActivity(i);
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(),"Please enter the correct username or password",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Please enter the correct username or password", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -123,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
     @Override
     public void onBackPressed() {
         // do nothing.

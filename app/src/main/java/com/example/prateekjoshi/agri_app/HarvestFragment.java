@@ -1,11 +1,10 @@
 package com.example.prateekjoshi.agri_app;
 
 
+import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.design.widget.TextInputEditText;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -97,24 +95,24 @@ public class HarvestFragment extends Fragment {
 
         totalAmountEditText = (TextInputEditText) v.findViewById(R.id.harvest_totalamount_edittext);
         amountPerHectareEditText = (TextInputEditText) v.findViewById(R.id.harvest_amountphectare_edittext);
-        colorGroup= (RadioGroup) v.findViewById(R.id.harvest_colordiff_radiogrp);
-        colorStemGroup= (RadioGroup) v.findViewById(R.id.harvest_colordiffstem_radiogrp);
-        marksGroup= (RadioGroup) v.findViewById(R.id.harvest_marks_radiogrp);
-        diseasesGroup= (RadioGroup) v.findViewById(R.id.harvest_diseases_radiogrp);
-        bugsGroup= (RadioGroup) v.findViewById(R.id.harvest_bugs_radiogrp);
-        colorSoilGroup= (RadioGroup) v.findViewById(R.id.harvest_soilcolor_radiogrp);
-        pesticideGroup= (RadioGroup) v.findViewById(R.id.harvest_pesticide_radiogrp);
-        submit = (Button)v.findViewById(R.id.submit);
+        colorGroup = (RadioGroup) v.findViewById(R.id.harvest_colordiff_radiogrp);
+        colorStemGroup = (RadioGroup) v.findViewById(R.id.harvest_colordiffstem_radiogrp);
+        marksGroup = (RadioGroup) v.findViewById(R.id.harvest_marks_radiogrp);
+        diseasesGroup = (RadioGroup) v.findViewById(R.id.harvest_diseases_radiogrp);
+        bugsGroup = (RadioGroup) v.findViewById(R.id.harvest_bugs_radiogrp);
+        colorSoilGroup = (RadioGroup) v.findViewById(R.id.harvest_soilcolor_radiogrp);
+        pesticideGroup = (RadioGroup) v.findViewById(R.id.harvest_pesticide_radiogrp);
+        submit = (Button) v.findViewById(R.id.submit);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isNetworkAvailable(getContext())) {
+                if (isNetworkAvailable(getContext())) {
                     updateOnlineRegistrationDetails();
                 }
 
 
-                Toast.makeText(getContext(),"Submitted Harvest Details",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Submitted Harvest Details", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -123,51 +121,48 @@ public class HarvestFragment extends Fragment {
     public void updateOnlineRegistrationDetails() {
         totalAmount = totalAmountEditText.getText().toString();
         amountPerHectare = amountPerHectareEditText.getText().toString();
-        color =radioCheck(colorGroup,colorButton);
-        colorStem=radioCheck(colorStemGroup,colorStemButton);
-        marks=radioCheck(marksGroup,marksButton);
-        diseases=radioCheck(diseasesGroup,diseasesButton);
-        bugs=radioCheck(bugsGroup,bugsButton);
-        colorSoil=radioCheck(colorSoilGroup,colorSoilButton);
-        pesticide=radioCheck(pesticideGroup,pesticideButton);
+        color = radioCheck(colorGroup, colorButton);
+        colorStem = radioCheck(colorStemGroup, colorStemButton);
+        marks = radioCheck(marksGroup, marksButton);
+        diseases = radioCheck(diseasesGroup, diseasesButton);
+        bugs = radioCheck(bugsGroup, bugsButton);
+        colorSoil = radioCheck(colorSoilGroup, colorSoilButton);
+        pesticide = radioCheck(pesticideGroup, pesticideButton);
 
-        Map<String,Object> map= new HashMap<>();
-        Map<String,Object> finalMap = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> finalMap = new HashMap<String, Object>();
         map.put("Phone Number", phone);
-        map.put("TotalProduction",totalAmount);
+        map.put("TotalProduction", totalAmount);
         map.put("AmountPerHectare", amountPerHectare);
         map.put("Color", color);
         map.put("ColorStem", colorStem);
-        map.put("Marks",marks);
-        map.put("Diseases",diseases);
-        map.put("Bugs",bugs);
-        map.put("SoilColor",colorSoil);
+        map.put("Marks", marks);
+        map.put("Diseases", diseases);
+        map.put("Bugs", bugs);
+        map.put("SoilColor", colorSoil);
         map.put("Pesticide", pesticide);
 
         String uniqueId = ref.child("Harvest").push().getKey();
 
-        finalMap.put("Harvest/" + uniqueId,map);
+        finalMap.put("Harvest/" + uniqueId, map);
 
         ref.updateChildren(finalMap);
 
 
     }
 
-    public boolean radioCheck(RadioGroup group,RadioButton button) {
-        int selectedId=group.getCheckedRadioButtonId();
+    public boolean radioCheck(RadioGroup group, RadioButton button) {
+        int selectedId = group.getCheckedRadioButtonId();
 
 
-        button = (RadioButton)getView().findViewById(selectedId);
-        if(selectedId==-1){
+        button = (RadioButton) getView().findViewById(selectedId);
+        if (selectedId == -1) {
 
-        }
-        else{
-            if(button.getText().toString().equals("Yes")){
+        } else {
+            if (button.getText().toString().equals("Yes")) {
 
                 return true;
-            }
-            else
-            if(button.getText().toString().equals("No")){
+            } else if (button.getText().toString().equals("No")) {
                 return false;
             }
 

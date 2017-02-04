@@ -1,7 +1,6 @@
 package com.example.prateekjoshi.agri_app;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,10 +17,11 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     List<String> list;
     Context context;
 
-    public AlertAdapter(Context context,List<String> list) {
+    public AlertAdapter(Context context, List<String> list) {
         this.list = list;
         this.context = context;
     }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
@@ -30,7 +30,7 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         switch (viewType) {
             case 0:
                 View v1 = inflater.inflate(R.layout.item_format_alert, parent, false);
-                viewHolder = new AlertViewHolder(v1,parent.getContext(),list);
+                viewHolder = new AlertViewHolder(v1, parent.getContext(), list);
                 break;
         }
         return viewHolder;
@@ -42,11 +42,11 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
             String alert = list.get(position);
-            Log.d("newttt",alert);
+            Log.d("newttt", alert);
             String[] items = alert.split("-");
             String description = items[0];
             String link = items[1];
-            if(description!=null) {
+            if (description != null) {
                 AlertViewHolder vh = (AlertViewHolder) holder;
                 vh.descView.setText(description);
                 vh.link = link;
@@ -60,6 +60,7 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public int getItemCount() {
         return list.size();
     }
+
     @Override
     public int getItemViewType(int position) {
         return 0;
