@@ -74,6 +74,7 @@ public class Registration5 extends AppCompatActivity {
                     Intent i = new Intent(Registration5.this, Registration6.class);
                     i.putExtra("Loops", amount);
                     i.putExtra("phone",phone);
+                    i.putExtra("Oloops",amount);
                     i.putStringArrayListExtra("Type of crops", crops);
                     startActivity(i);
                 }

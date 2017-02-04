@@ -71,12 +71,6 @@ public class AlertFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        /*Intent i= getIntent();
-        String alert = i.getStringExtra("Alert Message");
-        if(alert!=null) {
-            alerts.add(alert);
-        }
-        */
 
         store(alerts);
 

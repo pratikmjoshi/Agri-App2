@@ -10,6 +10,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,39 +67,47 @@ public class Registration4 extends AppCompatActivity {
 
         ownLandGroup= (RadioGroup) findViewById(R.id.reg4_ownland_radiogrp);
         landNameEditText=(TextInputEditText)findViewById(R.id.reg4_landname_edittext);
+        landNameEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         hectaresEditText=(TextInputEditText)findViewById(R.id.reg4_hectares_edittext);
 
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                landName=landNameEditText.getText().toString();
-                if(hectaresEditText.getText().toString()==""){
-                    hectares=0;
-                }
-                else {
-                    hectares = Integer.parseInt(hectaresEditText.getText().toString());
-                }
                 int selectedId=ownLandGroup.getCheckedRadioButtonId();
                 ownLandButton = (RadioButton)findViewById(selectedId);
-                if(selectedId==-1){
-                    Toast.makeText(getApplicationContext(),"Please select if you rent or own land",Toast.LENGTH_SHORT).show();
+                if(landNameEditText.getText().toString().equals("")&&hectaresEditText.getText().toString().equals("")&&selectedId==-1) {
+                    Toast.makeText(getApplicationContext(),"Please enter the details necessary",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    if(ownLandButton.getText()=="Own"){
-                        ownLand=true;
+                    if (landNameEditText.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please enter the name of the land owner", Toast.LENGTH_SHORT).show();
+                    } else {
+                        landName = landNameEditText.getText().toString();
                     }
-                    else
-                    if(ownLandButton.getText()=="Rent"){
-                        ownLand=false;
+                    if (hectaresEditText.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please enter hectares of land", Toast.LENGTH_SHORT).show();
+                        hectares=0;
+                    } else {
+                        hectares = Integer.parseInt(hectaresEditText.getText().toString());
                     }
 
-                    update(realm);
-                    updateOnlineRegistrationDetails();
-                    Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
-                    Intent i=new Intent(Registration4.this,MenuNavActivity.class);
-                    i.putExtra("phone",phone);
-                    startActivity(i);
+                    if (selectedId == -1) {
+                        Toast.makeText(getApplicationContext(), "Please select if you rent or own land", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (ownLandButton.getText() == "Own") {
+                            ownLand = true;
+                        } else if (ownLandButton.getText() == "Rent") {
+                            ownLand = false;
+                        }
+
+                        update(realm);
+                        updateOnlineRegistrationDetails();
+                        Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Registration4.this, MenuNavActivity.class);
+                        i.putExtra("phone", phone);
+                        startActivity(i);
+                    }
                 }
 
             }

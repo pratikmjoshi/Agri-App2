@@ -15,6 +15,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
+import static com.example.prateekjoshi.agri_app.R.style.CardView;
+import static com.example.prateekjoshi.agri_app.R.styleable.SimpleDraweeView;
+
 /**
  * Created by Prateek Joshi on 1/16/2017.
  */

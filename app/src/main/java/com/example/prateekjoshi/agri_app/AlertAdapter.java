@@ -3,6 +3,7 @@ package com.example.prateekjoshi.agri_app;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,16 @@ public class AlertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (holder.getItemViewType() == 0) {
 
 
-
-            AlertViewHolder vh = (AlertViewHolder) holder;
-            vh.descView.setText(list.get(position));
+            String alert = list.get(position);
+            Log.d("newttt",alert);
+            String[] items = alert.split("-");
+            String description = items[0];
+            String link = items[1];
+            if(description!=null) {
+                AlertViewHolder vh = (AlertViewHolder) holder;
+                vh.descView.setText(description);
+                vh.link = link;
+            }
 
 
         }

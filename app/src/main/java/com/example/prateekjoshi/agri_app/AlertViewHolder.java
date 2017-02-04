@@ -1,6 +1,8 @@
 package com.example.prateekjoshi.agri_app;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ public class AlertViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public TextView titleView;
     public TextView descView;
+    public String link;
     List<String> list;
     private Context context;
 
@@ -32,6 +35,7 @@ public class AlertViewHolder extends RecyclerView.ViewHolder implements View.OnC
     }
     @Override
     public void onClick(View view) {
-
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+        context.startActivity(browserIntent);
     }
 }

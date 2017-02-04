@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,6 +61,9 @@ public class AlertActivity extends AppCompatActivity {
         Intent i= getIntent();
         String alert = i.getStringExtra("Alert Message");
         if(alert!=null) {
+            String link = i.getStringExtra("link");
+            alert = alert + "-" + link;
+            Log.d("stringy",alert);
             alerts.add(alert);
         }
 

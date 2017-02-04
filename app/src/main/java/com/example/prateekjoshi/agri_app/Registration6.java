@@ -44,6 +44,7 @@ public class Registration6 extends AppCompatActivity {
     public ArrayList<String> crops;
     public String cropDetail;
     public int repeats;
+    public int oloops;
     public String phone;
 
     private Realm realm;
@@ -69,6 +70,7 @@ public class Registration6 extends AppCompatActivity {
         phone= i.getStringExtra("phone");
         crops= i.getStringArrayListExtra("Type of crops");
         repeats= i.getIntExtra("Loops",1);
+        oloops = i.getIntExtra("Oloops",1);
 
         crop= crops.get(repeats-1);
 
@@ -124,10 +126,16 @@ public class Registration6 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 repeats++;
-                Intent i=new Intent(Registration6.this,Registration6.class);
-                i.putStringArrayListExtra("Type of crops",crops);
-                i.putExtra("Loops",repeats);
-                startActivity(i);
+                if (repeats == oloops+1) {
+                    Intent i = new Intent(Registration6.this, Registration5.class);
+                    i.putExtra("phone", phone);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(Registration6.this, Registration6.class);
+                    i.putStringArrayListExtra("Type of crops", crops);
+                    i.putExtra("Loops", repeats);
+                    startActivity(i);
+                }
             }
         });
 

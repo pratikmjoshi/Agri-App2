@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +58,9 @@ public class Registration3 extends AppCompatActivity {
         previous=(ImageButton)findViewById(R.id.reg3_btn_back);
 
         editTextAddress= (TextInputEditText) findViewById(R.id.reg3_address_edittext);
+        editTextAddress.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         editTextProvince= (TextInputEditText) findViewById(R.id.reg3_province_edittext);
+        editTextProvince.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         editTextPostalCode= (TextInputEditText) findViewById(R.id.reg3_postalcode_edittext);
 
         next.setOnClickListener(new View.OnClickListener() {

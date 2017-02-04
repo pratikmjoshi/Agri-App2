@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -68,8 +69,11 @@ public class Registration2 extends AppCompatActivity{
         previous=(ImageButton)findViewById(R.id.reg2_btn_back);
 
         editTextFirstName= (TextInputEditText) findViewById(R.id.reg2_firstname_edittext);
+        editTextFirstName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         editTextMiddleName= (TextInputEditText) findViewById(R.id.reg2_middlename_edittext);
+        editTextMiddleName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         editTextLastName= (TextInputEditText) findViewById(R.id.reg2_lastname_edittext);
+        editTextLastName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +107,8 @@ public class Registration2 extends AppCompatActivity{
 
     public void regfinishdialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("\t\t\t Your registration is complete!\n\t\tPlease fill out your profile details.")
-                .setTitle("\t\t\t\tRegistration complete")
+        builder.setMessage("Your registration is complete!\nPlease fill out your profile details.")
+                .setTitle("Registration complete")
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
