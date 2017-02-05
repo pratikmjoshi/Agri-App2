@@ -80,15 +80,20 @@ public class Registration6 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (cropsPerHectareEditText.getText().toString().equals("")) {
+                if (cropsPerHectareEditText.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill in all details", Toast.LENGTH_SHORT).show();
-                } else if (cropQuintalsEditText.getText().toString().equals("")) {
+                } else if (cropQuintalsEditText.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill in all details", Toast.LENGTH_SHORT).show();
                 } else {
                     String hectares = cropsPerHectareEditText.getText().toString();
                     String quintals = cropQuintalsEditText.getText().toString();
-                    cropsPerHectare = Integer.parseInt(hectares);
-                    cropQuintals = Integer.parseInt(quintals);
+                    try {
+                        cropsPerHectare = Integer.parseInt(hectares);
+                        cropQuintals = Integer.parseInt(quintals);
+                    }
+                    catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "The details you entered are not valid", Toast.LENGTH_SHORT).show();
+                    }
                     cropDetail = convertToString(crop, hectares, quintals);
                     Log.d("Fruity", cropDetail);
                     update(realm);
