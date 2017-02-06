@@ -25,21 +25,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <Button
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="CLEAR"
-        android:background="@drawable/button_background"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-smallcaps"
-        android:layout_marginTop="16dp"
-        android:id="@+id/submit"
-        android:layout_below="@+id/alert_recycler_view"
-
-        />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/clear_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="#FFEB3B"
+            android:tint="@color/white"
+            android:background="#FFEB3B"
+            android:src="@drawable/ic_notif_clear" />
 
     </RelativeLayout>
 

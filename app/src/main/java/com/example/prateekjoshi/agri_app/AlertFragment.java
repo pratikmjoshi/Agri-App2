@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class AlertFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
+    private FloatingActionButton clearnotifs;
 
     List<String> alerts;
 
@@ -72,7 +74,8 @@ public class AlertFragment extends Fragment {
         mAdapter = new AlertAdapter(getContext(), alerts);
         mRecyclerView.setAdapter(mAdapter);
 
-        clear.setOnClickListener(new View.OnClickListener() {
+        clearnotifs = (FloatingActionButton)getView().findViewById(R.id.clear_fab);
+        clearnotifs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alerts.clear();
