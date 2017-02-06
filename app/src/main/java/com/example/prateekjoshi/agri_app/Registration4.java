@@ -68,10 +68,16 @@ public class Registration4 extends AppCompatActivity {
             public void onClick(View view) {
                 int selectedId = ownLandGroup.getCheckedRadioButtonId();
                 ownLandButton = (RadioButton) findViewById(selectedId);
-                if (landNameEditText.getText().toString().equals("") && hectaresEditText.getText().toString().equals("") && selectedId == -1) {
-                    Toast.makeText(getApplicationContext(), "Please enter the details necessary", Toast.LENGTH_SHORT).show();
+                if (landNameEditText.getText().toString().equals("") || hectaresEditText.getText().toString().equals("") || selectedId == -1) {
+                    Toast.makeText(getApplicationContext(), "Please enter all the details", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (landNameEditText.getText().toString().equals("")) {
+                    update(realm);
+                    updateOnlineRegistrationDetails();
+                    Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Registration4.this, MenuNavActivity.class);
+                    i.putExtra("phone", phone);
+                    startActivity(i);
+                    /*if (landNameEditText.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "Please enter the name of the land owner", Toast.LENGTH_SHORT).show();
                     } else {
                         landName = landNameEditText.getText().toString();
@@ -91,14 +97,7 @@ public class Registration4 extends AppCompatActivity {
                         } else if (ownLandButton.getText() == "Rent") {
                             ownLand = false;
                         }
-
-                        update(realm);
-                        updateOnlineRegistrationDetails();
-                        Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(Registration4.this, MenuNavActivity.class);
-                        i.putExtra("phone", phone);
-                        startActivity(i);
-                    }
+                    }*/
                 }
 
             }

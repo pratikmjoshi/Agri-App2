@@ -1,15 +1,23 @@
 package com.example.prateekjoshi.agri_app;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +45,11 @@ public class LoginActivity extends AppCompatActivity {
     public EditText editTextName;
     public EditText editTextPassword;
 
+
+    public boolean isNetworkAvailable(final Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,39 +94,65 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void verify(Realm realm, String name, final String password) {
+        LayoutInflater li = LayoutInflater.from(getApplicationContext());
+
+        View promptsView = li.inflate(R.layout.dialog_loading, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder.setView(promptsView);
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+
+        //WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        //lp.copyFrom(alertDialog.getWindow().getAttributes());
+        // show it
+        alertDialog.show();
+        //alertDialog.getWindow().setAttributes(lp);
+        alertDialog.setCanceledOnTouchOutside(true);
+
+
         boolean onPhone = false;
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", name).findAll();
         for (ProfileDetails profile : results) {
             if (profile.getPassword().equals(password)) {
                 onPhone = true;
+                alertDialog.dismiss();
                 Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
                 startActivity(i);
             }
         }
         if (!onPhone) {
             final String phone = name;
-            Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(name);
+            if(!isNetworkAvailable(getApplicationContext())){
+                Toast.makeText(getApplicationContext(),"No Internet Connection, try again later",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(name);
 
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
 
-                        if (Snapshot.child("Password").getValue().toString().equals(password)) {
-                            Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
-                            i.putExtra("phone", phone);
-                            startActivity(i);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Please enter the correct username or password", Toast.LENGTH_SHORT).show();
+                            if (Snapshot.child("Password").getValue().toString().equals(password)) {
+                                alertDialog.dismiss();
+                                Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
+                                i.putExtra("phone", phone);
+                                startActivity(i);
+                            } else {
+                                alertDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Please enter the correct username or password", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("Random:", "onCancelled", databaseError.toException());
-                }
-            });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e("Random:", "onCancelled", databaseError.toException());
+                    }
+                });
+            }
         }
     }
 
@@ -128,4 +167,21 @@ public class LoginActivity extends AppCompatActivity {
         realm.close(); // Remember to close Realm when done.
     }
 
+    public void openLoadingDialog() {
+        LayoutInflater li = LayoutInflater.from(getApplicationContext());
+
+        View promptsView = li.inflate(R.layout.dialog_loading, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder.setView(promptsView);
+
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
+
+
+    }
 }
