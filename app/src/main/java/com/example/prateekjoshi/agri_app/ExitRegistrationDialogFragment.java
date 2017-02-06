@@ -19,7 +19,7 @@ public class ExitRegistrationDialogFragment extends DialogFragment {
         builder.setMessage("Are you sure you want to exit registration?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent i= new Intent(getActivity(),LoginActivity.class);
+                        Intent i = new Intent(getActivity(), LoginActivity.class);
                         startActivity(i);
                     }
                 })

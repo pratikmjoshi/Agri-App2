@@ -3,10 +3,9 @@ package com.example.prateekjoshi.agri_app;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.provider.MediaStore;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -72,30 +70,30 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.profileactivity_toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
         toolbar.setTitle("Profile");
         setSupportActionBar(toolbar);
 
-        editmenu=false;
+        editmenu = false;
 
         realm = Realm.getDefaultInstance();
 
-        phone = (TextInputEditText)findViewById(R.id.profile_phone_edittext);
-        password = (TextInputEditText)findViewById(R.id.profile_password_edittext);
-        firstName = (TextInputEditText)findViewById(R.id.profile_firstname_edittext);
-        middleName = (TextInputEditText)findViewById(R.id.profile_middlename_edittext);
-        lastName = (TextInputEditText)findViewById(R.id.profile_lastname_edittext);
-        address = (TextInputEditText)findViewById(R.id.profile_address_edittext);
-        province = (TextInputEditText)findViewById(R.id.profile_province_edittext);
-        postalCode = (TextInputEditText)findViewById(R.id.profile_postalcode_edittext);
-        nameLand = (TextInputEditText)findViewById(R.id.profile_landname_edittext);
-        hectares = (TextInputEditText)findViewById(R.id.profile_hectares_edittext);
+        phone = (TextInputEditText) findViewById(R.id.profile_phone_edittext);
+        password = (TextInputEditText) findViewById(R.id.profile_password_edittext);
+        firstName = (TextInputEditText) findViewById(R.id.profile_firstname_edittext);
+        middleName = (TextInputEditText) findViewById(R.id.profile_middlename_edittext);
+        lastName = (TextInputEditText) findViewById(R.id.profile_lastname_edittext);
+        address = (TextInputEditText) findViewById(R.id.profile_address_edittext);
+        province = (TextInputEditText) findViewById(R.id.profile_province_edittext);
+        postalCode = (TextInputEditText) findViewById(R.id.profile_postalcode_edittext);
+        nameLand = (TextInputEditText) findViewById(R.id.profile_landname_edittext);
+        hectares = (TextInputEditText) findViewById(R.id.profile_hectares_edittext);
 
-        ownLandGroup= (RadioGroup) findViewById(R.id.profile_ownland_radiogrp);
-        ownLandButtonyes = (RadioButton)findViewById(R.id.profile_ownland_radiobtnyes);
-        ownLandButtonno = (RadioButton)findViewById(R.id.profile_ownland_radiobtnno);
+        ownLandGroup = (RadioGroup) findViewById(R.id.profile_ownland_radiogrp);
+        ownLandButtonyes = (RadioButton) findViewById(R.id.profile_ownland_radiobtnyes);
+        ownLandButtonno = (RadioButton) findViewById(R.id.profile_ownland_radiobtnno);
 
-        cropDetailsButton = (Button)findViewById(R.id.profile_cropdetails_button);
+        cropDetailsButton = (Button) findViewById(R.id.profile_cropdetails_button);
 
         update(realm);
 
@@ -105,8 +103,8 @@ public class ProfileActivity extends AppCompatActivity {
         cropDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),ProfileCropDetailsActivity.class);
-                i.putExtra("phone",phone.getText().toString());
+                Intent i = new Intent(getApplicationContext(), ProfileCropDetailsActivity.class);
+                i.putExtra("phone", phone.getText().toString());
                 startActivity(i);
             }
         });
@@ -140,17 +138,13 @@ public class ProfileActivity extends AppCompatActivity {
             enableFields();
             editmenu = true;
             invalidateOptionsMenu();
-        }
-        else
-        if (id == R.id.profile_cancel) {
+        } else if (id == R.id.profile_cancel) {
             disableFields();
             editmenu = false;
             invalidateOptionsMenu();
-        }
-        else
-        if (id==R.id.profile_save) {
+        } else if (id == R.id.profile_save) {
             saveNew(realm);
-            if(isNetworkAvailable(getApplicationContext())) {
+            if (isNetworkAvailable(getApplicationContext())) {
                 updateOnlineRegistrationDetails();
             }
             disableFields();
@@ -163,13 +157,12 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if(editmenu==true) {
+        if (editmenu == true) {
             edit.setVisible(false);
             save.setVisible(true);
             cancel.setVisible(true);
             delete.setVisible(false);
-        }
-        else {
+        } else {
             edit.setVisible(true);
             save.setVisible(false);
             cancel.setVisible(false);
@@ -177,16 +170,19 @@ public class ProfileActivity extends AppCompatActivity {
         }
         return true;
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         realm.close(); // Remember to close Realm when done.
     }
+
     @Override
     public void onBackPressed() {
-        Intent i =new Intent(this, MenuNavActivity.class);
+        Intent i = new Intent(this, MenuNavActivity.class);
         startActivity(i);
     }
+
     public void disableFields() {
         phone.setEnabled(false);
         password.setEnabled(false);
@@ -218,11 +214,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
+
     public void update(Realm realm) {
 
         RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
         ProfileDetails profile = new ProfileDetails();
-        for(ProfileDetails temp : results) {
+        for (ProfileDetails temp : results) {
             profile = temp;
         }
 
@@ -236,15 +233,14 @@ public class ProfileActivity extends AppCompatActivity {
         province.setText(profile.getProvince());
         postalCode.setText(profile.getPostalCode());
         nameLand.setText(profile.getNameLand());
-        if(hectares!=null) {
+        if (hectares != null) {
             hectares.setText(Integer.toString(profile.getHectares()));
         }
 
-        if(profile.getOwnLand()){
+        if (profile.getOwnLand()) {
             ownLandButtonyes.setChecked(true);
             ownLandButtonno.setChecked(false);
-        }
-        else {
+        } else {
             ownLandButtonno.setChecked(true);
             ownLandButtonyes.setChecked(false);
         }
@@ -252,13 +248,12 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void saveNew(Realm realm) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone.getText().toString()).findAll();
-        int selectedId=ownLandGroup.getCheckedRadioButtonId();
-        ownLandButton = (RadioButton)findViewById(selectedId);
-        if(selectedId==-1){
-            Toast.makeText(getApplicationContext(),"Please select if you rent or own land",Toast.LENGTH_SHORT).show();
-        }
-        else {
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone.getText().toString()).findAll();
+        int selectedId = ownLandGroup.getCheckedRadioButtonId();
+        ownLandButton = (RadioButton) findViewById(selectedId);
+        if (selectedId == -1) {
+            Toast.makeText(getApplicationContext(), "Please select if you rent or own land", Toast.LENGTH_SHORT).show();
+        } else {
             if (ownLandButton.getText() == "Own") {
                 ownLand = true;
             } else if (ownLandButton.getText() == "Rent") {
@@ -268,7 +263,7 @@ public class ProfileActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                for(ProfileDetails profileDetails : results) {
+                for (ProfileDetails profileDetails : results) {
                     profileDetails.setPhone(phone.getText().toString());
                     profileDetails.setPassword(password.getText().toString());
                     profileDetails.setVersion(version);
@@ -287,33 +282,34 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public Map<String, Object> realmMap(Realm realm) {
-        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone",phone.getText().toString()).findAll();
+        final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone.getText().toString()).findAll();
         Map<String, Object> map = new HashMap<String, Object>();
-        for(ProfileDetails temp: results) {
+        for (ProfileDetails temp : results) {
             Map<String, Object> post = temp.toMap();
             map.put("Registration/", post);
             return map;
         }
         return map;
     }
+
     public void updateOnlineRegistrationDetails() {
-        Map<String,Object> realmMap = realmMap(realm);
-        Map<String,Object> realmValueMap = (Map<String,Object>) realmMap.get("Registration/");
-        final Map<String,Object> map= new HashMap<>();
-        final Map<String,Object> finalMap = new HashMap<String,Object>();
+        Map<String, Object> realmMap = realmMap(realm);
+        Map<String, Object> realmValueMap = (Map<String, Object>) realmMap.get("Registration/");
+        final Map<String, Object> map = new HashMap<>();
+        final Map<String, Object> finalMap = new HashMap<String, Object>();
         map.put("Phone Number", realmValueMap.get("Phone Number"));
-        map.put("Password",realmValueMap.get("Password") );
-        map.put("Version",realmValueMap.get("Version"));
+        map.put("Password", realmValueMap.get("Password"));
+        map.put("Version", realmValueMap.get("Version"));
         map.put("First Name", realmValueMap.get("First Name"));
         map.put("Middle Name", realmValueMap.get("Middle Name"));
         map.put("Last Name", realmValueMap.get("Last Name"));
-        map.put("Address",realmValueMap.get("Address"));
-        map.put("Province",realmValueMap.get("Province"));
-        map.put("Postal Code",realmValueMap.get("Postal Code"));
-        map.put("Rent or Own Land",realmValueMap.get("Rent or Own Land"));
+        map.put("Address", realmValueMap.get("Address"));
+        map.put("Province", realmValueMap.get("Province"));
+        map.put("Postal Code", realmValueMap.get("Postal Code"));
+        map.put("Rent or Own Land", realmValueMap.get("Rent or Own Land"));
         map.put("Name Land", realmValueMap.get("Name Land"));
         map.put("Hectares of Land", realmValueMap.get("Hectares of Land"));
-        map.put("Crop Details",realmValueMap.get("Crop Details"));
+        map.put("Crop Details", realmValueMap.get("Crop Details"));
 
         String phone = realmValueMap.get("Phone Number").toString();
         Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(phone);
@@ -321,7 +317,7 @@ public class ProfileActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
                     Snapshot.getRef().updateChildren(map);
                 }
             }
@@ -331,7 +327,6 @@ public class ProfileActivity extends AppCompatActivity {
                 Log.e("Random:", "onCancelled", databaseError.toException());
             }
         });
-
 
 
     }

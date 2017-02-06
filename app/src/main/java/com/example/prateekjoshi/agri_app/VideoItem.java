@@ -8,7 +8,7 @@ public class VideoItem {
     private String videoName;
     private int videoPicture;
 
-    public VideoItem(String videoName,int videoPicture) {
+    public VideoItem(String videoName, int videoPicture) {
         this.videoName = videoName;
         this.videoPicture = videoPicture;
     }
@@ -21,7 +21,7 @@ public class VideoItem {
         this.videoName = videoName;
     }
 
-    public int getVideoPicture(){
+    public int getVideoPicture() {
         return videoPicture;
     }
 

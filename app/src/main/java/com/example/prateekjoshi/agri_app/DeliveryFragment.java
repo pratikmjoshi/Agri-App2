@@ -1,13 +1,10 @@
 package com.example.prateekjoshi.agri_app;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,9 +27,7 @@ public class DeliveryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-
 
     private String phone;
     private String crop;
@@ -41,8 +36,8 @@ public class DeliveryFragment extends Fragment {
     private String buyerDesig;
     private String buyerAddress;
     private String location;
-    private Map<String,Object> map;
-    private List<Map<String,Object>> spinnerList;
+    private Map<String, Object> map;
+    private List<Map<String, Object>> spinnerList;
 
     private Spinner cropSpinner;
     private TextInputEditText buyerEditText;
@@ -61,8 +56,6 @@ public class DeliveryFragment extends Fragment {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
-
-
 
 
     public DeliveryFragment() {
@@ -93,71 +86,58 @@ public class DeliveryFragment extends Fragment {
     }
 
 
-
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
 
-       //Pass as a parameter
+        //Pass as a parameter
         //phone = i.getStringExtra("phone");
 
         cropSpinner = (Spinner) v.findViewById(R.id.delivery_crop_spinner);
         buyerEditText = (TextInputEditText) v.findViewById(R.id.delivery_buyer_edittext);
-        buyerPhoneEditText = (TextInputEditText)v.findViewById(R.id.delivery_phone_edittext);
+        buyerPhoneEditText = (TextInputEditText) v.findViewById(R.id.delivery_phone_edittext);
         buyerDesigRadioGroup = (RadioGroup) v.findViewById(R.id.delivery_desig_radiogrp);
         buyerAddressEditText = (TextInputEditText) v.findViewById(R.id.delivery_address_edittext);
         locationSpinner = (Spinner) v.findViewById(R.id.delivery_location_spinner);
         locationOtherEditText = (TextInputEditText) v.findViewById(R.id.delivery_otherlocation_edittext);
-        Button submit = (Button)v.findViewById(R.id.submit);
+        Button submit = (Button) v.findViewById(R.id.submit);
 
-        String[] crops = new String[] {"Pineapple","Orange","Banana","Cacao Pod","Passion Fruit","Chia Seeds","Quinoa Grains"};
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.crop_array,android.R.layout.simple_spinner_item);
+        String[] crops = new String[]{"Pineapple", "Orange", "Banana", "Cacao Pod", "Passion Fruit", "Chia Seeds", "Quinoa Grains"};
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.crop_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cropSpinner.setAdapter(adapter);
         //initializeImageList(crops);
         //CustomSpinnerAdapter customadapter = new CustomSpinnerAdapter(getContext(),spinnerList,android.R.layout.simple_spinner_item, new String[] {"Name", "Icon"},new int[] {R.id.spinner_crop_item_text,R.id.spinner_crop_item_image});
         //cropSpinner.setAdapter(customadapter);
 
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getContext(),R.array.location_array,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getContext(), R.array.location_array, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(adapter1);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(isNetworkAvailable(getContext())) {
+                if (isNetworkAvailable(getContext())) {
                     updateOnlineRegistrationDetails();
                 }
-
-
-                Toast.makeText(getContext(),"Submitted Delivery Details",Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getContext(), "Submitted Delivery Details", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
-    public String radioCheck(RadioGroup group,RadioButton button) {
-        int selectedId=group.getCheckedRadioButtonId();
-        button = (RadioButton)getView().findViewById(selectedId);
-        if(selectedId==-1){
+    public String radioCheck(RadioGroup group, RadioButton button) {
+        int selectedId = group.getCheckedRadioButtonId();
+        button = (RadioButton) getView().findViewById(selectedId);
+        if (selectedId == -1) {
 
-        }
-        else{
-            if(button.getText().toString().equals("Local Vendor")){
+        } else {
+            if (button.getText().toString().equals("Local Vendor")) {
 
                 return "Local Vendor";
-            }
-            else
-            if(button.getText().toString().equals("Exporter")){
+            } else if (button.getText().toString().equals("Exporter")) {
                 return "Exporter";
-            }
-            else
-            if(button.getText().toString().equals("Other")){
+            } else if (button.getText().toString().equals("Other")) {
                 return "Other";
             }
 
@@ -165,81 +145,72 @@ public class DeliveryFragment extends Fragment {
         return "Other";
     }
 
-    public int setImage(String crop){
-        if(crop.equals("Pineapple")){
+    public int setImage(String crop) {
+        if (crop.equals("Pineapple")) {
             return R.drawable.pineapple;
         }
-        if(crop.equals("Orange")){
+        if (crop.equals("Orange")) {
             return R.drawable.orange;
         }
-        if(crop.equals("Banana")){
+        if (crop.equals("Banana")) {
             return R.drawable.banana;
         }
-        if(crop.equals("Cacao Pod")){
+        if (crop.equals("Cacao Pod")) {
             return R.drawable.cacaopod;
         }
-        if(crop.equals("Passion Fruit")){
+        if (crop.equals("Passion Fruit")) {
             return R.drawable.passionfruit;
         }
-        if(crop.equals("Chia Seeds")){
+        if (crop.equals("Chia Seeds")) {
             return R.drawable.chia_seeds;
         }
-        if(crop.equals("Quinoa Grains")){
+        if (crop.equals("Quinoa Grains")) {
             return R.drawable.quinoagrain;
         }
         return 0;
     }
 
     public void updateOnlineRegistrationDetails() {
-
         crop = cropSpinner.getSelectedItem().toString();
         buyer = buyerEditText.getText().toString();
         buyerPhone = buyerPhoneEditText.getText().toString();
-        buyerDesig = radioCheck(buyerDesigRadioGroup,buyerDesigRadioButton);
+        buyerDesig = radioCheck(buyerDesigRadioGroup, buyerDesigRadioButton);
         buyerAddress = buyerAddressEditText.getText().toString();
         location = locationSpinner.getSelectedItem().toString();
 
-        Map<String,Object> map= new HashMap<>();
-        Map<String,Object> finalMap = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> finalMap = new HashMap<String, Object>();
         map.put("Phone Number", phone);
-        map.put("BuyerName",buyer);
+        map.put("BuyerName", buyer);
         map.put("BuyerPhone", buyerPhone);
         map.put("BuyerAddress", buyerAddress);
         map.put("BuyerDesignation", buyerDesig);
-        map.put("Crop",crop);
-        map.put("Location",location);
+        map.put("Crop", crop);
+        map.put("Location", location);
 
         String uniqueId = ref.child("Delivery").push().getKey();
 
-        finalMap.put("Delivery/" + uniqueId,map);
+        finalMap.put("Delivery/" + uniqueId, map);
 
         ref.updateChildren(finalMap);
-
     }
 
     private void initializeImageList(String[] crops) {
+        for (String crop1 : crops) {
+            map = new HashMap<String, Object>();
 
-        for(int i=0;i<crops.length;i++) {
-            map = new HashMap<String,Object>();
-
-            map.put("Name",crops[i]);
-            map.put("Icon",setImage(crops[i]));
-
+            map.put("Name", crop1);
+            map.put("Icon", setImage(crop1));
         }
-
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-
     }
-
-
 }

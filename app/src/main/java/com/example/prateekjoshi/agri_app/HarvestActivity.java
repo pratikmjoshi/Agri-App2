@@ -3,14 +3,12 @@ package com.example.prateekjoshi.agri_app;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -68,7 +66,7 @@ public class HarvestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_harvest);
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_harvest_toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
         toolbar.setTitle("Crops/Harvest");
         setSupportActionBar(toolbar);
 
@@ -77,17 +75,15 @@ public class HarvestActivity extends AppCompatActivity {
 
         totalAmountEditText = (TextInputEditText) findViewById(R.id.harvest_totalamount_edittext);
         amountPerHectareEditText = (TextInputEditText) findViewById(R.id.harvest_amountphectare_edittext);
-        colorGroup= (RadioGroup) findViewById(R.id.harvest_colordiff_radiogrp);
-        colorStemGroup= (RadioGroup) findViewById(R.id.harvest_colordiffstem_radiogrp);
-        marksGroup= (RadioGroup) findViewById(R.id.harvest_marks_radiogrp);
-        diseasesGroup= (RadioGroup) findViewById(R.id.harvest_diseases_radiogrp);
-        bugsGroup= (RadioGroup) findViewById(R.id.harvest_bugs_radiogrp);
-        colorSoilGroup= (RadioGroup) findViewById(R.id.harvest_soilcolor_radiogrp);
-        pesticideGroup= (RadioGroup) findViewById(R.id.harvest_pesticide_radiogrp);
-
-
-
+        colorGroup = (RadioGroup) findViewById(R.id.harvest_colordiff_radiogrp);
+        colorStemGroup = (RadioGroup) findViewById(R.id.harvest_colordiffstem_radiogrp);
+        marksGroup = (RadioGroup) findViewById(R.id.harvest_marks_radiogrp);
+        diseasesGroup = (RadioGroup) findViewById(R.id.harvest_diseases_radiogrp);
+        bugsGroup = (RadioGroup) findViewById(R.id.harvest_bugs_radiogrp);
+        colorSoilGroup = (RadioGroup) findViewById(R.id.harvest_soilcolor_radiogrp);
+        pesticideGroup = (RadioGroup) findViewById(R.id.harvest_pesticide_radiogrp);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -111,76 +107,67 @@ public class HarvestActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
 
-        if (id==R.id.profile_save) {
-            if(isNetworkAvailable(getApplicationContext())) {
+        if (id == R.id.profile_save) {
+            if (isNetworkAvailable(getApplicationContext())) {
                 updateOnlineRegistrationDetails();
             }
 
-            Intent i = new Intent(getApplicationContext(),MenuNavActivity.class);
-            Toast.makeText(getApplicationContext(),"Submitted Harvest Details",Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), MenuNavActivity.class);
+            Toast.makeText(getApplicationContext(), "Submitted Harvest Details", Toast.LENGTH_SHORT).show();
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onBackPressed() {
-        Intent i =new Intent(this, MenuNavActivity.class);
+        Intent i = new Intent(this, MenuNavActivity.class);
         startActivity(i);
     }
 
     public void updateOnlineRegistrationDetails() {
         totalAmount = totalAmountEditText.getText().toString();
         amountPerHectare = amountPerHectareEditText.getText().toString();
-        color =radioCheck(colorGroup,colorButton);
-        colorStem=radioCheck(colorStemGroup,colorStemButton);
-        marks=radioCheck(marksGroup,marksButton);
-        diseases=radioCheck(diseasesGroup,diseasesButton);
-        bugs=radioCheck(bugsGroup,bugsButton);
-        colorSoil=radioCheck(colorSoilGroup,colorSoilButton);
-        pesticide=radioCheck(pesticideGroup,pesticideButton);
+        color = radioCheck(colorGroup, colorButton);
+        colorStem = radioCheck(colorStemGroup, colorStemButton);
+        marks = radioCheck(marksGroup, marksButton);
+        diseases = radioCheck(diseasesGroup, diseasesButton);
+        bugs = radioCheck(bugsGroup, bugsButton);
+        colorSoil = radioCheck(colorSoilGroup, colorSoilButton);
+        pesticide = radioCheck(pesticideGroup, pesticideButton);
 
-        Map<String,Object> map= new HashMap<>();
-        Map<String,Object> finalMap = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> finalMap = new HashMap<String, Object>();
         map.put("Phone Number", phone);
-        map.put("TotalProduction",totalAmount);
+        map.put("TotalProduction", totalAmount);
         map.put("AmountPerHectare", amountPerHectare);
         map.put("Color", color);
         map.put("ColorStem", colorStem);
-        map.put("Marks",marks);
-        map.put("Diseases",diseases);
-        map.put("Bugs",bugs);
-        map.put("SoilColor",colorSoil);
+        map.put("Marks", marks);
+        map.put("Diseases", diseases);
+        map.put("Bugs", bugs);
+        map.put("SoilColor", colorSoil);
         map.put("Pesticide", pesticide);
 
         String uniqueId = ref.child("Harvest").push().getKey();
 
-        finalMap.put("Harvest/" + uniqueId,map);
+        finalMap.put("Harvest/" + uniqueId, map);
 
         ref.updateChildren(finalMap);
-
-
     }
 
+    public boolean radioCheck(RadioGroup group, RadioButton button) {
+        int selectedId = group.getCheckedRadioButtonId();
+        button = (RadioButton) findViewById(selectedId);
+        if (selectedId == -1) {
 
-    public boolean radioCheck(RadioGroup group,RadioButton button) {
-        int selectedId=group.getCheckedRadioButtonId();
-        button = (RadioButton)findViewById(selectedId);
-        if(selectedId==-1){
-
-        }
-        else{
-            if(button.getText().toString().equals("Yes")){
+        } else {
+            if (button.getText().toString().equals("Yes")) {
 
                 return true;
-            }
-            else
-            if(button.getText().toString().equals("No")){
+            } else if (button.getText().toString().equals("No")) {
                 return false;
             }
-
-
         }
         return false;
     }

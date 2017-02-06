@@ -2,7 +2,6 @@ package com.example.prateekjoshi.agri_app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -31,7 +30,7 @@ public class CropDetailsViewHolder extends RecyclerView.ViewHolder implements Vi
         cropName = (TextView) itemView.findViewById(R.id.item_format_cropdetails_title);
         cropHectares = (TextInputEditText) itemView.findViewById(R.id.profile_cropdetails_hectares_edittext);
         cropQuintals = (TextInputEditText) itemView.findViewById(R.id.profile_cropdetails_quintals_edittext);
-        cropPicture = (ImageView)itemView.findViewById(R.id.profile_cropdetails_croppic);
+        cropPicture = (ImageView) itemView.findViewById(R.id.profile_cropdetails_croppic);
 
 
         itemView.setOnClickListener(this);
@@ -40,10 +39,10 @@ public class CropDetailsViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(context,SingleCropProfileActivity.class);
-        intent.putExtra("cropName",list.get(getAdapterPosition()).getCrop());
-        intent.putExtra("cropHectares",Integer.toString(list.get(getAdapterPosition()).getHectares()));
-        intent.putExtra("cropQuintals",Integer.toString(list.get(getAdapterPosition()).getQuintals()));
+        Intent intent = new Intent(context, SingleCropProfileActivity.class);
+        intent.putExtra("cropName", list.get(getAdapterPosition()).getCrop());
+        intent.putExtra("cropHectares", Integer.toString(list.get(getAdapterPosition()).getHectares()));
+        intent.putExtra("cropQuintals", Integer.toString(list.get(getAdapterPosition()).getQuintals()));
 
         context.startActivity(intent);
 

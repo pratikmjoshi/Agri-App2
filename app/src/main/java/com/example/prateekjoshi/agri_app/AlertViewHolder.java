@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -28,11 +26,12 @@ public class AlertViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.context = context;
         this.list = list;
         titleView = (TextView) itemView.findViewById(R.id.item_format_alert_title);
-        titleView.setText("Alert");
+        titleView.setText(R.string.alert);
         descView = (TextView) itemView.findViewById(R.id.item_format_alert_description);
 
         itemView.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));

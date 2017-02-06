@@ -1,23 +1,19 @@
 package com.example.prateekjoshi.agri_app;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +28,12 @@ public class FirebaseAlertService extends FirebaseMessagingService {
     final int DEFAULT_ID = 42;
     List<String> alerts;
     private static final String TAG = "FCM Service";
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO: Handle FCM messages here.
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+        sharedPreferencesEditor = sharedPreferences.edit();
 
         Map<String, String> data = remoteMessage.getData();
 
@@ -53,12 +52,11 @@ public class FirebaseAlertService extends FirebaseMessagingService {
             String link = data.get("link");
 
 
-
             //General things to be added for any kind of notification
             if (smallTitle != null) builder.setContentTitle(smallTitle);
             if (smallSubTitle != null) builder.setContentText(smallSubTitle);
             if (id != null) notificationId = Integer.parseInt(id);
-            builder.setContentIntent(addPendingIntent(notificationId, link,contentInfo));
+            builder.setContentIntent(addPendingIntent(notificationId));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 builder.setCategory(Notification.CATEGORY_SOCIAL);
@@ -74,50 +72,37 @@ public class FirebaseAlertService extends FirebaseMessagingService {
             NotificationManagerCompat mNotificationManager = NotificationManagerCompat.from(this);
             mNotificationManager.notify(notificationId, builder.build());
 
+            // Save the alert
+            List<String> alerts = load();
+            String alert = contentInfo + "-" + link;
+            alerts.add(alert);
+            store(alerts);
         }
     }
 
-    private PendingIntent addPendingIntent(int id, String link,String message) {
-        Intent intent;
+    private PendingIntent addPendingIntent(int id) {
+        Intent intent = new Intent(this, MenuNavActivity.class);
+        intent.putExtra("openAlerts", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-        if (link != null) {
-
-            intent = new Intent(this, AlertActivity.class);
-            intent.putExtra("Alert Message",message);
-            intent.putExtra("link",link);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            //TODO Change to ChromeCustomTabs later
-           // intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-        } else {
-            intent = new Intent(this, AlertActivity.class);
-            intent.putExtra("Alert Message",message);
-            intent.putExtra("link",link);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        }
-
-        return PendingIntent.getActivity(
-                this,
-                id,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+        return PendingIntent.getActivity(this, id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
+
     public List<String> load() {
-        String csvList = sharedPreferences.getString("myList","");
+        String csvList = sharedPreferences.getString("myList", "");
         String[] items = csvList.split(",");
         List<String> list = new ArrayList<String>();
         int num = 0;
-        if(csvList==""){
-            num=1;
+        if (csvList.isEmpty()) {
+            num = 1;
         }
-        for(int i=num; i < items.length; i++){
-            list.add(items[i]);
-        }
+        list.addAll(Arrays.asList(items).subList(num, items.length));
         return list;
     }
 
     public void store(List<String> alerts) {
         StringBuilder csvList = new StringBuilder();
-        for(String s : alerts){
+        for (String s : alerts) {
             csvList.append(s);
             csvList.append(",");
         }

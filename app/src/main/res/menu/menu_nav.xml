@@ -7,27 +7,6 @@
             android:icon="@drawable/ic_yourprofile"
             android:title="Profile" />
 
-        <item
-            android:id="@+id/nav_teacher"
-            android:icon="@drawable/ic_chrome_reader_mode_white_24dp"
-            android:title="Teacher" />
-
-        <item
-            android:id="@+id/nav_alert"
-            android:icon="@drawable/ic_nav_alert"
-            android:title="Alert" />
-        <item
-            android:id="@+id/nav_crop"
-            android:icon="@drawable/ic_nav_growth"
-            android:title="Crops/Harvest" />
-
-        <item
-            android:id="@+id/nav_delivery"
-            android:icon="@drawable/ic_nav_truck"
-            android:title="Delivery" />
-
-
     </group>
-
 
 </menu>

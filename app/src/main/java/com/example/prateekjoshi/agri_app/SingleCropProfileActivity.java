@@ -4,18 +4,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,16 +54,17 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_crop_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_single_crop_profile_toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white,getTheme()));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
         toolbar.setTitle("Crop Details");
         setSupportActionBar(toolbar);
 
-        editmenu=false;
+        editmenu = false;
 
         realm = Realm.getDefaultInstance();
 
@@ -84,7 +83,6 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         update(realm);
 
         disableFields();
-
 
 
     }
@@ -116,27 +114,21 @@ public class SingleCropProfileActivity extends AppCompatActivity {
             enableFields();
             editmenu = true;
             invalidateOptionsMenu();
-        }
-        else
-        if (id == R.id.profile_cancel) {
+        } else if (id == R.id.profile_cancel) {
             disableFields();
             editmenu = false;
             invalidateOptionsMenu();
-        }
-        else
-        if (id==R.id.profile_save) {
+        } else if (id == R.id.profile_save) {
             saveNew(realm);
-            if(isNetworkAvailable(getApplicationContext())) {
+            if (isNetworkAvailable(getApplicationContext())) {
                 updateOnlineRegistrationDetails();
             }
             disableFields();
             editmenu = false;
             invalidateOptionsMenu();
-        }
-        else
-        if(id == R.id.profile_delete) {
+        } else if (id == R.id.profile_delete) {
             openAlertDialog();
-            if(isNetworkAvailable(getApplicationContext())) {
+            if (isNetworkAvailable(getApplicationContext())) {
                 updateOnlineRegistrationDetails();
             }
             disableFields();
@@ -149,13 +141,12 @@ public class SingleCropProfileActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if(editmenu==true) {
+        if (editmenu == true) {
             edit.setVisible(false);
             save.setVisible(true);
             cancel.setVisible(true);
             delete.setVisible(false);
-        }
-        else {
+        } else {
             edit.setVisible(true);
             save.setVisible(false);
             cancel.setVisible(false);
@@ -163,17 +154,19 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         }
         return true;
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         realm.close(); // Remember to close Realm when done.
     }
+
     @Override
     public void onBackPressed() {
-        if(isNetworkAvailable(getApplicationContext())) {
+        if (isNetworkAvailable(getApplicationContext())) {
             updateOnlineRegistrationDetails();
         }
-        Intent i =new Intent(this, ProfileCropDetailsActivity.class);
+        Intent i = new Intent(this, ProfileCropDetailsActivity.class);
         startActivity(i);
     }
 
@@ -181,64 +174,67 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         cropHectares.setEnabled(false);
         cropQuintals.setEnabled(false);
     }
+
     public void enableFields() {
         cropHectares.setEnabled(true);
         cropQuintals.setEnabled(true);
     }
-    public int setImage(String crop){
-        if(crop.equals("pineapple")){
+
+    public int setImage(String crop) {
+        if (crop.equals("pineapple")) {
             return R.drawable.pineapple;
         }
-        if(crop.equals("orange")){
+        if (crop.equals("orange")) {
             return R.drawable.orange;
         }
-        if(crop.equals("banana")){
+        if (crop.equals("banana")) {
             return R.drawable.banana;
         }
-        if(crop.equals("cacao pod")){
+        if (crop.equals("cacao pod")) {
             return R.drawable.cacaopod;
         }
-        if(crop.equals("passionfruit")){
+        if (crop.equals("passionfruit")) {
             return R.drawable.passionfruit;
         }
-        if(crop.equals("chia seeds")){
+        if (crop.equals("chia seeds")) {
             return R.drawable.chia_seeds;
         }
-        if(crop.equals("quinoa grains")){
+        if (crop.equals("quinoa grains")) {
             return R.drawable.quinoagrain;
         }
         return 0;
     }
 
-    public String setCropText(String crop){
-        if(crop.equals("pineapple")){
+    public String setCropText(String crop) {
+        if (crop.equals("pineapple")) {
             return "Pineapple";
         }
-        if(crop.equals("orange")){
+        if (crop.equals("orange")) {
             return "Orange";
         }
-        if(crop.equals("banana")){
+        if (crop.equals("banana")) {
             return "Banana";
         }
-        if(crop.equals("cacao pod")){
+        if (crop.equals("cacao pod")) {
             return "Cacao Pod";
         }
-        if(crop.equals("passionfruit")){
+        if (crop.equals("passionfruit")) {
             return "Passionfruit";
         }
-        if(crop.equals("chia seeds")){
+        if (crop.equals("chia seeds")) {
             return "Chia Seeds";
         }
-        if(crop.equals("quinoa grains")){
+        if (crop.equals("quinoa grains")) {
             return "Quinoa Grains";
         }
         return "Crop";
     }
+
     public void update(Realm realm) {
 
         RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
         ProfileDetails profile = new ProfileDetails();
-        for(ProfileDetails temp : results) {
+        for (ProfileDetails temp : results) {
             profile = temp;
         }
 
@@ -246,14 +242,14 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         String[] items = csvList.split(";");
         List<CropItem> list = new ArrayList<CropItem>();
         int num = 0;
-        if(csvList==""){
-            num=1;
+        if (csvList == "") {
+            num = 1;
         }
-        for(int i=num; i < items.length; i++){
+        for (int i = num; i < items.length; i++) {
 
             String[] details = items[i].split(":");
             CropItem temp = new CropItem();
-            if(details[0].equals(crop)) {
+            if (details[0].equals(crop)) {
                 cropHectares.setText(details[1]);
                 cropQuintals.setText(details[2]);
             }
@@ -264,22 +260,22 @@ public class SingleCropProfileActivity extends AppCompatActivity {
 
     public void saveNew(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
-        final String newCrop = convertToString(cropName.getText().toString(),cropHectares.getText().toString(),cropQuintals.getText().toString());
+        final String newCrop = convertToString(cropName.getText().toString(), cropHectares.getText().toString(), cropQuintals.getText().toString());
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                for(ProfileDetails profileDetails : results) {
+                for (ProfileDetails profileDetails : results) {
                     String newCropDetails = new String();
                     String csvList = profileDetails.getCropDetails();
                     String[] items = csvList.split(";");
                     int num = 0;
-                    if(csvList==""){
-                        num=1;
+                    if (csvList == "") {
+                        num = 1;
                     }
-                    for(int i=num; i < items.length; i++){
+                    for (int i = num; i < items.length; i++) {
 
                         String[] details = items[i].split(":");
-                        if(!details[0].equals(crop)) {
+                        if (!details[0].equals(crop)) {
                             newCropDetails = newCropDetails + items[i] + ";";
                         }
 
@@ -291,23 +287,24 @@ public class SingleCropProfileActivity extends AppCompatActivity {
             }
         });
     }
+
     public void deleteCrop(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                for(ProfileDetails profileDetails : results) {
+                for (ProfileDetails profileDetails : results) {
                     String newCropDetails = new String();
                     String csvList = profileDetails.getCropDetails();
                     String[] items = csvList.split(";");
                     int num = 0;
-                    if(csvList==""){
-                        num=1;
+                    if (csvList == "") {
+                        num = 1;
                     }
-                    for(int i=num; i < items.length; i++){
+                    for (int i = num; i < items.length; i++) {
 
                         String[] details = items[i].split(":");
-                        if(!details[0].equals(crop)) {
+                        if (!details[0].equals(crop)) {
                             newCropDetails = newCropDetails + items[i] + ";";
                         }
 
@@ -319,38 +316,41 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         });
 
     }
-    public String convertToString(String crop,String hectares,String quintals) {
+
+    public String convertToString(String crop, String hectares, String quintals) {
         String temp = new String();
-        temp=crop.toLowerCase() + ":" + hectares + ":" + quintals + ";";
+        temp = crop.toLowerCase() + ":" + hectares + ":" + quintals + ";";
         return temp;
     }
+
     public Map<String, Object> realmMap(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
         Map<String, Object> map = new HashMap<String, Object>();
-        for(ProfileDetails temp: results) {
+        for (ProfileDetails temp : results) {
             Map<String, Object> post = temp.toMap();
             map.put("Registration/", post);
             return map;
         }
         return map;
     }
+
     public void updateOnlineRegistrationDetails() {
-        Map<String,Object> realmMap = realmMap(realm);
-        Map<String,Object> realmValueMap = (Map<String,Object>) realmMap.get("Registration/");
-        final Map<String,Object> map= new HashMap<>();
-        final Map<String,Object> finalMap = new HashMap<String,Object>();
+        Map<String, Object> realmMap = realmMap(realm);
+        Map<String, Object> realmValueMap = (Map<String, Object>) realmMap.get("Registration/");
+        final Map<String, Object> map = new HashMap<>();
+        final Map<String, Object> finalMap = new HashMap<String, Object>();
         map.put("Phone Number", realmValueMap.get("Phone Number"));
-        map.put("Password",realmValueMap.get("Password") );
+        map.put("Password", realmValueMap.get("Password"));
         map.put("First Name", realmValueMap.get("First Name"));
         map.put("Middle Name", realmValueMap.get("Middle Name"));
         map.put("Last Name", realmValueMap.get("Last Name"));
-        map.put("Address",realmValueMap.get("Address"));
-        map.put("Province",realmValueMap.get("Province"));
-        map.put("Postal Code",realmValueMap.get("Postal Code"));
-        map.put("Rent or Own Land",realmValueMap.get("Rent or Own Land"));
+        map.put("Address", realmValueMap.get("Address"));
+        map.put("Province", realmValueMap.get("Province"));
+        map.put("Postal Code", realmValueMap.get("Postal Code"));
+        map.put("Rent or Own Land", realmValueMap.get("Rent or Own Land"));
         map.put("Name Land", realmValueMap.get("Name Land"));
         map.put("Hectares of Land", realmValueMap.get("Hectares of Land"));
-        map.put("Crop Details",realmValueMap.get("Crop Details"));
+        map.put("Crop Details", realmValueMap.get("Crop Details"));
 
         String phone = realmValueMap.get("Phone Number").toString();
         Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(phone);
@@ -358,7 +358,7 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
                     Snapshot.getRef().updateChildren(map);
                 }
             }
@@ -370,8 +370,8 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         });
 
 
-
     }
+
     public void openAlertDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(SingleCropProfileActivity.this).create();
         alertDialog.setTitle("Delete");
@@ -380,10 +380,10 @@ public class SingleCropProfileActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         deleteCrop(realm);
-                        if(isNetworkAvailable(getApplicationContext())) {
+                        if (isNetworkAvailable(getApplicationContext())) {
                             updateOnlineRegistrationDetails();
                         }
-                        Intent i = new Intent(getApplicationContext(),ProfileCropDetailsActivity.class);
+                        Intent i = new Intent(getApplicationContext(), ProfileCropDetailsActivity.class);
                         startActivity(i);
                     }
                 });

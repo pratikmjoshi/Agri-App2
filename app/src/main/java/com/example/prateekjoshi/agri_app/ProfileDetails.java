@@ -1,18 +1,15 @@
 package com.example.prateekjoshi.agri_app;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
-import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
  * Created by Prateek Joshi on 11/21/2016.
  */
 
-public class ProfileDetails extends RealmObject{
+public class ProfileDetails extends RealmObject {
 
     private String phone;
     private String password;
@@ -32,7 +29,6 @@ public class ProfileDetails extends RealmObject{
     private int hectares;
 
     private String cropDetails;
-
 
 
     public ProfileDetails() {
@@ -91,7 +87,7 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setFirstName(String firstname) {
-        this.firstname=firstname;
+        this.firstname = firstname;
     }
 
     public String getMiddleName() {
@@ -99,7 +95,7 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setMiddleName(String middlename) {
-        this.middlename=middlename;
+        this.middlename = middlename;
     }
 
     public String getLastName() {
@@ -107,7 +103,7 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setLastName(String lastname) {
-        this.lastname=lastname;
+        this.lastname = lastname;
     }
 
     public boolean getOwnLand() {
@@ -115,7 +111,7 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setOwnLand(boolean ownLand) {
-        this.ownLand=ownLand;
+        this.ownLand = ownLand;
     }
 
     public String getNameLand() {
@@ -123,7 +119,7 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setNameLand(String nameLand) {
-        this.nameLand=nameLand;
+        this.nameLand = nameLand;
     }
 
     public int getHectares() {
@@ -131,7 +127,7 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setHectares(int hectares) {
-        this.hectares=hectares;
+        this.hectares = hectares;
     }
 
     public String getCropDetails() {
@@ -139,21 +135,21 @@ public class ProfileDetails extends RealmObject{
     }
 
     public void setCropDetails(String cropDetails) {
-        this.cropDetails=cropDetails;
+        this.cropDetails = cropDetails;
     }
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("Phone Number", phone);
         map.put("Password", password);
-        map.put("Version",version);
+        map.put("Version", version);
         map.put("First Name", firstname);
         map.put("Middle Name", middlename);
         map.put("Last Name", lastname);
-        map.put("Address",address);
-        map.put("Province",province);
-        map.put("Postal Code",postalCode);
-        map.put("Rent or Own Land",ownLand);
+        map.put("Address", address);
+        map.put("Province", province);
+        map.put("Postal Code", postalCode);
+        map.put("Rent or Own Land", ownLand);
         map.put("Name Land", nameLand);
         map.put("Hectares of Land", hectares);
         map.put("Crop Details", cropDetails);
