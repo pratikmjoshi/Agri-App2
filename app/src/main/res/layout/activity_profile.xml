@@ -30,7 +30,7 @@
                 android:id="@+id/profile_phone_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone:"
+                android:text="@string/eprofile_phone"
                 android:textSize="18dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="60dp"/>
@@ -39,7 +39,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/profile_phone_textview"
-                android:hint="Phone"
+                android:hint="@string/ereg1_phonenumber"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginLeft="15dp"
@@ -49,7 +49,7 @@
                 android:id="@+id/profile_password_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password:"
+                android:text="@string/eprofile_password"
                 android:textSize="18dp"
                 android:layout_below="@+id/profile_phone_textview"
                 android:layout_marginTop="40dp"
@@ -90,14 +90,14 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"
-                android:text="First Name:"
+                android:text="@string/eprofile_firstname"
                 android:id="@+id/profile_firstname_textview"/>
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_firstname_textview"
-                android:hint="First Name"
+                android:hint="@string/ereg2_firstname"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginLeft="15dp"
@@ -111,14 +111,14 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"
-                android:text="Middle Name:"
+                android:text="@string/eprofile_middlename"
                 android:id="@+id/profile_middlename_textview"/>
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_middlename_textview"
-                android:hint="Middle Name"
+                android:hint="@string/ereg2_middlename"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginTop="10dp"
@@ -132,14 +132,14 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"
-                android:text="Last Name:"
+                android:text="@string/eprofile_lastname"
                 android:id="@+id/profile_lastname_textview"/>
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_lastname_textview"
-                android:hint="Last Name"
+                android:hint="@string/ereg2_lastname"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginTop="10dp"
@@ -161,14 +161,14 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"
-                android:text="Address:"
+                android:text="@string/eprofile_address"
                 android:id="@+id/profile_address_textview"/>
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_address_textview"
-                android:hint="Address"
+                android:hint="@string/ereg3_address"
                 android:inputType="text"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
@@ -181,14 +181,14 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"
-                android:text="Province:"
+                android:text="@string/eprofile_province"
                 android:id="@+id/profile_province_textview"/>
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_province_textview"
-                android:hint="Province"
+                android:hint="@string/ereg3_province"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginTop="10dp"
@@ -202,14 +202,14 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"
-                android:text="Postal Code:"
+                android:text="@string/eprofile_postalcode"
                 android:id="@+id/profile_postalcode_textview"/>
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_postalcode_textview"
-                android:hint="Postal Code"
+                android:hint="@string/ereg3_postalcode"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginTop="10dp"
@@ -229,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile_landdetails_view"
                 android:layout_marginTop="20dp"
-                android:text="Do you rent or own this land?"
+                android:text="@string/ereg4_rentorown"
                 android:id="@+id/profile_ownland_textview"
                 android:layout_marginLeft="15dp"
                 android:textSize="18dp"/>
@@ -244,14 +244,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rent"
+                    android:text="@string/ereg4_rent"
                     android:textSize="15dp"
                     android:id="@+id/profile_ownland_radiobtnyes"
                     android:onClick="onRadioButtonClicked"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Own"
+                    android:text="@string/ereg4_own"
                     android:textSize="15dp"
                     android:id="@+id/profile_ownland_radiobtnno"
                     android:onClick="onRadioButtonClicked"/>
@@ -260,7 +260,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name under whom farming land is:"
+                android:text="@string/eprofile_nameland"
                 android:layout_below="@+id/profile_ownland_radiogrp"
                 android:id="@+id/profile_landname_textview"
                 android:layout_marginTop="30dp"
@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_landname_textview"
                 android:layout_marginTop="10dp"
-                android:hint="Name"
+                android:hint="@string/ereg4_name"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_marginLeft="15dp"
@@ -282,7 +282,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hectares of Land:"
+                android:text="@string/eprofile_hectares"
                 android:id="@+id/profile_hectares_textview"
                 android:layout_below="@+id/profile_landname_edittext"
                 android:layout_marginTop="30dp"
@@ -292,7 +292,7 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Number"
+                android:hint="@string/eprofile_number"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
                 android:layout_below="@+id/profile_hectares_textview"
@@ -316,7 +316,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="Click to see Crop Details"
+                android:text="@string/eprofile_cropdetails"
                 android:textColor="@color/white"
                 android:background="@color/Turquoise"/>
 

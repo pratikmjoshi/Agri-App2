@@ -65,7 +65,7 @@ public class ProfileCropDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_crop_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.profileactivity_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Profile");
+        toolbar.setTitle("Perfil");
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
@@ -295,11 +295,11 @@ public class ProfileCropDetailsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        alertDialogBuilder.setTitle("Choose New Crop");
-        alertDialogBuilder.setPositiveButton("Select", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setTitle("Elija Nuevo Cultivo");
+        alertDialogBuilder.setPositiveButton("Escoger", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String crop = spinner.getSelectedItem().toString();
+                String crop = spantoeng1(spinner.getSelectedItem().toString());
                 Intent intent = new Intent(getApplicationContext(), SingleCropProfileActivity.class);
                 intent.putExtra("cropName", crop);
                 intent.putExtra("cropHectares", "");
@@ -307,7 +307,7 @@ public class ProfileCropDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -321,5 +321,36 @@ public class ProfileCropDetailsActivity extends AppCompatActivity {
         alertDialog.setCanceledOnTouchOutside(false);
 
 
+    }
+
+    public String spantoeng1(String spcrop) {
+        if(spcrop.equals("Piña"))
+            return "pineapple";
+        else if(spcrop.equals("Naranja"))
+            return "orange";
+        else if(spcrop.equals("Banana"))
+            return "banana";
+        else if(spcrop.equals("Cacao"))
+            return "cacao pod";
+        else if(spcrop.equals("Maricamba"))
+            return "passionfruit";
+        else if(spcrop.equals("Chia semillahe"))
+            return "chia seeds";
+        else if(spcrop.equals("Naranja"))
+            return "quinoa grains";
+
+        return "";
+    }
+    public String spantoeng2(String location) {
+        if(location.equals("Mercado Local"))
+            return "Local Market";
+        if(location.equals("Almacén con Refrigeración"))
+            return "Warehouse w/ Refrigeration";
+        if(location.equals("Almacén sin refrigeración"))
+            return "Warehouse w/o Refrigeration";
+        if(location.equals("Instalación local de procesamiento de alimentos"))
+            return "Local food processing facility";
+
+        return "";
     }
 }

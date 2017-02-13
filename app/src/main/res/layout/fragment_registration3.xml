@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reg3_address_edittext"
-                android:hint="Address"
+                android:hint="@string/ereg3_address"
                 android:inputType="textPostalAddress"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +50,7 @@
                 android:id="@+id/reg3_province_edittext"
                 android:maxLines="1"
                 android:inputType="text"
-                android:hint="Province" />
+                android:hint="@string/ereg3_province" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reg3_postalcode_edittext"
-                android:hint="Postal Code"
+                android:hint="@string/ereg3_postalcode"
                 android:maxLines="1"
                 android:inputType="textPostalAddress"/>
         </android.support.design.widget.TextInputLayout>

@@ -16,6 +16,27 @@
 
         android:background="@color/white">
 
+        <ImageView
+            android:layout_above="@+id/alert_nonew_textview"
+            android:src="@drawable/nonewicon"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitCenter"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/alert_nonewicon"/>
+
+        <TextView
+            android:id="@+id/alert_nonew_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/ealert_nonew"
+            android:textColor="#424242"
+            android:textSize="30dp"/>
+
 
         <android.support.v7.widget.RecyclerView
             android:layout_marginTop="50dp"

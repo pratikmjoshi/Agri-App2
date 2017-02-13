@@ -8,22 +8,22 @@
     <item
         android:id="@+id/profile_edit"
         android:orderInCategory="100"
-        android:title="Edit"
+        android:title="Editar"
         app:showAsAction="always" />
     <item
         android:id="@+id/profile_save"
         android:orderInCategory="100"
-        android:title="Save"
+        android:title="Salvar"
         app:showAsAction="always"/>
     <item
         android:id="@+id/profile_cancel"
         android:orderInCategory="100"
-        android:title="Cancel"
+        android:title="Cancelar"
         app:showAsAction="always"/>
     <item
         android:id="@+id/profile_delete"
         android:orderInCategory="100"
-        android:title="Delete"
+        android:title="Borrar"
         app:showAsAction="always"/>
     <item
         android:id="@+id/action_settings"

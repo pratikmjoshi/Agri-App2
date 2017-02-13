@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="50dp"
-                android:text="This season's harvest:"
+                android:text="@string/eharvest_harvest"
                 android:layout_centerHorizontal="true"
                 android:textSize="25sp"/>
 
@@ -44,7 +44,7 @@
                 android:id="@+id/harvest_totalamount_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter amount of production(hectares):"
+                android:text="@string/eharvest_prod"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_title_view"/>
@@ -63,7 +63,7 @@
                 android:id="@+id/harvest_amountphectare_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter amount per hectare:"
+                android:text="@string/eharvest_aph"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_totalamount_edittext"/>
@@ -82,7 +82,7 @@
                 android:id="@+id/harvest_colordiff_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Any difference in color?"
+                android:text="@string/eharvest_colordiff"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_amountphectare_edittext"/>
@@ -97,13 +97,13 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_colordiff_radiobtnyes" />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_colordiff_radiobtnno"/>
             </RadioGroup>
@@ -112,7 +112,7 @@
                 android:id="@+id/harvest_colordiffstem_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Any difference in color on the tree or stem?"
+                android:text="@string/eharvest_stemdiff"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_colordiff_radiogrp"/>
@@ -127,14 +127,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_colordiffstem_radiobtnyes"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_colordiffstem_radiobtnno"
                     />
@@ -144,7 +144,7 @@
                 android:id="@+id/harvest_marks_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Any different marks on the produce,stem or tree?"
+                android:text="@string/eharvest_marks"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_colordiffstem_radiogrp"/>
@@ -159,14 +159,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_marks_radiobtnyes"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_marks_radiobtnno"
                     />
@@ -176,7 +176,7 @@
                 android:id="@+id/harvest_diseases_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Any diseases?"
+                android:text="@string/eharvest_diseases"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_marks_radiogrp"/>
@@ -190,14 +190,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_diseases_radiobtnyes"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_diseases_radiobtnno"
                     />
@@ -207,7 +207,7 @@
                 android:id="@+id/harvest_bugs_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Any new bugs that you saw?"
+                android:text="@string/eharvest_bugs"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_diseases_radiogrp"/>
@@ -222,14 +222,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_bugs_radiobtnyes"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_bugs_radiobtnno"
                     />
@@ -239,7 +239,7 @@
                 android:id="@+id/harvest_soilcolor_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Any changes of color to your soil?"
+                android:text="@string/eharvest_soildiff"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_bugs_radiogrp"/>
@@ -254,14 +254,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_soilcolor_radiobtnyes"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_soilcolor_radiobtnno"
                     />
@@ -271,7 +271,7 @@
                 android:id="@+id/harvest_pesticide_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Did you use any different fertilizer or pesticide?"
+                android:text="@string/eharvest_pesticide"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_below="@+id/harvest_soilcolor_radiogrp"/>
@@ -286,14 +286,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="@string/eharvest_yes"
                     android:textSize="15dp"
                     android:id="@+id/harvest_pesticide_radiobtnyes"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No"
+                    android:text="@string/eharvest_no"
                     android:textSize="15dp"
                     android:id="@+id/harvest_pesticide_radiobtnno"
                     />
@@ -302,7 +302,7 @@
             <Button
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="SUBMIT"
+                android:text="@string/eharvest_submit"
 
                 android:textSize="24sp"
                 android:gravity="center"

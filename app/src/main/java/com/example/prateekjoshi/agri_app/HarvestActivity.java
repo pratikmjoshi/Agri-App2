@@ -162,7 +162,7 @@ public class HarvestActivity extends AppCompatActivity {
         if (selectedId == -1) {
 
         } else {
-            if (button.getText().toString().equals("Yes")) {
+            if (button.getText().toString().equals("Sí")) {
 
                 return true;
             } else if (button.getText().toString().equals("No")) {

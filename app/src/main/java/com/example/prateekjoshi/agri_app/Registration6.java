@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -51,7 +52,7 @@ public class Registration6 extends AppCompatActivity {
         setContentView(R.layout.fragment_registration6);
         Toolbar toolbar = (Toolbar) findViewById(R.id.reg6_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Registration");
+        toolbar.setTitle("Registro");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -159,25 +160,25 @@ public class Registration6 extends AppCompatActivity {
 
     public String setCropText(String crop) {
         if (crop.equals("pineapple")) {
-            return "Pineapple";
+            return "Piña";
         }
         if (crop.equals("orange")) {
-            return "Orange";
+            return "Naranja";
         }
         if (crop.equals("banana")) {
             return "Banana";
         }
         if (crop.equals("cacao pod")) {
-            return "Cacao Pod";
+            return "Cacao";
         }
         if (crop.equals("passionfruit")) {
-            return "Passionfruit";
+            return "Maricamba";
         }
         if (crop.equals("chia seeds")) {
-            return "Chia Seeds";
+            return "Chia semillahe";
         }
         if (crop.equals("quinoa grains")) {
-            return "Quinoa Grains";
+            return "Grano de Quinoa";
         }
         return "Crop";
     }
@@ -192,7 +193,19 @@ public class Registration6 extends AppCompatActivity {
     public void onBackPressed() {
         // do nothing.
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
 
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     public void update(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone).findAll();
         realm.executeTransaction(new Realm.Transaction() {

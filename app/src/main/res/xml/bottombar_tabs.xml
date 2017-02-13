@@ -12,7 +12,7 @@
         activeColor="#ffffff"
         inActiveColor="#10ffffff"
         barColorWhenSelected="#c62828"
-        title="Alert" />
+        title="Alerts" />
     <tab
         id="@+id/tab_harvest"
         icon="@drawable/ic_timeline"

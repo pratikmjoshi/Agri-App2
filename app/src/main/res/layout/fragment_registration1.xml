@@ -19,7 +19,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:layout_marginTop="60dp"
-        android:text="Create Account"
+        android:text="@string/ereg1_createacct"
 
         android:textSize="30sp" />
 
@@ -42,7 +42,7 @@
             android:layout_below="@+id/reg1_phone_textview"
             android:layout_marginLeft="10dp"
 
-            android:hint="Phone Number"
+            android:hint="@string/ereg1_phonenumber"
             android:inputType="phone"
             android:textColor="@color/black"
              />
@@ -63,7 +63,7 @@
             android:layout_below="@+id/reg1_password_textview"
             android:layout_margin="8dp"
 
-            android:hint="Create Password"
+            android:hint="@string/ereg1_password"
             android:inputType="textPassword"
             android:padding="12dp"
             android:textColor="@color/black"
@@ -78,7 +78,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
 
-        android:text="Register"
+        android:text="@string/ereg1_register"
          />
 
 

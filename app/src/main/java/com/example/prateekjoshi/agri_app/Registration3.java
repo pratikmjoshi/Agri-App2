@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -35,7 +36,7 @@ public class Registration3 extends AppCompatActivity {
         setContentView(R.layout.fragment_registration3);
         Toolbar toolbar = (Toolbar) findViewById(R.id.reg3_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Registration");
+        toolbar.setTitle("Registro");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -82,7 +83,19 @@ public class Registration3 extends AppCompatActivity {
     public void onBackPressed() {
         // do nothing.
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
 
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     public void update(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone).findAll();
         realm.executeTransaction(new Realm.Transaction() {

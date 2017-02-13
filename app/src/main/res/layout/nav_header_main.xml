@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/nav_bar_subtitle"
         android:padding="8dp"
-        android:text="KIKI Central"
+        android:text="@string/ekiki"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="8dp"
-        android:text="Dashboard"
+        android:text="@string/edashboard"
         android:textColor="@color/white"
         android:textSize="14sp" />
 

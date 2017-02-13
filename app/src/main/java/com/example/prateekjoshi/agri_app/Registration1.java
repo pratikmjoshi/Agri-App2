@@ -15,14 +15,21 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Field;
 
@@ -41,6 +48,7 @@ public class Registration1 extends AppCompatActivity {
     private String password;
     private Realm realm;
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    private int check;
 
     public static void setInputTextLayoutColor(TextInputLayout til, @ColorInt int color) {
         try {
@@ -88,22 +96,57 @@ public class Registration1 extends AppCompatActivity {
             public void onClick(View view) {
                 if (phoneEditText.getText().toString().equals("") || passwordEditText.getText().toString().equals("")) {
                     if (phoneEditText.getText().toString().equals("") && passwordEditText.getText().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Please enter both details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "\n" +
+                                "Introduzca ambos detalles", Toast.LENGTH_SHORT).show();
                     } else if (passwordEditText.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Please enter both details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "\n" +
+                                "Introduzca ambos detalles", Toast.LENGTH_SHORT).show();
                     } else if (phoneEditText.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Please enter both details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "\n" +
+                                "Introduzca ambos detalles", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     phone = phoneEditText.getText().toString();
                     password = passwordEditText.getText().toString();
 
-                    update(realm);
 
-                    Intent i = new Intent(Registration1.this, PreRegistration.class);
-                    i.putExtra("Registerdialog", true);
-                    i.putExtra("Phone", phone);
-                    startActivity(i);
+                    if(!isNetworkAvailable(getApplicationContext())){
+                        Toast.makeText(getApplicationContext(),"No hay conexión a Internet, vuelve a intentarlo más tarde",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Query query = ref.child("Registration").orderByChild("Phone Number");
+                        check=0;
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
+
+                                    if (Snapshot.child("Phone Number").getValue().toString().equals(phone)) {
+
+                                        duplicatenumberdialog();
+                                        check=1;
+                                    } else {
+
+                                    }
+                                }
+                                if(check==0) {
+                                    update(realm);
+                                    Intent i = new Intent(Registration1.this, PreRegistration.class);
+                                    i.putExtra("Registerdialog", true);
+                                    i.putExtra("Phone", phone);
+                                    startActivity(i);
+                                }
+                            }
+
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.e("Random:", "onCancelled", databaseError.toException());
+                            }
+                        });
+
+                    }
+
                 }
             }
         });
@@ -117,12 +160,28 @@ public class Registration1 extends AppCompatActivity {
 
 
     }
+    public void duplicatenumberdialog() {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setMessage("Este número de teléfono "+phone+" ya está registrado.Inicia sesión con tus datos.")
+                .setTitle("\t\t\t\tCuenta ya registrada")
+                .setCancelable(false)
+                .setPositiveButton("SÍ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
+                    }
+                });
+        android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.show();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.dimAmount = 0.6f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+        dialog.getWindow().setAttributes(lp);
+
+    }
     public void exitConfirmDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Warning");
-        alertDialogBuilder.setMessage("Are you sure you want to exit registration? All data will be lost.");
-        alertDialogBuilder.setPositiveButton("Yes",
+        alertDialogBuilder.setTitle("Advertencia");
+        alertDialogBuilder.setMessage("¿Estás seguro de que quieres salir del registro? Toda la información se perderá");
+        alertDialogBuilder.setPositiveButton("Sí",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -40,7 +41,7 @@ public class PreRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_preregistration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.prereg_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Registration");
+        toolbar.setTitle("Registro");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -56,6 +57,7 @@ public class PreRegistration extends AppCompatActivity {
 
         next = (ImageButton) findViewById(R.id.prereg_btn_next);
         previous = (ImageButton) findViewById(R.id.prereg_btn_back);
+        previous.setVisibility(View.INVISIBLE);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,15 +66,15 @@ public class PreRegistration extends AppCompatActivity {
                 int selectedId = versionGroup.getCheckedRadioButtonId();
                 versionButton = (RadioButton) findViewById(selectedId);
                 if (selectedId == -1) {
-                    Toast.makeText(getApplicationContext(), "Please select a version", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Seleccione una versión", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (versionButton.getText().toString().equals("Smartphone")) {
+                    if (versionButton.getText().toString().equals("Teléfono inteligente")) {
                         version = "Smartphone";
-                    } else if (versionButton.getText().toString().equals("Mobile Phone")) {
+                    } else if (versionButton.getText().toString().equals("Teléfono móvil")) {
                         version = "Mobile Phone";
-                    } else if (versionButton.getText().toString().equals("Personal Computer")) {
+                    } else if (versionButton.getText().toString().equals("Computadora personal")) {
                         version = "Personal Computer";
-                    } else if (versionButton.getText().toString().equals("Telephone Landline(Voice)")) {
+                    } else if (versionButton.getText().toString().equals("Teléfono fijo(Voz)")) {
                         version = "Telephone";
                     }
                     Log.d("version", version);
@@ -96,9 +98,22 @@ public class PreRegistration extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // do nothing.
+
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
+
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     public void update(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone).findAll();
         realm.executeTransaction(new Realm.Transaction() {
@@ -120,10 +135,11 @@ public class PreRegistration extends AppCompatActivity {
 
     public void regfinishdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("\t\t\t Your registration is complete!\n\t\tPlease fill out your profile details.")
-                .setTitle("\t\t\t\tRegistration complete")
+        builder.setMessage("Tu registro esta completo.\nPor favor, rellene los detalles de su perfil.")
+                .setTitle("\t\t\t\t\tRegistro completo")
                 .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("\n" +
+                        "Sí", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                     }

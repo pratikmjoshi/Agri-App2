@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Trees/plants of the crop per hectare:"
+            android:text="@string/ecropitem_trees"
             android:id="@+id/scrop_crop_per_hectare_textview"
             android:layout_below="@id/scrop_croppic"
             android:layout_marginTop="80dp"
@@ -59,14 +59,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:hint="Hectares"
+            android:hint="@string/eprofile_hectares"
             android:maxLines="1"
             android:inputType="number"
             android:id="@+id/scrop_crop_per_hectare_edittext"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount of crop(in quintals):"
+            android:text="@string/ecropitem_quintals"
             android:layout_below="@id/scrop_crop_per_hectare_edittext"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="15dp"
@@ -74,9 +74,9 @@
             android:id="@+id/scrop_crop_quintal_textview"
             android:textSize="18dp"/>
         <android.support.design.widget.TextInputEditText
-            android:layout_width="80dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
-            android:hint="Quintals"
+            android:hint="@string/ereg6_quintals"
             android:layout_below="@id/scrop_crop_quintal_textview"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"

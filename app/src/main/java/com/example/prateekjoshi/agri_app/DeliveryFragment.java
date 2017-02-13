@@ -103,7 +103,7 @@ public class DeliveryFragment extends Fragment {
         locationOtherEditText = (TextInputEditText) v.findViewById(R.id.delivery_otherlocation_edittext);
         Button submit = (Button) v.findViewById(R.id.submit);
 
-        String[] crops = new String[]{"Pineapple", "Orange", "Banana", "Cacao Pod", "Passion Fruit", "Chia Seeds", "Quinoa Grains"};
+        String[] crops = new String[]{"Piña", "Naranja", "Banana", "Cacao", "Maricamba", "Chia semillahe", "Grano de Quinoa"};
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.crop_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cropSpinner.setAdapter(adapter);
@@ -132,12 +132,12 @@ public class DeliveryFragment extends Fragment {
         if (selectedId == -1) {
 
         } else {
-            if (button.getText().toString().equals("Local Vendor")) {
+            if (button.getText().toString().equals("Proveedor local")) {
 
                 return "Local Vendor";
-            } else if (button.getText().toString().equals("Exporter")) {
+            } else if (button.getText().toString().equals("Exportador")) {
                 return "Exporter";
-            } else if (button.getText().toString().equals("Other")) {
+            } else if (button.getText().toString().equals("Otro")) {
                 return "Other";
             }
 
@@ -146,32 +146,32 @@ public class DeliveryFragment extends Fragment {
     }
 
     public int setImage(String crop) {
-        if (crop.equals("Pineapple")) {
+        if (crop.equals("Piña")) {
             return R.drawable.pineapple;
         }
-        if (crop.equals("Orange")) {
+        if (crop.equals("Naranja")) {
             return R.drawable.orange;
         }
         if (crop.equals("Banana")) {
             return R.drawable.banana;
         }
-        if (crop.equals("Cacao Pod")) {
+        if (crop.equals("Cacao")) {
             return R.drawable.cacaopod;
         }
-        if (crop.equals("Passion Fruit")) {
+        if (crop.equals("Maricamba")) {
             return R.drawable.passionfruit;
         }
-        if (crop.equals("Chia Seeds")) {
+        if (crop.equals("Chia semillahe")) {
             return R.drawable.chia_seeds;
         }
-        if (crop.equals("Quinoa Grains")) {
+        if (crop.equals("Grano de Quinoa")) {
             return R.drawable.quinoagrain;
         }
         return 0;
     }
 
     public void updateOnlineRegistrationDetails() {
-        crop = cropSpinner.getSelectedItem().toString();
+        crop = spantoeng(cropSpinner.getSelectedItem().toString());
         buyer = buyerEditText.getText().toString();
         buyerPhone = buyerPhoneEditText.getText().toString();
         buyerDesig = radioCheck(buyerDesigRadioGroup, buyerDesigRadioButton);
@@ -212,5 +212,24 @@ public class DeliveryFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public String spantoeng(String spcrop) {
+        if(spcrop.equals("Piña"))
+            return "pineapple";
+        else if(spcrop.equals("Naranja"))
+            return "orange";
+        else if(spcrop.equals("Banana"))
+            return "banana";
+        else if(spcrop.equals("Cacao"))
+            return "cacao pod";
+        else if(spcrop.equals("Maricamba"))
+            return "passionfruit";
+        else if(spcrop.equals("Chia semillahe"))
+            return "chia seeds";
+        else if(spcrop.equals("Naranja"))
+            return "quinoa grains";
+
+        return "";
     }
 }

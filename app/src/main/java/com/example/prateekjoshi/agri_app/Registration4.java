@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -46,7 +47,7 @@ public class Registration4 extends AppCompatActivity {
         setContentView(R.layout.fragment_registration4);
         Toolbar toolbar = (Toolbar) findViewById(R.id.reg4_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Registration");
+        toolbar.setTitle("Registro");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -69,11 +70,18 @@ public class Registration4 extends AppCompatActivity {
                 int selectedId = ownLandGroup.getCheckedRadioButtonId();
                 ownLandButton = (RadioButton) findViewById(selectedId);
                 if (landNameEditText.getText().toString().equals("") || hectaresEditText.getText().toString().equals("") || selectedId == -1) {
-                    Toast.makeText(getApplicationContext(), "Please enter all the details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Por favor ingrese todos los detalles", Toast.LENGTH_SHORT).show();
                 } else {
+                    landName = landNameEditText.getText().toString();
+                    hectares = Integer.parseInt(hectaresEditText.getText().toString());
+                    if (ownLandButton.getText() == "Propio") {
+                        ownLand = true;
+                    } else if (ownLandButton.getText() == "Alquilar") {
+                        ownLand = false;
+                    }
                     update(realm);
                     updateOnlineRegistrationDetails();
-                    Toast.makeText(getApplicationContext(), "Registration finished!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Registro finalizado!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(Registration4.this, MenuNavActivity.class);
                     i.putExtra("phone", phone);
                     startActivity(i);
@@ -134,7 +142,19 @@ public class Registration4 extends AppCompatActivity {
     public void onBackPressed() {
         // do nothing.
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
 
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     public void update(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone).findAll();
         realm.executeTransaction(new Realm.Transaction() {

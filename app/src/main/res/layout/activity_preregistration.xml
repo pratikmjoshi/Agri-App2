@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
-            android:text="Select your version:"
+            android:text="@string/eprereg1_version"
             android:id="@+id/prereg_version_textview"
             android:layout_marginLeft="15dp"
             android:textSize="18dp"/>
@@ -39,28 +39,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Smartphone"
+                android:text="@string/eprereg1_smartphone"
                 android:textSize="15dp"
                 android:id="@+id/prereg_smartphone_radiobtn" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Mobile Phone"
+                android:text="@string/eprereg1_mobile"
                 android:textSize="15dp"
                 android:id="@+id/prereg_mobilephone_radiobtn"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Personal Computer"
+                android:text="@string/eprereg1_computer"
                 android:textSize="15dp"
                 android:id="@+id/prereg_computer_radiobtn"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Telephone Landline(Voice)"
+                android:text="@string/eprereg1_landline"
                 android:textSize="15dp"
                 android:id="@+id/prereg_landline_radiobtn"/>
         </RadioGroup>

@@ -20,20 +20,129 @@
     <string name="action_settings">Settings</string>
     <string name="alert">Alert</string>
 
+    <!---Main String values-->
+    <string name="edashboard">Tablero</string>
+    <string name="ekiki">KIKI Central</string>
+
+    <string name="eloginactivity_username">Tu teléfono</string>
+    <string name="eloginactivity_password">Contraseña</string>
+    <string name="eloginactivity_signin">Iniciar</string>
+    <string name="eloginactivity_signup">Regístrese para obtener una cuenta</string>
+
+    <string name="eregcode_plsenter">Por favor escriba su código:</string>
+    <string name="eregcode_submit">ENVIAR</string>
+
+    <string name="ereg1_createacct">Crear una cuenta</string>
+    <string name="ereg1_phonenumber">Tu teléfono</string>
+    <string name="ereg1_password">Crear contraseña</string>
+    <string name="ereg1_register">Registro</string>
+
+    <string name="eprereg1_version">Seleccione su versión:</string>
+    <string name="eprereg1_smartphone">Teléfono inteligente</string>
+    <string name="eprereg1_mobile">Teléfono móvil</string>
+    <string name="eprereg1_computer">Computadora personal</string>
+    <string name="eprereg1_landline">Teléfono fijo(Voz)</string>
+
+    <string name="ereg2_firstname">Nombre</string>
+    <string name="ereg2_middlename">Segundo</string>
+    <string name="ereg2_lastname">Apellido</string>
+
+    <string name="ereg3_address">Dirección</string>
+    <string name="ereg3_province">Provincia</string>
+    <string name="ereg3_postalcode">Código Postal</string>
+
+    <string name="ereg4_rentorown">¿Alquila o es propietarios de la tierra?</string>
+    <string name="ereg4_rent">Alquilar</string>
+    <string name="ereg4_own">Propio</string>
+    <string name="ereg4_nameland">¿Quien es dueño de la tierra?</string>
+    <string name="ereg4_name">Nombre</string>
+    <string name="ereg4_howmany">¿Cuántas hectáreas?</string>
+    <string name="ereg4_enterno">Ingrese el número</string>
+
+    <string name="ereg5_which">¿Qué tipo de cultivo crece?\n(Marque todas las que correspondan)</string>
+    <string name="ereg5_pineapple">Piña</string>
+    <string name="ereg5_orange">Naranja</string>
+    <string name="ereg5_banana">Banana</string>
+    <string name="ereg5_cacao">Cacao</string>
+    <string name="ereg5_passionfruit">Maricamba</string>
+    <string name="ereg5_chia">Chia semillahe</string>
+    <string name="ereg5_quinoa">Grano de Quinoa</string>
+
+    <string name="ereg6_trees">¿Cuántos árboles/plantas del cultivo por hectárea?</string>
+    <string name="ereg6_hectares">Hectáreas</string>
+    <string name="ereg6_quintal">¿Cuánto está produciendo la cosecha\n(en quintales)?</string>
+    <string name="ereg6_quintals">Quintales</string>
+
+    <string name="eprofile_phone">Tu Teléfono:</string>
+    <string name="eprofile_password">Contraseña:</string>
+    <string name="eprofile_firstname">Nombre:</string>
+    <string name="eprofile_middlename">Segundo:</string>
+    <string name="eprofile_lastname">Apellido:</string>
+    <string name="eprofile_address">Dirección:</string>
+    <string name="eprofile_province">Provincia:</string>
+    <string name="eprofile_postalcode">Código Postal:</string>
+    <string name="eprofile_nameland">Propietario del terreno:</string>
+    <string name="eprofile_hectares">Hectáreas de tierra:</string>
+    <string name="eprofile_number">Número</string>
+    <string name="eprofile_cropdetails">Detalles de la cosecha</string>
+
+    <string name="ecropitem_trees">Árboles/Plantas de cultivo por hectárea:</string>
+    <string name="ecropitem_quintals">Número de quintales por cultivo:</string>
+
+
+    <string name="ealert_nonew">No hay nuevas alertas</string>
+
+
+    <string name="edelivery_pick">Elija el cultivo:</string>
+    <string name="edelivery_buyer">¿Quién es el comprador?</string>
+    <string name="edelivery_bphone">Número de teléfono del comprador:</string>
+    <string name="edelivery_desig">Designación del comprador:</string>
+    <string name="edelivery_lvendor">Proveedor local</string>
+    <string name="edelivery_exp">Exportador</string>
+    <string name="edelivery_other">Otro</string>
+    <string name="edelivery_baddress">Dirección del comprador:</string>
+    <string name="edelivery_darea">¿Qué tipo de área de entrega es?</string>
+    <string name="edelivery_others">En otro caso, por favor especifica</string>
+    <string name="edelivery_submit">ENVIAR</string>
+
+    <string name="eharvest_harvest">La cosecha de esta temporada:</string>
+    <string name="eharvest_prod">Cantidad de producción (hectáreas):</string>
+    <string name="eharvest_aph">Cantidad por hectárea:</string>
+    <string name="eharvest_colordiff">Cualquier diferencia de color?</string>
+    <string name="eharvest_yes">Sí</string>
+    <string name="eharvest_no">No</string>
+    <string name="eharvest_stemdiff">Cualquier diferencia de color en el árbol o tallo?</string>
+    <string name="eharvest_marks">¿Hay marcas diferentes en el producto, el tallo o el árbol?</string>
+    <string name="eharvest_diseases">¿Alguna enfermedad?</string>
+    <string name="eharvest_bugs">¿Alguna nueva falla que hayas visto?</string>
+    <string name="eharvest_soildiff">¿Algún cambio de color en su suelo?</string>
+    <string name="eharvest_pesticide">¿Utilizó algún fertilizante o pesticida diferente?</string>
+    <string name="eharvest_submit">ENVIAR</string>
+
+    <string name="eprofile_title">Perfil</string>
+
+
+
+
+
+
+
+
+
     <string-array name="location_array">
-        <item>Local Market</item>
-        <item>Warehouse w/ Refrigeration</item>
-        <item>Warehouse w/o Refrigeration</item>
-        <item>Local food processing facility</item>
+        <item>Mercado Local</item>
+        <item>Almacén con Refrigeración</item>
+        <item>Almacén sin refrigeración</item>
+        <item>Instalación local de procesamiento de alimentos</item>
     </string-array>
 
     <string-array name="crop_array">
-        <item>pineapple</item>
-        <item>orange</item>
-        <item>banana</item>
-        <item>cacao pod</item>
-        <item>passionfruit</item>
-        <item>chia seeds</item>
-        <item>quinoa grains</item>
+        <item>Piña</item>
+        <item>Naranja</item>
+        <item>Banana</item>
+        <item>Cacao</item>
+        <item>Maricamba</item>
+        <item>Chia semillahe</item>
+        <item>Grano de Quinoa</item>
     </string-array>
 </resources>

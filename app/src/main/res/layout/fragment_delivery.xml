@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/delivery_title_textview"
-                android:text="Pick the crop:"
+                android:text="@string/edelivery_pick"
                 android:layout_marginTop="50dp"
                 android:textSize="18sp"/>
             <Spinner
@@ -43,7 +43,7 @@
                 android:layout_below="@+id/delivery_crop_spinner"
                 android:layout_marginTop="20dp"
                 android:id="@+id/delivery_buyer_textview"
-                android:text="Who is the buyer?"
+                android:text="@string/edelivery_buyer"
                 android:textSize="18sp"/>
 
             <android.support.design.widget.TextInputEditText
@@ -61,7 +61,7 @@
                 android:layout_below="@+id/delivery_buyer_edittext"
                 android:layout_marginTop="20dp"
                 android:id="@+id/delivery_phone_textview"
-                android:text="Buyer's Phone Number:"
+                android:text="@string/edelivery_bphone"
                 android:textSize="18sp"/>
 
             <android.support.design.widget.TextInputEditText
@@ -79,7 +79,7 @@
                 android:layout_below="@id/delivery_phone_edittext"
                 android:layout_marginTop="20dp"
                 android:id="@+id/delivery_desig_textview"
-                android:text="Designation of the buyer:"
+                android:text="@string/edelivery_desig"
                 android:textSize="18sp"/>
 
             <RadioGroup
@@ -92,19 +92,19 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Local Vendor"
+                    android:text="@string/edelivery_lvendor"
                     android:textSize="15dp"
                     android:id="@+id/delivery_desig_radiobtnlocal" />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Exporter"
+                    android:text="@string/edelivery_exp"
                     android:textSize="15dp"
                     android:id="@+id/delivery_desig_radiobtnexport"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Other"
+                    android:text="@string/edelivery_other"
                     android:textSize="15dp"
                     android:id="@+id/delivery_desig_radiobtnother"/>
             </RadioGroup>
@@ -115,7 +115,7 @@
                 android:layout_below="@+id/delivery_desig_radiogrp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/delivery_address_textview"
-                android:text="Buyer's Address:"
+                android:text="@string/edelivery_baddress"
                 android:textSize="18sp"/>
 
             <android.support.design.widget.TextInputEditText
@@ -132,7 +132,7 @@
                 android:layout_below="@+id/delivery_address_edittext"
                 android:layout_marginTop="20dp"
                 android:id="@+id/delivery_location_textview"
-                android:text="What type of delivery area is it?"
+                android:text="@string/edelivery_darea"
                 android:textSize="18sp"/>
 
             <Spinner
@@ -147,7 +147,7 @@
                 android:layout_below="@+id/delivery_location_spinner"
                 android:id="@+id/delivery_otherlocation_textview"
                 android:layout_marginTop="20dp"
-                android:text="If other, please specify"
+                android:text="@string/edelivery_others"
                 android:textSize="18sp"/>
 
             <android.support.design.widget.TextInputEditText
@@ -161,7 +161,7 @@
             <Button
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="SUBMIT"
+                android:text="@string/edelivery_submit"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:layout_marginBottom="24dp"

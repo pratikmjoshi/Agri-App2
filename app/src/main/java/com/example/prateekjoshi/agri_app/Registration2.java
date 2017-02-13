@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -39,7 +40,7 @@ public class Registration2 extends AppCompatActivity {
         setContentView(R.layout.fragment_registration2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.reg2_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Registration");
+        toolbar.setTitle("Registro");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -62,7 +63,7 @@ public class Registration2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (editTextFirstName.getText().toString().equals("") || editTextLastName.getText().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Please enter a first name or a last name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Escriba un nombre o apellido", Toast.LENGTH_SHORT).show();
                 } else {
                     firstName = editTextFirstName.getText().toString();
                     middleName = editTextMiddleName.getText().toString();
@@ -109,7 +110,19 @@ public class Registration2 extends AppCompatActivity {
     public void onBackPressed() {
         // do nothing.
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
 
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     public void update(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone).findAll();
         realm.executeTransaction(new Realm.Transaction() {

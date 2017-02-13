@@ -61,7 +61,7 @@ public class SingleCropProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_crop_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_single_crop_profile_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Crop Details");
+        toolbar.setTitle("Detalles");
         setSupportActionBar(toolbar);
 
         editmenu = false;
@@ -207,25 +207,25 @@ public class SingleCropProfileActivity extends AppCompatActivity {
 
     public String setCropText(String crop) {
         if (crop.equals("pineapple")) {
-            return "Pineapple";
+            return "Piña";
         }
         if (crop.equals("orange")) {
-            return "Orange";
+            return "Naranja";
         }
         if (crop.equals("banana")) {
             return "Banana";
         }
         if (crop.equals("cacao pod")) {
-            return "Cacao Pod";
+            return "Cacao";
         }
         if (crop.equals("passionfruit")) {
-            return "Passionfruit";
+            return "Maricamba";
         }
         if (crop.equals("chia seeds")) {
-            return "Chia Seeds";
+            return "Chia semillahe";
         }
         if (crop.equals("quinoa grains")) {
-            return "Quinoa Grains";
+            return "Grano de Quinoa";
         }
         return "Crop";
     }
@@ -260,7 +260,7 @@ public class SingleCropProfileActivity extends AppCompatActivity {
 
     public void saveNew(Realm realm) {
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).findAll();
-        final String newCrop = convertToString(cropName.getText().toString(), cropHectares.getText().toString(), cropQuintals.getText().toString());
+        final String newCrop = convertToString(crop, cropHectares.getText().toString(), cropQuintals.getText().toString());
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -374,9 +374,9 @@ public class SingleCropProfileActivity extends AppCompatActivity {
 
     public void openAlertDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(SingleCropProfileActivity.this).create();
-        alertDialog.setTitle("Delete");
-        alertDialog.setMessage("Are you sure you want to delete this crop detail?");
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+        alertDialog.setTitle("Borrar");
+        alertDialog.setMessage("¿Estas seguro que quieres borrarlo?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sí",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         deleteCrop(realm);

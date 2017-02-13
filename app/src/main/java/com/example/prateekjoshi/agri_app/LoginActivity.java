@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private String name;
     private String password;
     public Button logbutton;
-
+    private int check=0;
     public TextView regbutton;
     public EditText editTextName;
     public EditText editTextPassword;
@@ -104,12 +104,9 @@ public class LoginActivity extends AppCompatActivity {
 
         final AlertDialog alertDialog = alertDialogBuilder.create();
 
-        //WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        //lp.copyFrom(alertDialog.getWindow().getAttributes());
         // show it
         alertDialog.show();
-        //alertDialog.getWindow().setAttributes(lp);
-        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.setCanceledOnTouchOutside(false);
 
 
         boolean onPhone = false;
@@ -119,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 onPhone = true;
                 alertDialog.dismiss();
                 Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
+                i.putExtra("phone",name);
                 startActivity(i);
             }
         }
@@ -129,21 +127,24 @@ public class LoginActivity extends AppCompatActivity {
             }
             else {
                 Query query = ref.child("Registration").orderByChild("Phone Number").equalTo(name);
-
+                check=0;
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
 
                             if (Snapshot.child("Password").getValue().toString().equals(password)) {
-                                alertDialog.dismiss();
                                 Intent i = new Intent(LoginActivity.this, MenuNavActivity.class);
                                 i.putExtra("phone", phone);
-                                startActivity(i);
-                            } else {
+                                Log.d("phonecheck",phone);
                                 alertDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Please enter the correct username or password", Toast.LENGTH_SHORT).show();
+                                check=1;
+                                startActivity(i);
                             }
+                        }
+                        if(check==0) {
+                            alertDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Escriba el nombre de usuario o la contraseña correcta", Toast.LENGTH_SHORT).show();
                         }
                     }
 

@@ -52,7 +52,7 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             CropDetailsViewHolder vh = (CropDetailsViewHolder) holder;
 
 
-            vh.cropName.setText(list.get(position).getCrop());
+            vh.cropName.setText(setCropText(list.get(position).getCrop()));
             vh.cropHectares.setText(Integer.toString(list.get(position).getHectares()));
             vh.cropQuintals.setText(Integer.toString(list.get(position).getQuintals()));
             vh.cropPicture.setImageResource(setImage(list.get(position).getCrop()));
@@ -102,25 +102,25 @@ public class CropDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public String setCropText(String crop) {
         if (crop.equals("pineapple")) {
-            return "Pineapple";
+            return "Piña";
         }
         if (crop.equals("orange")) {
-            return "Orange";
+            return "Naranja";
         }
         if (crop.equals("banana")) {
             return "Banana";
         }
         if (crop.equals("cacao pod")) {
-            return "Cacao Pod";
+            return "Cacao";
         }
         if (crop.equals("passionfruit")) {
-            return "Passionfruit";
+            return "Maricamba";
         }
         if (crop.equals("chia seeds")) {
-            return "Chia Seeds";
+            return "Chia semillahe";
         }
         if (crop.equals("quinoa grains")) {
-            return "Quinoa Grains";
+            return "Grano de Quinoa";
         }
         return "Crop";
     }

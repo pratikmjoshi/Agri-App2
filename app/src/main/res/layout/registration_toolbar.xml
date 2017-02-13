@@ -5,5 +5,5 @@
     android:layout_height="wrap_content"
     android:background="@color/Turquoise"
     android:titleTextColor="@color/white"
-    android:title="Registration"
+    android:title="Registro"
     android:elevation="4dp"/>

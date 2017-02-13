@@ -112,7 +112,7 @@ public class HarvestFragment extends Fragment {
                 }
 
 
-                Toast.makeText(getContext(), "Submitted Harvest Details", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Detalles de la cosecha presentada", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -159,7 +159,7 @@ public class HarvestFragment extends Fragment {
         if (selectedId == -1) {
 
         } else {
-            if (button.getText().toString().equals("Yes")) {
+            if (button.getText().toString().equals("Sí")) {
 
                 return true;
             } else if (button.getText().toString().equals("No")) {

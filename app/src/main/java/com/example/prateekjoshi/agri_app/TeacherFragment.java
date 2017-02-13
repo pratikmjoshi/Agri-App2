@@ -67,16 +67,16 @@ public class TeacherFragment extends Fragment {
     public List<VideoItem> getList() {
 
         List<VideoItem> vids = new ArrayList<VideoItem>();
-        vids.add(new VideoItem("Soil Management", R.drawable.soil));
-        vids.add(new VideoItem("Irrigation", R.drawable.irrigation));
-        vids.add(new VideoItem("Nutrition/Fertilizers", R.drawable.nutrition));
-        vids.add(new VideoItem("Certification/Organic", R.drawable.certification));
-        vids.add(new VideoItem("Pesticides", R.drawable.pesticides));
-        vids.add(new VideoItem("Pruning Trees/Plants", R.drawable.pruning));
-        vids.add(new VideoItem("Harvesting", R.drawable.harvesting));
-        vids.add(new VideoItem("Loss Prevention", R.drawable.loss_prevention));
-        vids.add(new VideoItem("Packing & Transport", R.drawable.packing));
-        vids.add(new VideoItem("New Technologies", R.drawable.newtech));
+        vids.add(new VideoItem("Manejo del Suelo", R.drawable.soil));
+        vids.add(new VideoItem("Irrigación", R.drawable.irrigation));
+        vids.add(new VideoItem("Nutrición/Fertilizantes", R.drawable.nutrition));
+        vids.add(new VideoItem("Certificación/Orgánica", R.drawable.certification));
+        vids.add(new VideoItem("Plaguicidas", R.drawable.pesticides));
+        vids.add(new VideoItem("Podar árboles/plantas", R.drawable.pruning));
+        vids.add(new VideoItem("Cosecha", R.drawable.harvesting));
+        vids.add(new VideoItem("Prevención de Pérdidas", R.drawable.loss_prevention));
+        vids.add(new VideoItem("Embalaje y transporte", R.drawable.packing));
+        vids.add(new VideoItem("Nuevas tecnologías", R.drawable.newtech));
 
         return vids;
     }

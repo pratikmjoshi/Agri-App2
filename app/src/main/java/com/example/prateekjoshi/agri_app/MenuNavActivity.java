@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MenuNavActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,7 +51,8 @@ public class MenuNavActivity extends Activity
         tx.replace(R.id.your_placehodler, TeacherFragment.newInstance());
         tx.commit();
 
-
+        Intent i = getIntent();
+        phone = i.getStringExtra("phone");
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         toolbar.setTitle("KIKI Central");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -59,10 +62,10 @@ public class MenuNavActivity extends Activity
 
 
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_local_library, "Teacher"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_warning, "Alerts"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_timeline, "Harvest"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_local_shipping, "Delivery"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_local_library, "Profesor"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_warning, "Alerta"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_timeline, "Cosecha"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_local_shipping, "Entrega"))
                 .initialise();
 
         bottomNavigationBar
@@ -128,8 +131,6 @@ public class MenuNavActivity extends Activity
         });
 
         realm = Realm.getDefaultInstance();
-        Intent i = getIntent();
-        phone = i.getStringExtra("phone");
 
         listener = returnEventListener();
         query = ref.orderByChild("Phone Number").equalTo(phone);
@@ -163,6 +164,7 @@ public class MenuNavActivity extends Activity
         if (id == R.id.nav_profile) {
 
             Intent i = new Intent(this, ProfileActivity.class);
+
             startActivity(i);
 
         }
@@ -225,7 +227,19 @@ public class MenuNavActivity extends Activity
         query.removeEventListener(listener);
         realm.close();
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
 
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     private ValueEventListener returnEventListener() {
         return new ValueEventListener() {
             @Override

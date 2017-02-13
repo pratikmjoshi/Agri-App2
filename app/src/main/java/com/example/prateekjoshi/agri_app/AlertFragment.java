@@ -3,6 +3,7 @@ package com.example.prateekjoshi.agri_app;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +31,8 @@ public class AlertFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
     private FloatingActionButton clearnotifs;
+    private ImageView nonewicon;
+    private TextView nonewtextview;
 
     List<String> alerts;
 
@@ -59,6 +64,11 @@ public class AlertFragment extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sharedPreferencesEditor = sharedPreferences.edit();
 
+        nonewicon = (ImageView) getView().findViewById(R.id.alert_nonewicon);
+        nonewtextview = (TextView) getView().findViewById(R.id.alert_nonew_textview);
+        nonewicon.setVisibility(View.VISIBLE);
+        nonewtextview.setVisibility(View.VISIBLE);
+
         alerts = load();
 
         mRecyclerView = (RecyclerView) getView().findViewById(R.id.alert_recycler_view);
@@ -79,6 +89,8 @@ public class AlertFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 alerts.clear();
+                nonewicon.setVisibility(View.VISIBLE);
+                nonewtextview.setVisibility(View.VISIBLE);
                 store(alerts);
                 mAdapter = new AlertAdapter(getContext(), alerts);
                 mRecyclerView.setAdapter(mAdapter);
@@ -94,6 +106,11 @@ public class AlertFragment extends Fragment {
         int num = 0;
         if (csvList.isEmpty()) {
             num = 1;
+            nonewicon.setVisibility(View.VISIBLE);
+            nonewtextview.setVisibility(View.VISIBLE);
+        }else {
+            nonewicon.setVisibility(View.INVISIBLE);
+            nonewtextview.setVisibility(View.INVISIBLE);
         }
         list.addAll(Arrays.asList(items).subList(num, items.length));
         return list;

@@ -59,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
     private boolean editmenu;
     public boolean ownLand;
     private String version;
+    private String globalphone;
 
     public boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
@@ -71,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.profileactivity_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Profile");
+        toolbar.setTitle("Perfil");
         setSupportActionBar(toolbar);
 
         editmenu = false;
@@ -99,6 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         disableFields();
 
+        globalphone = phone.getText().toString();
 
         cropDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +182,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(this, MenuNavActivity.class);
+        Log.d("globalphone",globalphone);
+        i.putExtra("phone",globalphone);
         startActivity(i);
     }
 
@@ -248,15 +252,16 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void saveNew(Realm realm) {
+        globalphone = phone.getText().toString();
         final RealmResults<ProfileDetails> results = realm.where(ProfileDetails.class).equalTo("phone", phone.getText().toString()).findAll();
         int selectedId = ownLandGroup.getCheckedRadioButtonId();
         ownLandButton = (RadioButton) findViewById(selectedId);
         if (selectedId == -1) {
-            Toast.makeText(getApplicationContext(), "Please select if you rent or own land", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Por favor, seleccione si alquila o posee terreno", Toast.LENGTH_SHORT).show();
         } else {
-            if (ownLandButton.getText() == "Own") {
+            if (ownLandButton.getText() == "Propio") {
                 ownLand = true;
-            } else if (ownLandButton.getText() == "Rent") {
+            } else if (ownLandButton.getText() == "Alquilar") {
                 ownLand = false;
             }
         }

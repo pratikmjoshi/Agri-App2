@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -29,7 +30,7 @@ public class Registration5 extends AppCompatActivity {
         setContentView(R.layout.fragment_registration5);
         Toolbar toolbar = (Toolbar) findViewById(R.id.reg5_toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white, getTheme()));
-        toolbar.setTitle("Registration");
+        toolbar.setTitle("Registro");
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
@@ -55,7 +56,7 @@ public class Registration5 extends AppCompatActivity {
                 cropsTypes();
                 int amount = crops.size();
                 if (amount == 0) {
-                    Toast.makeText(getApplicationContext(), "Please choose at least one crop", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Por favor, elija al menos un cultivo", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent i = new Intent(Registration5.this, Registration6.class);
                     i.putExtra("Loops", amount);
@@ -106,7 +107,19 @@ public class Registration5 extends AppCompatActivity {
     public void onBackPressed() {
         // do nothing.
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
 
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

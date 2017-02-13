@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engapp_name">Agri-App</string>
+    <string name="engtitle_activity_login">LoginActivity</string>
+    <string name="engtitle_activity_registration">RegistrationActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="enghello_blank_fragment">Hello blank fragment</string>
+    <string name="engtitle_activity_menu_screen">MenuScreen</string>
+    <string name="engtitle_activity_menu_nav">MenuNavActivity</string>
+
+    <string name="engtitle_section1">Section 1</string>
+    <string name="engtitle_section2">Section 2</string>
+    <string name="engtitle_section3">Section 3</string>
+
+    <string name="engnavigation_drawer_open">Open navigation drawer</string>
+    <string name="engnavigation_drawer_close">Close navigation drawer</string>
+
+    <string name="engaction_example">Example action</string>
+
+    <string name="engaction_settings">Settings</string>
+    <string name="engalert">Alert</string>
+
+    <!---Main String values-->
+    <string name="engdashboard">Tablero</string>
+    <string name="engkiki">KIKI Central</string>
+
+    <string name="engloginactivity_username">Username</string>
+    <string name="engloginactivity_password">Password</string>
+    <string name="engloginactivity_signin">SIGN IN</string>
+    <string name="engloginactivity_signup">SIGN UP FOR AN ACCOUNT</string>
+
+    <string name="engregcode_plsenter">Please enter your code:</string>
+    <string name="engregcode_submit">ENTER</string>
+
+    <string name="engreg1_createacct">Create your Account</string>
+    <string name="engreg1_phonenumber">Phone Number</string>
+    <string name="engreg1_password">Create your Password</string>
+    <string name="engreg1_register">REGISTER</string>
+
+    <string name="engprereg1_version">Select your version:</string>
+    <string name="engprereg1_smartphone">Smartphone</string>
+    <string name="engprereg1_mobile">Mobile phone</string>
+    <string name="engprereg1_computer">Personal Computer</string>
+    <string name="engprereg1_landline">Landline Telephone(Voice)</string>
+
+    <string name="engreg2_firstname">First Name</string>
+    <string name="engreg2_middlename">Middle Name</string>
+    <string name="engreg2_lastname">Last Name</string>
+
+    <string name="engreg3_address">Address</string>
+    <string name="engreg3_province">Province</string>
+    <string name="engreg3_postalcode">Postal Code</string>
+
+    <string name="engreg4_rentorown">Do you rent or own the land?</string>
+    <string name="engreg4_rent">Rent</string>
+    <string name="engreg4_own">Own</string>
+    <string name="engreg4_nameland">Under whose name is the land under?</string>
+    <string name="engreg4_name">Name</string>
+    <string name="engreg4_howmany">How many hectares of land?</string>
+    <string name="engreg4_enterno">Number</string>
+
+    <string name="engreg5_which">Which crops do you grow?(Tick all that apply)</string>
+    <string name="engreg5_pineapple">Pineapple</string>
+    <string name="engreg5_orange">Orange</string>
+    <string name="engreg5_banana">Banana</string>
+    <string name="engreg5_cacao">Cacao pod</string>
+    <string name="engreg5_passionfruit">Passionfruit</string>
+    <string name="engreg5_chia">Chia seeds</string>
+    <string name="engreg5_quinoa">Quinoa Grains</string>
+
+    <string name="engreg6_trees">How many trees/plants of the crop per hectare?</string>
+    <string name="engreg6_hectares">Hectares</string>
+    <string name="engreg6_quintal">How many quintals of crop per hectare?</string>
+    <string name="engreg6_quintals">Quintals</string>
+
+    <string name="engprofile_phone">Phone:</string>
+    <string name="engprofile_password">Password:</string>
+    <string name="engprofile_firstname">First Name:</string>
+    <string name="engprofile_middlename">Middle Name:</string>
+    <string name="engprofile_lastname">Last Name:</string>
+    <string name="engprofile_address">Address:</string>
+    <string name="engprofile_province">Province:</string>
+    <string name="engprofile_postalcode">Postal Code:</string>
+    <string name="engprofile_nameland">Name of land owner:</string>
+    <string name="engprofile_hectares">Hectares of land:</string>
+    <string name="engprofile_number">Number</string>
+    <string name="engprofile_cropdetails">Click to view Crop details</string>
+
+    <string name="engcropitem_trees">Trees/crop plants per hectare:</string>
+    <string name="engcropitem_quintals">Number of quintals per crop:</string>
+
+
+    <string name="engalert_nonew">No new alerts</string>
+
+
+    <string name="engdelivery_pick">Choose the crop:</string>
+    <string name="engdelivery_buyer">Who is the buyer?</string>
+    <string name="engdelivery_bphone">Buyer phone number:</string>
+    <string name="engdelivery_desig">Buyer designation:</string>
+    <string name="engdelivery_lvendor">Local vendor</string>
+    <string name="engdelivery_exp">Exporter</string>
+    <string name="engdelivery_other">Other</string>
+    <string name="engdelivery_baddress">Buyer address:</string>
+    <string name="engdelivery_darea">What type of delivery area is it?</string>
+    <string name="engdelivery_others">If other,please specify</string>
+    <string name="engdelivery_submit">SUBMIT</string>
+
+    <string name="engharvest_harvest">This season\'s harvest:</string>
+    <string name="engharvest_prod">Amount of production (hectares):</string>
+    <string name="engharvest_aph">Amount per hectare:</string>
+    <string name="engharvest_colordiff">Any difference in color?</string>
+    <string name="engharvest_yes">Yes</string>
+    <string name="engharvest_no">No</string>
+    <string name="engharvest_stemdiff">Any color difference in the tree or stem?</string>
+    <string name="engharvest_marks">Are there different marks on the product, stem or tree?</string>
+    <string name="engharvest_diseases">Any diseases?</string>
+    <string name="engharvest_bugs">Any bugs?</string>
+    <string name="engharvest_soildiff">Any difference in color of soil?</string>
+    <string name="engharvest_pesticide">Did you use any different fertilizer or pesticide?</string>
+    <string name="engharvest_submit">SUBMIT</string>
+
+    <string name="engprofile_title">Profile</string>
+
+
+
+
+
+
+
+
+
+    <string-array name="englocation_array">
+        <item>Local Market</item>
+        <item>Warehouse w/ Refrigeration</item>
+        <item>Warehouse w/o Refrigeration</item>
+        <item>Local food processing facility</item>
+    </string-array>
+
+    <string-array name="engcrop_array">
+        <item>Pineapple</item>
+        <item>Orange</item>
+        <item>Banana</item>
+        <item>Cacao pod</item>
+        <item>Passionfruit</item>
+        <item>Chia seeds</item>
+        <item>Quinoa grains</item>
+    </string-array>
+</resources>

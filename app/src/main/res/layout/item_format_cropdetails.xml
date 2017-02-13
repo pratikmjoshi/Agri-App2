@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trees/Plants of crop per hectare:"
+        android:text="@string/ecropitem_trees"
         android:id="@+id/profile_cropdetails_hectares_textview"
         android:layout_toRightOf="@+id/profile_cropdetails_croppic"
         android:layout_below="@+id/item_format_cropdetails_title"
@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No. of quintals produced per crop:"
+        android:text="@string/ecropitem_quintals"
         android:id="@+id/profile_cropdetails_quintals_textview"
         android:layout_toRightOf="@+id/profile_cropdetails_croppic"
         android:layout_below="@+id/profile_cropdetails_hectares_edittext"

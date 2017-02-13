@@ -5,5 +5,5 @@
     android:layout_height="wrap_content"
     android:background="@color/Turquoise"
     android:titleTextColor="@color/white"
-    android:title="Profile"
+    android:title="@string/eprofile_title"
     android:elevation="4dp"/>
